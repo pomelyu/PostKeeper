@@ -84,6 +84,7 @@ app.*.map.json
 ##### Project Specific #####
 ############################
 # Add your project-specific rules below this line
+.vscode
 .codegraph
 .agents/skills
 tmp/
