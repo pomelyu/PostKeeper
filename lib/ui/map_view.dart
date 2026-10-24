@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
 
 class MapViewModel extends ChangeNotifier {
   MapViewModel();
@@ -11,13 +12,11 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('地圖'),
-          Text('尚未推出'),
-        ],
+        children: [Text(l10n.navMap), Text(l10n.textCommingSoon)],
       ),
     );
   }

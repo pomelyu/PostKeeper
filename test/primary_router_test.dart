@@ -1,8 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:postkeeper/main.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
 
 void main() {
+  testWidgets('語言切換保留目前路由並套用到其他頁面', (tester) async {
+    await tester.pumpWidget(const PostKeeperApp());
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('nav-setting')));
+    await tester.pumpAndSettle();
+
+    for (final language in ['en', 'zh']) {
+      await tester.tap(
+        find.byKey(const ValueKey('settings-language-dropdown')),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(ValueKey('language-$language')).last);
+      await tester.pumpAndSettle();
+      final setting = tester.element(
+        find.byKey(const ValueKey('setting-view')),
+      );
+      expect(Localizations.localeOf(setting).languageCode, language);
+      expect(AppLocalizations.of(setting).localeName, language);
+
+      await tester.tap(find.byKey(const ValueKey('nav-main')));
+      await tester.pumpAndSettle();
+      expect(
+        Localizations.localeOf(
+          tester.element(find.byKey(const ValueKey('main-view'))),
+        ).languageCode,
+        language,
+      );
+      await tester.tap(find.byKey(const ValueKey('nav-setting')));
+      await tester.pumpAndSettle();
+    }
+  });
+
   testWidgets('底部導覽列可以切換頁面', (tester) async {
     await tester.pumpWidget(const PostKeeperApp());
     await tester.pumpAndSettle();

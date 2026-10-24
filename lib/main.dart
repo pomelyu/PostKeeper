@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/locale_controller.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/constant.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
@@ -13,14 +15,38 @@ void main() {
   runApp(const PostKeeperApp());
 }
 
-class PostKeeperApp extends StatelessWidget {
+class PostKeeperApp extends StatefulWidget {
   const PostKeeperApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<PostKeeperApp> createState() => _PostKeeperAppState();
+}
+
+class _PostKeeperAppState extends State<PostKeeperApp> {
+  final _localeController = LocaleController();
+  late final _router = createAppRouter();
+
+  @override
+  void dispose() {
+    _router.dispose();
+    _localeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: createAppRouter(),
+    return ChangeNotifierProvider.value(
+      value: _localeController,
+      child: ListenableBuilder(
+        listenable: _localeController,
+        builder: (context, child) => MaterialApp.router(
+          title: 'PostKeeper',
+          locale: _localeController.locale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          routerConfig: _router,
+        ),
+      ),
     );
   }
 }
@@ -39,6 +65,7 @@ class PostKeeperScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final path = GoRouterState.of(context).uri.path;
     final index = _paths.indexOf(path);
 
@@ -53,22 +80,22 @@ class PostKeeperScaffold extends StatelessWidget {
           NavigationDestination(
             key: ValueKey('nav-main'),
             icon: Icon(Icons.home_outlined),
-            label: '首頁'
+            label: l10n.navHome,
           ),
           NavigationDestination(
             key: ValueKey('nav-keeper'),
             icon: Icon(Icons.collections_bookmark_outlined),
-            label: '收藏'
+            label: l10n.navKeeper,
           ),
           NavigationDestination(
             key: ValueKey('nav-map'),
             icon: Icon(Icons.map_outlined),
-            label: '地圖'
+            label: l10n.navMap,
           ),
           NavigationDestination(
             key: ValueKey('nav-setting'),
             icon: Icon(Icons.settings_outlined),
-            label: '設定'
+            label: l10n.navSettings,
           ),
         ],
       ),
