@@ -13,7 +13,7 @@ const _friend = Person(id: '_mock_friend-000', name: '朋友', locations: [_kyot
 
 final Postcard _sent = Postcard(
   id: '_mock_postcard_sent-000',
-  orientation: Orientation.landscape,
+  orientation: PostcardOrientation.landscape,
   createdAt: DateTime(2026, 09, 25),
   updatedAt: DateTime(2026, 09, 30),
   frontImagePath: 'assets/postcard/landscape_front.jp2',
@@ -24,7 +24,7 @@ final Postcard _sent = Postcard(
 
 final _received = Postcard(
   id: '_mock_postcard_received-000',
-  orientation: Orientation.portrait,
+  orientation: PostcardOrientation.portrait,
   createdAt: DateTime(2026, 10, 05),
   updatedAt: DateTime(2026, 10, 18),
   frontImagePath: 'assets/postcard/portrait_front.jp2',

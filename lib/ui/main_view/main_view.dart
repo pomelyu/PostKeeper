@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:postkeeper/data/repositories/postcard_repository.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
+import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/style.dart';
 
 class MainViewModel extends ChangeNotifier {
-  MainViewModel({required PostcardRepository repository})
-    : _repository = repository;
+  MainViewModel({required this._repository});
 
   final PostcardRepository _repository;
 
@@ -74,7 +74,7 @@ class MainView extends StatelessWidget {
           child: ListenableBuilder(
             listenable: viewModel,
             builder: (context, _) {
-              return MainPostcardTab(
+              return PostcardTab(
                 latestReceived: viewModel.latestReceived,
                 latestSent: viewModel.latestSent,
               );
@@ -99,60 +99,3 @@ class MainView extends StatelessWidget {
     );
   }
 }
-
-
-class MainPostcardTab extends StatelessWidget {
-  const MainPostcardTab({
-    super.key,
-    required this.latestReceived,
-    required this.latestSent,
-  });
-
-  final Postcard? latestReceived;
-  final Postcard? latestSent;
-
-  @override
-  Widget build(BuildContext context) {
-    final sentImagePath = latestSent?.frontImagePath;
-    final receivedImagePath = latestReceived?.frontImagePath;
-
-    return DefaultTabController(
-      length: 2,
-      child: Column(
-        children: [
-          TabBar(
-            tabs: [
-              Tab(
-                key: ValueKey('main-received-tab'),
-                text: '最近收到',
-              ),
-              Tab(
-                key: ValueKey('main-sent-tab'),
-                text: '最近寄出',
-              ),
-            ],
-          ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                Placeholder(
-                  key: ValueKey('main-received-content'),
-                  child: receivedImagePath != null && receivedImagePath.isNotEmpty
-                    ? Image.asset(receivedImagePath)
-                    : const Text('尚無資料'),
-                ),
-                Placeholder(
-                  key: ValueKey('main-sent-content'),
-                  child: sentImagePath != null && sentImagePath.isNotEmpty
-                    ? Image.asset(sentImagePath)
-                    : const Text('尚無資料'),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-

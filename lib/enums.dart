@@ -1,4 +1,4 @@
-enum Orientation {
+enum PostcardOrientation {
   portrait,
   landscape,
 }

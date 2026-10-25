@@ -18,9 +18,9 @@ class Postcard {
   });
 
   final String id;
-  final Orientation orientation;
   final String frontImagePath;
   final String backImagePath;
+  final PostcardOrientation orientation;
 
   final Person? sender;
   final Person? recipient;
