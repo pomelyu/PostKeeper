@@ -42,8 +42,8 @@ class MainView extends StatelessWidget {
 
   final MainViewModel viewModel;
 
-  // 固定區域高度，單位為 logical pixels；釘選區域使用剩餘高度。
-  static const double _titleHeight = 80;
+  // 區域高度以 logical pixels 計；標題可隨內容增高，釘選區域使用剩餘高度。
+  static const double _titleMinHeight = 80;
   static const double _tabHeight = 400;
   static const double _quickAddHeight = 80;
 
@@ -53,15 +53,16 @@ class MainView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(
+        ConstrainedBox(
           key: ValueKey('main-title-section'),
-          height: _titleHeight,
+          constraints: const BoxConstraints(minHeight: _titleMinHeight),
           child: Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 10,
+              horizontal: 8,
+              vertical: 8,
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(l10n.mainTitle, style: styleDisplayTitle),
