@@ -113,6 +113,7 @@ GoRouter createAppRouter() {
           settingViewRoute,
         ],
       ),
+      postcardViewRoute,
     ],
   );
 }

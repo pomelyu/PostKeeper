@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/data/repositories/mock.dart';
+import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:postkeeper/ui/map_view.dart';
+import 'package:postkeeper/ui/postcard_view.dart';
 import 'package:postkeeper/ui/setting_view.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +13,7 @@ const String mainViewURI = '/main';
 const String keeperViewURI = '/keeper';
 const String mapViewURI = '/map';
 const String settingViewURI = '/setting';
+const String postcardViewURI = '/postcard';
 
 GoRoute mainViewRoute = GoRoute(
   path: mainViewURI,
@@ -82,3 +85,21 @@ GoRoute settingViewRoute = GoRoute(
   },
 );
 
+GoRoute postcardViewRoute = GoRoute(
+  path: postcardViewURI,
+  builder: (context, state) {
+    final postcard = state.extra as Postcard;
+
+    return ChangeNotifierProvider(
+      create: (_) => PostcardViewModel(postcard: postcard),
+      child: Builder(
+        builder: (context) {
+          return PostcardView(
+            key: const ValueKey('postcard-view'),
+            viewModel: context.read<PostcardViewModel>(),
+          );
+        },
+      ),
+    );
+  },
+);
