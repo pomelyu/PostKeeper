@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 
 class PostcardTab extends StatelessWidget {
@@ -14,6 +15,7 @@ class PostcardTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return DefaultTabController(
       length: 2,
       child: Column(
@@ -22,11 +24,11 @@ class PostcardTab extends StatelessWidget {
             tabs: [
               Tab(
                 key: ValueKey('main-received-tab'),
-                text: '最近收到',
+                text: l10n.mainRecentlyReceived,
               ),
               Tab(
                 key: ValueKey('main-sent-tab'),
-                text: '最近寄出',
+                text: l10n.mainRecentlySent
               ),
             ],
           ),
@@ -34,18 +36,18 @@ class PostcardTab extends StatelessWidget {
             child: TabBarView(
               children: [
                 latestReceived == null
-                    ? const Center(
+                    ? Center(
                         key: ValueKey('main-received-content'),
-                        child: Text('尚無資料'),
+                        child: Text(l10n.mainNoPostcards),
                       )
                     : PostcardFrame(
                         key: const ValueKey('main-received-content'),
                         postcard: latestReceived!,
                       ),
                 latestSent == null
-                    ? const Center(
+                    ? Center(
                         key: ValueKey('main-sent-content'),
-                        child: Text('尚無資料'),
+                        child: Text(l10n.mainNoPostcards),
                       )
                     : PostcardFrame(
                         key: const ValueKey('main-sent-content'),

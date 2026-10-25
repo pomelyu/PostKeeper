@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:postkeeper/data/repositories/postcard_repository.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -48,6 +49,7 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -62,8 +64,8 @@ class MainView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('我的明信片', style: styleDisplayTitle),
-                Text('把收到的風景，好好收藏', style: styleBody),
+                Text(l10n.mainTitle, style: styleDisplayTitle),
+                Text(l10n.mainSubtitle, style: styleBody),
               ],
             ),
           ),
@@ -92,8 +94,8 @@ class MainView extends StatelessWidget {
           height: _quickAddHeight,
           child: TextButton(
             onPressed: null,
-            child: Text('新增明信片', style: styleSectionTitle),
-          )
+            child: Text(l10n.mainAddPostcard, style: styleSectionTitle),
+          ),
         ),
       ],
     );

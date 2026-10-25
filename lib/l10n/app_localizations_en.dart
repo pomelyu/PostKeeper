@@ -26,4 +26,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsLanguage => 'Language';
+
+  @override
+  String get mainTitle => 'My Postcards';
+
+  @override
+  String get mainSubtitle => 'Treasure every view you receive';
+
+  @override
+  String get mainAddPostcard => 'Add Postcard';
+
+  @override
+  String get mainRecentlyReceived => 'Recently Received';
+
+  @override
+  String get mainRecentlySent => 'Recently Sent';
+
+  @override
+  String get mainNoPostcards => 'No postcards yet';
+
+  @override
+  String get postcardTitle => 'Postcard';
 }

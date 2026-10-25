@@ -26,4 +26,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsLanguage => '語言';
+
+  @override
+  String get mainTitle => '我的明信片';
+
+  @override
+  String get mainSubtitle => '把收到的風景，好好收藏';
+
+  @override
+  String get mainAddPostcard => '新增明信片';
+
+  @override
+  String get mainRecentlyReceived => '最近收到';
+
+  @override
+  String get mainRecentlySent => '最近寄出';
+
+  @override
+  String get mainNoPostcards => '尚無資料';
+
+  @override
+  String get postcardTitle => '明信片';
 }

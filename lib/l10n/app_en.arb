@@ -5,5 +5,12 @@
   "navMap": "Map",
   "navSettings": "Settings",
   "textCommingSoon": "Coming soon",
-  "settingsLanguage": "Language"
+  "settingsLanguage": "Language",
+  "mainTitle": "My Postcards",
+  "mainSubtitle": "Treasure every view you receive",
+  "mainAddPostcard": "Add Postcard",
+  "mainRecentlyReceived": "Recently Received",
+  "mainRecentlySent": "Recently Sent",
+  "mainNoPostcards": "No postcards yet",
+  "postcardTitle": "Postcard"
 }

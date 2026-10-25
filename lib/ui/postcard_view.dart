@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
@@ -18,14 +19,13 @@ class PostcardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final Postcard postcard = viewModel.postcard;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('明信片'),
-        leading: BackButton(
-          onPressed: () => context.pop(),
-        ),
+        title: Text(l10n.postcardTitle),
+        leading: BackButton(onPressed: () => context.pop()),
       ),
       body: SafeArea(
         child: ListenableBuilder(

@@ -133,6 +133,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get settingsLanguage;
+
+  /// No description provided for @mainTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Postcards'**
+  String get mainTitle;
+
+  /// No description provided for @mainSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Treasure every view you receive'**
+  String get mainSubtitle;
+
+  /// No description provided for @mainAddPostcard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Postcard'**
+  String get mainAddPostcard;
+
+  /// No description provided for @mainRecentlyReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Received'**
+  String get mainRecentlyReceived;
+
+  /// No description provided for @mainRecentlySent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Sent'**
+  String get mainRecentlySent;
+
+  /// No description provided for @mainNoPostcards.
+  ///
+  /// In en, this message translates to:
+  /// **'No postcards yet'**
+  String get mainNoPostcards;
+
+  /// No description provided for @postcardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Postcard'**
+  String get postcardTitle;
 }
 
 class _AppLocalizationsDelegate

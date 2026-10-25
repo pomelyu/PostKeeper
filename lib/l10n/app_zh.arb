@@ -5,5 +5,12 @@
   "navMap": "地圖",
   "navSettings": "設定",
   "textCommingSoon": "尚未推出",
-  "settingsLanguage": "語言"
+  "settingsLanguage": "語言",
+  "mainTitle": "我的明信片",
+  "mainSubtitle": "把收到的風景，好好收藏",
+  "mainAddPostcard": "新增明信片",
+  "mainRecentlyReceived": "最近收到",
+  "mainRecentlySent": "最近寄出",
+  "mainNoPostcards": "尚無資料",
+  "postcardTitle": "明信片"
 }
