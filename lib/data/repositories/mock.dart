@@ -20,6 +20,8 @@ final Postcard _sent = Postcard(
   backImagePath: 'assets/postcard/landscape_back.jp2',
   sender: _me,
   recipient: _friend,
+  sentAt: DateTime(2026, 09, 20),
+  receivedAt: DateTime(2026, 09, 25),
 );
 
 final _received = Postcard(
@@ -31,6 +33,8 @@ final _received = Postcard(
   backImagePath: 'assets/postcard/portrait_back.jp2',
   sender: _friend,
   recipient: _me,
+  sentAt: DateTime(2026, 10, 01),
+  receivedAt: DateTime(2026, 10, 05),
 );
 
 class MockPostcardRepository implements PostcardRepository {

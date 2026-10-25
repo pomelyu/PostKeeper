@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:postkeeper/main.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/main.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
+import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/postcard_view.dart';
 
 void main() {
   for (final section in ['received', 'sent']) {
-    testWidgets('點選首頁 $section 明信片開啟對應詳情並可返回', (tester) async {
+    final sectionName = section == 'received' ? '最近收到' : '最近寄出';
+    testWidgets('點選首頁$sectionName明信片開啟對應詳情並可返回', (tester) async {
       await tester.pumpWidget(const PostKeeperApp());
       await tester.pumpAndSettle();
 
@@ -15,9 +17,18 @@ void main() {
       await tester.pumpAndSettle();
 
       final cardFinder = find.byKey(ValueKey('main-$section-content'));
-      final postcard = tester.widget<PostcardFrame>(cardFinder).postcard;
+      final postcard = tester.widget<PostcardSummary>(cardFinder).postcard;
+      await tester.runAsync(
+        () => precacheImage(
+          AssetImage(postcard!.frontImagePath),
+          tester.element(cardFinder),
+        ),
+      );
+      await tester.pumpAndSettle();
 
-      await tester.tap(cardFinder);
+      await tester.tap(
+        find.descendant(of: cardFinder, matching: find.byType(PostcardFrame)),
+      );
       await tester.pumpAndSettle();
 
       final detailFinder = find.byKey(const ValueKey('postcard-view'));
