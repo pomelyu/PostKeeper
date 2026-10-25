@@ -9,6 +9,7 @@ import 'package:postkeeper/ui/main_view.dart';
 import 'package:postkeeper/ui/map_view.dart';
 import 'package:postkeeper/ui/setting_view.dart';
 import 'package:provider/provider.dart';
+import 'package:postkeeper/data/repositories/mock.dart';
 
 void main() {
   debugPaintSizeEnabled = true;
@@ -108,7 +109,9 @@ GoRouter createAppRouter() {
     path: mainViewURI,
     builder: (context, state) {
       return ChangeNotifierProvider(
-        create: (_) => MainViewModel(),
+        create: (_) => MainViewModel(
+          repository: MockPostcardRepository(),
+        )..loadLatestPostcards(),
         child: Builder(
           builder: (context) {
             return MainView(
