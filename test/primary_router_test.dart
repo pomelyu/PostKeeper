@@ -2,8 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:postkeeper/main.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/ui/core/postcard_frame.dart';
+import 'package:postkeeper/ui/postcard_view.dart';
 
 void main() {
+  for (final section in ['received', 'sent']) {
+    testWidgets('點選首頁 $section 明信片開啟對應詳情並可返回', (tester) async {
+      await tester.pumpWidget(const PostKeeperApp());
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.byKey(ValueKey('main-$section-tab')));
+      await tester.pumpAndSettle();
+
+      final cardFinder = find.byKey(ValueKey('main-$section-content'));
+      final postcard = tester.widget<PostcardFrame>(cardFinder).postcard;
+
+      await tester.tap(cardFinder);
+      await tester.pumpAndSettle();
+
+      final detailFinder = find.byKey(const ValueKey('postcard-view'));
+      expect(detailFinder, findsOneWidget);
+      expect(
+        tester.widget<PostcardView>(detailFinder).viewModel.postcard,
+        same(postcard),
+      );
+
+      await tester.pageBack();
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const ValueKey('main-view')), findsOneWidget);
+      expect(detailFinder, findsNothing);
+      expect(cardFinder.hitTestable(), findsOneWidget);
+    });
+  }
+
   testWidgets('語言切換保留目前路由並套用到其他頁面', (tester) async {
     await tester.pumpWidget(const PostKeeperApp());
     await tester.pumpAndSettle();
