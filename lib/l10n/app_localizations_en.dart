@@ -34,7 +34,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mainSubtitle => 'Treasure every view you receive';
 
   @override
-  String get mainAddPostcard => 'Add Postcard';
+  String get mainAddPostcard => 'Scan Postcard';
 
   @override
   String get mainRecentlyReceived => 'Recently Received';

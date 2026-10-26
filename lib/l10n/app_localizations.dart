@@ -149,7 +149,7 @@ abstract class AppLocalizations {
   /// No description provided for @mainAddPostcard.
   ///
   /// In en, this message translates to:
-  /// **'Add Postcard'**
+  /// **'Scan Postcard'**
   String get mainAddPostcard;
 
   /// No description provided for @mainRecentlyReceived.

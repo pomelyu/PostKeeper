@@ -34,7 +34,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get mainSubtitle => '把收到的風景，好好收藏';
 
   @override
-  String get mainAddPostcard => '新增明信片';
+  String get mainAddPostcard => '掃描明信片';
 
   @override
   String get mainRecentlyReceived => '最近收到';
