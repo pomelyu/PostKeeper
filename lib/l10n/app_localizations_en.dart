@@ -47,4 +47,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get postcardTitle => 'Postcard';
+
+  @override
+  String get postcardEditImagesTitle => 'Postcard Images';
+
+  @override
+  String get postcardEditDetailsTitle => 'Postcard Details';
+
+  @override
+  String get postcardEditImagesStep => 'Images';
+
+  @override
+  String get postcardEditDetailsStep => 'Details';
+
+  @override
+  String get postcardEditSave => 'Save';
+
+  @override
+  String get postcardEditNext => 'Next';
 }

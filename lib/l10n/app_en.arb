@@ -12,5 +12,11 @@
   "mainRecentlyReceived": "Recently Received",
   "mainRecentlySent": "Recently Sent",
   "mainNoPostcards": "No postcards yet",
-  "postcardTitle": "Postcard"
+  "postcardTitle": "Postcard",
+  "postcardEditImagesTitle": "Postcard Images",
+  "postcardEditDetailsTitle": "Postcard Details",
+  "postcardEditImagesStep": "Images",
+  "postcardEditDetailsStep": "Details",
+  "postcardEditSave": "Save",
+  "postcardEditNext": "Next"
 }

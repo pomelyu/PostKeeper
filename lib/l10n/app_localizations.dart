@@ -175,6 +175,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Postcard'**
   String get postcardTitle;
+
+  /// No description provided for @postcardEditImagesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Postcard Images'**
+  String get postcardEditImagesTitle;
+
+  /// No description provided for @postcardEditDetailsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Postcard Details'**
+  String get postcardEditDetailsTitle;
+
+  /// No description provided for @postcardEditImagesStep.
+  ///
+  /// In en, this message translates to:
+  /// **'Images'**
+  String get postcardEditImagesStep;
+
+  /// No description provided for @postcardEditDetailsStep.
+  ///
+  /// In en, this message translates to:
+  /// **'Details'**
+  String get postcardEditDetailsStep;
+
+  /// No description provided for @postcardEditSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get postcardEditSave;
+
+  /// No description provided for @postcardEditNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get postcardEditNext;
 }
 
 class _AppLocalizationsDelegate

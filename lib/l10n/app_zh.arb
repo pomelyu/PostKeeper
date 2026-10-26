@@ -12,5 +12,11 @@
   "mainRecentlyReceived": "最近收到",
   "mainRecentlySent": "最近寄出",
   "mainNoPostcards": "尚無資料",
-  "postcardTitle": "明信片"
+  "postcardTitle": "明信片",
+  "postcardEditImagesTitle": "明信片圖片",
+  "postcardEditDetailsTitle": "明信片資料",
+  "postcardEditImagesStep": "圖片",
+  "postcardEditDetailsStep": "資料",
+  "postcardEditSave": "儲存",
+  "postcardEditNext": "下一步"
 }

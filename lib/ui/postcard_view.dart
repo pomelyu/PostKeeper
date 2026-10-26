@@ -3,6 +3,7 @@ import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
+import 'package:postkeeper/router.dart';
 
 class PostcardViewModel extends ChangeNotifier {
   PostcardViewModel({required this._postcard});
@@ -26,6 +27,19 @@ class PostcardView extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.postcardTitle),
         leading: BackButton(onPressed: () => context.pop()),
+        actions: [
+          IconButton(
+            key: const ValueKey('postcard-edit-button'),
+            tooltip: '編輯',
+            icon: const Icon(Icons.edit_outlined),
+            onPressed: () {
+              context.push(
+                postcardEditViewURI,
+                extra: viewModel.postcard,
+              );
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: ListenableBuilder(

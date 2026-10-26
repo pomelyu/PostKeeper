@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:postkeeper/data/repositories/postcard_repository.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -94,7 +96,7 @@ class MainView extends StatelessWidget {
           key: ValueKey('main-quick-add-section'),
           height: _quickAddHeight,
           child: TextButton(
-            onPressed: null,
+            onPressed: () => context.push(postcardEditViewURI),
             child: Text(l10n.mainAddPostcard, style: styleSectionTitle),
           ),
         ),

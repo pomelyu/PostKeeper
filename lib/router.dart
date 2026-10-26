@@ -5,6 +5,7 @@ import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:postkeeper/ui/map_view.dart';
+import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
 import 'package:postkeeper/ui/postcard_view.dart';
 import 'package:postkeeper/ui/setting_view.dart';
 import 'package:provider/provider.dart';
@@ -14,13 +15,16 @@ const String keeperViewURI = '/keeper';
 const String mapViewURI = '/map';
 const String settingViewURI = '/setting';
 const String postcardViewURI = '/postcard';
+const String postcardEditViewURI = '/postcard/edit';
+
+final appPostcardRepository = MockPostcardRepository();
 
 GoRoute mainViewRoute = GoRoute(
   path: mainViewURI,
   builder: (context, state) {
     return ChangeNotifierProvider(
       create: (_) => MainViewModel(
-        repository: MockPostcardRepository(),
+        repository: appPostcardRepository,
       )..loadLatestPostcards(),
       child: Builder(
         builder: (context) {
@@ -97,6 +101,28 @@ GoRoute postcardViewRoute = GoRoute(
           return PostcardView(
             key: const ValueKey('postcard-view'),
             viewModel: context.read<PostcardViewModel>(),
+          );
+        },
+      ),
+    );
+  },
+);
+
+GoRoute postcardEditViewRoute = GoRoute(
+  path: postcardEditViewURI,
+  builder: (context, state) {
+    final postcard = state.extra as Postcard?;
+
+    return ChangeNotifierProvider(
+      create: (_) => PostcardEditViewModel(
+        repository: appPostcardRepository,
+        postcard: postcard,
+      ),
+      child: Builder(
+        builder: (context) {
+          return PostcardEditView(
+            key: const ValueKey('postcard-edit-view'),
+            viewModel: context.read<PostcardEditViewModel>(),
           );
         },
       ),
