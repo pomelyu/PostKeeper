@@ -10,6 +10,7 @@ class Postcard {
     required this.updatedAt,
     required this.frontImagePath,
     required this.backImagePath,
+    this.title,
     this.sender,
     this.recipient,
     this.sentAt,
@@ -21,6 +22,8 @@ class Postcard {
   final String frontImagePath;
   final String backImagePath;
   final PostcardOrientation orientation;
+
+  final String? title;
 
   final Person? sender;
   final Person? recipient;

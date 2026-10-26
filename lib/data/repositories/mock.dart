@@ -31,6 +31,7 @@ final _received = Postcard(
   updatedAt: DateTime(2026, 10, 18),
   frontImagePath: 'assets/postcard/portrait_front.jp2',
   backImagePath: 'assets/postcard/portrait_back.jp2',
+  title: '京都賞楓',
   sender: _friend,
   recipient: _me,
   sentAt: DateTime(2026, 10, 01),

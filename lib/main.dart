@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 
 
 void main() {
-  debugPaintSizeEnabled = true;
+  // debugPaintSizeEnabled = true;
   runApp(const PostKeeperApp());
 }
 

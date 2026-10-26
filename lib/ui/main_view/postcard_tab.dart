@@ -4,6 +4,7 @@ import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
+import 'package:postkeeper/ui/style.dart';
 
 class PostcardTab extends StatelessWidget {
   const PostcardTab({
@@ -87,6 +88,7 @@ class PostcardSummary extends StatelessWidget {
     } else {
       throw ArgumentError.value(type, 'type', 'Invalid postcard type');
     }
+    final String title = (card.title == null) ? '': card.title!;
 
     return Padding(
       padding: const EdgeInsets.all(16),
@@ -98,8 +100,10 @@ class PostcardSummary extends StatelessWidget {
               child: PostcardFrame(postcard: postcard),
             ),
           ),
-          const SizedBox(height: 12),
-          Text(message, textAlign: TextAlign.left),
+          const SizedBox(height: 4),
+          Text(title, textAlign: TextAlign.left, style: styleSectionTitle),
+          const SizedBox(height: 4),
+          Text(message, textAlign: TextAlign.left, style: styleBody),
         ],
       ),
     );
