@@ -19,7 +19,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get navMap => '地圖';
 
   @override
-  String get navSettings => '設定';
+  String get navUser => '使用者';
 
   @override
   String get textCommingSoon => '尚未推出';

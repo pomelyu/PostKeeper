@@ -7,7 +7,7 @@ void main() {
   testWidgets('語言切換保留目前路由並套用到其他頁面', (tester) async {
     await tester.pumpWidget(const PostKeeperApp());
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('nav-setting')));
+    await tester.tap(find.byKey(const ValueKey('nav-user')));
     await tester.pumpAndSettle();
 
     for (final language in ['en', 'zh']) {
@@ -17,11 +17,9 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(ValueKey('language-$language')).last);
       await tester.pumpAndSettle();
-      final setting = tester.element(
-        find.byKey(const ValueKey('setting-view')),
-      );
-      expect(Localizations.localeOf(setting).languageCode, language);
-      expect(AppLocalizations.of(setting).localeName, language);
+      final user = tester.element(find.byKey(const ValueKey('user-view')));
+      expect(Localizations.localeOf(user).languageCode, language);
+      expect(AppLocalizations.of(user).localeName, language);
 
       await tester.tap(find.byKey(const ValueKey('nav-main')));
       await tester.pumpAndSettle();
@@ -31,7 +29,7 @@ void main() {
         ).languageCode,
         language,
       );
-      await tester.tap(find.byKey(const ValueKey('nav-setting')));
+      await tester.tap(find.byKey(const ValueKey('nav-user')));
       await tester.pumpAndSettle();
     }
   });
@@ -55,11 +53,11 @@ void main() {
 
     expect(find.byKey(const ValueKey('map-view')), findsOneWidget);
 
-    // 切換到設定
-    await tester.tap(find.byKey(const ValueKey('nav-setting')));
+    // 切換到使用者
+    await tester.tap(find.byKey(const ValueKey('nav-user')));
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const ValueKey('setting-view')), findsOneWidget);
+    expect(find.byKey(const ValueKey('user-view')), findsOneWidget);
 
     // 切回首頁
     await tester.tap(find.byKey(const ValueKey('nav-main')));

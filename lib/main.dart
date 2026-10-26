@@ -57,7 +57,7 @@ class PostKeeperScaffold extends StatelessWidget {
     mainViewURI,
     keeperViewURI,
     mapViewURI,
-    settingViewURI,
+    userViewURI,
   ];
 
   @override
@@ -90,9 +90,9 @@ class PostKeeperScaffold extends StatelessWidget {
             label: l10n.navMap,
           ),
           NavigationDestination(
-            key: ValueKey('nav-setting'),
-            icon: Icon(Icons.settings_outlined),
-            label: l10n.navSettings,
+            key: ValueKey('nav-user'),
+            icon: Icon(Icons.person_outline),
+            label: l10n.navUser,
           ),
         ],
       ),
@@ -110,7 +110,7 @@ GoRouter createAppRouter() {
           mainViewRoute,
           keeperViewRoute,
           mapViewRoute,
-          settingViewRoute,
+          userViewRoute,
         ],
       ),
       postcardViewRoute,

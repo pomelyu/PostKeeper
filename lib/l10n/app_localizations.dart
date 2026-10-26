@@ -116,11 +116,11 @@ abstract class AppLocalizations {
   /// **'Map'**
   String get navMap;
 
-  /// No description provided for @navSettings.
+  /// No description provided for @navUser.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
-  String get navSettings;
+  /// **'User'**
+  String get navUser;
 
   /// No description provided for @textCommingSoon.
   ///

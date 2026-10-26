@@ -7,13 +7,13 @@ import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:postkeeper/ui/map_view.dart';
 import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
 import 'package:postkeeper/ui/postcard_view.dart';
-import 'package:postkeeper/ui/setting_view.dart';
+import 'package:postkeeper/ui/user_view.dart';
 import 'package:provider/provider.dart';
 
 const String mainViewURI = '/main';
 const String keeperViewURI = '/keeper';
 const String mapViewURI = '/map';
-const String settingViewURI = '/setting';
+const String userViewURI = '/user';
 const String postcardViewURI = '/postcard';
 const String postcardEditViewURI = '/postcard/edit';
 
@@ -72,16 +72,16 @@ GoRoute mapViewRoute = GoRoute(
   },
 );
 
-GoRoute settingViewRoute = GoRoute(
-  path: settingViewURI,
+GoRoute userViewRoute = GoRoute(
+  path: userViewURI,
   builder: (context, state) {
     return ChangeNotifierProvider(
-      create: (_) => SettingViewModel(),
+      create: (_) => UserViewModel(),
       child: Builder(
         builder: (context) {
-          return SettingView(
-            key: const ValueKey('setting-view'),
-            viewModel: context.read<SettingViewModel>(),
+          return UserView(
+            key: const ValueKey('user-view'),
+            viewModel: context.read<UserViewModel>(),
           );
         },
       ),

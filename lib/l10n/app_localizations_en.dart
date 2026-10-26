@@ -19,7 +19,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navMap => 'Map';
 
   @override
-  String get navSettings => 'Settings';
+  String get navUser => 'User';
 
   @override
   String get textCommingSoon => 'Coming soon';
