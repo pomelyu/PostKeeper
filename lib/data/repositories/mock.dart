@@ -12,7 +12,7 @@ const _kyoto = Location(id: '_mock_kyoto', name: '京都', countryCode: 'JP');
 const _porto = Location(id: '_mock_porto', name: '波多', countryCode: 'PT');
 const _vancouver = Location(id: '_mock_vancouver', name: '溫哥華', countryCode: 'CA');
 
-const _me = Person(id: '_mock_me', name: '我', locations: [_home]);
+const _me = Person(id: myId, name: '我', locations: [_home]);
 const _friend1 = Person(id: '_mock_friend-000', name: '朋友1', locations: [_kyoto, _kaohsiung]);
 const _friend2 = Person(id: '_mock_friend-001', name: '朋友2', locations: [_kaohsiung]);
 const _friend3 = Person(id: '_mock_friend-002', name: '朋友3', locations: [_vancouver]);
@@ -53,14 +53,14 @@ final Postcard _sent2 = Postcard(
 final Postcard _sent3 = Postcard(
   id: '_mock_postcard_sent-002',
   isFavorite: true,
-  orientation: PostcardOrientation.portrait,
+  orientation: PostcardOrientation.landscape,
   createdAt: DateTime(2025, 07, 25),
   updatedAt: DateTime(2025, 07, 30),
-  frontImagePath: dummyCardPortraitFront,
-  backImagePath: dummyCardPortraitBack,
-  title: '',
+  frontImagePath: dummyCardLandscapeFront,
+  backImagePath: dummyCardLandscapeBack,
+  title: '日本祭典',
   sender: _me,
-  sendFrom: _vancouver,
+  sendFrom: _kyoto,
   recipient: dummyPerson,
   sendTo: dummyLocation,
   sentAt: DateTime(2025, 07, 20),
@@ -101,13 +101,53 @@ final Postcard _received2 = Postcard(
   receivedAt: DateTime(2024, 12, 05),
 );
 
-final List<Postcard> all_cards = [_sent1, _sent2, _sent3, _received1, _received2];
+final List<Postcard> allCards = [_sent1, _sent2, _sent3, _received1, _received2]
+  ..sort((a, b) {
+    final aDate = a.sentAt;
+    final bDate = b.sentAt;
+
+    if (aDate == null && bDate == null) return 0;
+    if (aDate == null) return -1;
+    if (bDate == null) return 1;
+
+    return aDate.compareTo(bDate);
+  });
 
 class MockPostcardRepository implements PostcardRepository {
 
   @override
-  Future<Postcard?> getLatestSentPostcard() async => _sent1;
+  Future<List<Postcard>> getAllPostcards() async => allCards;
 
   @override
-  Future<Postcard?> getLatestReceivedPostcard() async => _received1;
+  Future<Postcard?> getLatestSent() async {
+    final cards = await getAllMySent();
+    return cards.isEmpty ? null : cards.last;
+  }
+
+  @override
+  Future<Postcard?> getLatestReceived() async {
+    final cards = await getAllMyReceived();
+    return cards.isEmpty ? null : cards.last;
+  }
+
+  @override
+  Future<List<Postcard>> getAllMySent() async {
+    return allCards
+      .where((card) => card.sender.id == _me.id)
+      .toList();
+  }
+
+  @override
+  Future<List<Postcard>> getAllMyReceived() async {
+    return allCards
+      .where((card) => card.recipient.id == _me.id)
+      .toList();
+  }
+
+  @override
+  Future<List<Postcard>> getAllFavorite() async {
+    return allCards
+      .where((card) => card.isFavorite)
+      .toList();
+  }
 }

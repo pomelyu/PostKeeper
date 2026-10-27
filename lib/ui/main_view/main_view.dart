@@ -22,8 +22,8 @@ class MainViewModel extends ChangeNotifier {
   Future<void> loadLatestPostcards() async {
     if (_disposed) return;
 
-    final sent = await _repository.getLatestSentPostcard();
-    final received = await _repository.getLatestReceivedPostcard();
+    final sent = await _repository.getLatestSent();
+    final received = await _repository.getLatestReceived();
 
     if (_disposed) return;
 

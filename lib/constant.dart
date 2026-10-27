@@ -1,3 +1,5 @@
+const String myId = 'me-id';
+
 final String dummyPersonId = 'dummy-person';
 final String dummyLocationId = 'dummy-location';
 
