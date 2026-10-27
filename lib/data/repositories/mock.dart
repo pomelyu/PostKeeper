@@ -2,7 +2,7 @@ import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
-
+import 'package:postkeeper/constant.dart';
 import './postcard_repository.dart';
 
 const _home = Location(id: '_mock_home', name: '家', countryCode: 'TW');
@@ -22,8 +22,8 @@ final Postcard _sent1 = Postcard(
   orientation: PostcardOrientation.landscape,
   createdAt: DateTime(2026, 09, 25),
   updatedAt: DateTime(2026, 09, 30),
-  frontImagePath: 'assets/postcard/landscape_front.jp2',
-  backImagePath: 'assets/postcard/landscape_back.jp2',
+  frontImagePath: dummyCardLandscapeFront,
+  backImagePath: dummyCardLandscapeBack,
   sender: _me,
   sendFrom: _vancouver,
   recipient: _friend2,
@@ -38,8 +38,8 @@ final Postcard _sent2 = Postcard(
   orientation: PostcardOrientation.portrait,
   createdAt: DateTime(2025, 05, 25),
   updatedAt: DateTime(2025, 05, 30),
-  frontImagePath: 'assets/postcard/landscape_front.jp2',
-  backImagePath: 'assets/postcard/landscape_back.jp2',
+  frontImagePath: dummyCardPortraitFront,
+  backImagePath: dummyCardPortraitBack,
   title: '波多夕陽',
   sender: _me,
   sendFrom: _porto,
@@ -55,8 +55,8 @@ final Postcard _received1 = Postcard(
   orientation: PostcardOrientation.portrait,
   createdAt: DateTime(2026, 10, 05),
   updatedAt: DateTime(2026, 10, 18),
-  frontImagePath: 'assets/postcard/portrait_front.jp2',
-  backImagePath: 'assets/postcard/portrait_back.jp2',
+  frontImagePath: dummyCardPortraitFront,
+  backImagePath: dummyCardPortraitBack,
   title: '京都賞楓',
   sender: _friend1,
   sendFrom: _kyoto,
@@ -72,8 +72,8 @@ final Postcard _received2 = Postcard(
   orientation: PostcardOrientation.landscape,
   createdAt: DateTime(2024, 12, 05),
   updatedAt: DateTime(2024, 12, 18),
-  frontImagePath: 'assets/postcard/portrait_front.jp2',
-  backImagePath: 'assets/postcard/portrait_back.jp2',
+  frontImagePath: dummyCardLandscapeFront,
+  backImagePath: dummyCardLandscapeBack,
   title: '北美滑雪',
   sender: _friend3,
   sendFrom: _vancouver,
