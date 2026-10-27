@@ -1,3 +1,5 @@
+import 'package:postkeeper/constant.dart';
+
 class Location {
   const Location ({
     required this.id,
@@ -16,3 +18,9 @@ class Location {
   final double? latitude;
   final double? longitude;
 }
+
+final Location dummyLocation = Location(
+  id: dummyLocationId,
+  name: '',
+  countryCode: '',
+);

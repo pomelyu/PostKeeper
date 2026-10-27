@@ -77,13 +77,13 @@ class PostcardSummary extends StatelessWidget {
     final String message;
     if (type == PostcardType.received) {
       message =
-        'From ${card.sender?.name ?? '—'}'
-        ' @ ${card.sendFrom?.name ?? '—'}, '
+        'From ${card.sender.name}'
+        ' @ ${card.sendFrom.name}, '
         '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
     } else if (type == PostcardType.sent) {
       message =
-        'To ${card.recipient?.name ?? '—'}'
-        ' @ ${card.sendTo?.name ?? '—'}, '
+        'To ${card.recipient.name}'
+        ' @ ${card.sendTo.name}, '
         '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
     } else {
       throw ArgumentError.value(type, 'type', 'Invalid postcard type');
@@ -91,8 +91,8 @@ class PostcardSummary extends StatelessWidget {
     final String title;
     if (card.title == null) {
       title = 
-        'From ${card.sendFrom?.name ?? '—'}'
-        'To ${card.sendTo?.name ?? '-'}';
+        'From ${card.sendFrom.name}'
+        'To ${card.sendTo.name}';
     } else {
       title = card.title!;
     }

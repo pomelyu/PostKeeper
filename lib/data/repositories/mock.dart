@@ -1,8 +1,9 @@
+import 'package:postkeeper/constant.dart';
 import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
-import 'package:postkeeper/constant.dart';
+
 import './postcard_repository.dart';
 
 const _home = Location(id: '_mock_home', name: '家', countryCode: 'TW');
@@ -49,6 +50,23 @@ final Postcard _sent2 = Postcard(
   receivedAt: DateTime(2025, 05, 25),
 );
 
+final Postcard _sent3 = Postcard(
+  id: '_mock_postcard_sent-002',
+  isFavorite: true,
+  orientation: PostcardOrientation.portrait,
+  createdAt: DateTime(2025, 07, 25),
+  updatedAt: DateTime(2025, 07, 30),
+  frontImagePath: dummyCardPortraitFront,
+  backImagePath: dummyCardPortraitBack,
+  title: '',
+  sender: _me,
+  sendFrom: _vancouver,
+  recipient: dummyPerson,
+  sendTo: dummyLocation,
+  sentAt: DateTime(2025, 07, 20),
+  receivedAt: DateTime(2025, 07, 25),
+);
+
 final Postcard _received1 = Postcard(
   id: '_mock_postcard_received-001',
   isFavorite: true,
@@ -83,7 +101,7 @@ final Postcard _received2 = Postcard(
   receivedAt: DateTime(2024, 12, 05),
 );
 
-final List<Postcard> all_cards = [_sent1, _sent2, _received1, _received2];
+final List<Postcard> all_cards = [_sent1, _sent2, _sent3, _received1, _received2];
 
 class MockPostcardRepository implements PostcardRepository {
 

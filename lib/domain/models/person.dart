@@ -1,3 +1,5 @@
+import 'package:postkeeper/constant.dart';
+
 import './location.dart';
 
 class Person {
@@ -11,3 +13,9 @@ class Person {
   final String name;
   final List<Location> locations;
 }
+
+final Person dummyPerson = Person(
+  id: dummyPersonId,
+  name: '',
+  locations: [],
+);
