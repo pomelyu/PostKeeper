@@ -78,17 +78,24 @@ class PostcardSummary extends StatelessWidget {
     if (type == PostcardType.received) {
       message =
         'From ${card.sender?.name ?? '—'}'
-        ' @ ${card.sender?.locations.firstOrNull?.name ?? '—'}, '
+        ' @ ${card.sendFrom?.name ?? '—'}, '
         '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
     } else if (type == PostcardType.sent) {
       message =
         'To ${card.recipient?.name ?? '—'}'
-        ' @ ${card.recipient?.locations.firstOrNull?.name ?? '—'}, '
+        ' @ ${card.sendTo?.name ?? '—'}, '
         '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
     } else {
       throw ArgumentError.value(type, 'type', 'Invalid postcard type');
     }
-    final String title = (card.title == null) ? '': card.title!;
+    final String title;
+    if (card.title == null) {
+      title = 
+        'From ${card.sendFrom?.name ?? '—'}'
+        'To ${card.sendTo?.name ?? '-'}';
+    } else {
+      title = card.title!;
+    }
 
     return Padding(
       padding: const EdgeInsets.all(16),
