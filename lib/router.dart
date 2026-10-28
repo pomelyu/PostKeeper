@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/data/repositories/mock.dart';
+import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
+import 'package:postkeeper/ui/collection_view.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:postkeeper/ui/map_view.dart';
@@ -16,6 +18,7 @@ const String mapViewURI = '/map';
 const String userViewURI = '/user';
 const String postcardViewURI = '/postcard';
 const String postcardEditViewURI = '/postcard/edit';
+const String collectionViewURI = '/collection';
 
 final appPostcardRepository = MockPostcardRepository();
 
@@ -25,7 +28,7 @@ GoRoute mainViewRoute = GoRoute(
     return ChangeNotifierProvider(
       create: (_) => MainViewModel(
         repository: appPostcardRepository,
-      )..loadLatestPostcards(),
+      )..initialize(),
       child: Builder(
         builder: (context) {
           return MainView(
@@ -127,5 +130,13 @@ GoRoute postcardEditViewRoute = GoRoute(
         },
       ),
     );
+  },
+);
+
+GoRoute collectionViewRoute = GoRoute(
+  path: collectionViewURI,
+  builder: (context, state) {
+    final collection = state.extra as Collection;
+    return CollectionView(collection: collection);
   },
 );

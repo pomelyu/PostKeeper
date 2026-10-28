@@ -1,4 +1,5 @@
 import 'package:postkeeper/constant.dart';
+import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
@@ -116,38 +117,43 @@ final List<Postcard> allCards = [_sent1, _sent2, _sent3, _received1, _received2]
 class MockPostcardRepository implements PostcardRepository {
 
   @override
-  Future<List<Postcard>> getAllPostcards() async => allCards;
+  Future<Collection> getAllPostcards() async {
+    return Collection(name: "All", postcards: allCards);
+  }
 
   @override
   Future<Postcard?> getLatestSent() async {
-    final cards = await getAllMySent();
-    return cards.isEmpty ? null : cards.last;
+    final collection = await getAllMySent();
+    return collection.postcards.isEmpty ? null : collection.postcards.last;
   }
 
   @override
   Future<Postcard?> getLatestReceived() async {
-    final cards = await getAllMyReceived();
-    return cards.isEmpty ? null : cards.last;
+    final collection = await getAllMyReceived();
+    return collection.postcards.isEmpty ? null : collection.postcards.last;
   }
 
   @override
-  Future<List<Postcard>> getAllMySent() async {
-    return allCards
+  Future<Collection> getAllMySent() async {
+    final filtered = allCards
       .where((card) => card.sender.id == _me.id)
       .toList();
+    return Collection(name: 'My Sent', postcards: filtered);
   }
 
   @override
-  Future<List<Postcard>> getAllMyReceived() async {
-    return allCards
+  Future<Collection> getAllMyReceived() async {
+    final filtered = allCards
       .where((card) => card.recipient.id == _me.id)
       .toList();
+    return Collection(name: 'My Received', postcards: filtered);
   }
 
   @override
-  Future<List<Postcard>> getAllFavorite() async {
-    return allCards
+  Future<Collection> getAllFavorite() async {
+    final filtered = allCards
       .where((card) => card.isFavorite)
       .toList();
+    return Collection(name: 'Favorite', postcards: filtered);
   }
 }

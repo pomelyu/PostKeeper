@@ -1,12 +1,13 @@
+import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 
 abstract interface class PostcardRepository {
-  Future<List<Postcard>> getAllPostcards();
+  Future<Collection> getAllPostcards();
 
   Future<Postcard?> getLatestSent();
   Future<Postcard?> getLatestReceived();
 
-  Future<List<Postcard>> getAllMySent();
-  Future<List<Postcard>> getAllMyReceived();
-  Future<List<Postcard>> getAllFavorite();
+  Future<Collection> getAllMySent();
+  Future<Collection> getAllMyReceived();
+  Future<Collection> getAllFavorite();
 }

@@ -115,6 +115,7 @@ GoRouter createAppRouter() {
       ),
       postcardViewRoute,
       postcardEditViewRoute,
+      collectionViewRoute,
     ],
   );
 }
