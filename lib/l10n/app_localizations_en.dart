@@ -65,4 +65,88 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get postcardEditNext => 'Next';
+
+  @override
+  String get geoUnknown => 'Unknown';
+
+  @override
+  String get geoAfrica => 'Africa';
+
+  @override
+  String get geoAmericas => 'Americas';
+
+  @override
+  String get geoAsia => 'Asia';
+
+  @override
+  String get geoEurope => 'Europe';
+
+  @override
+  String get geoOceania => 'Oceania';
+
+  @override
+  String get geoEasternAfrica => 'Eastern Africa';
+
+  @override
+  String get geoMiddleAfrica => 'Middle Africa';
+
+  @override
+  String get geoNorthernAfrica => 'Northern Africa';
+
+  @override
+  String get geoSouthernAfrica => 'Southern Africa';
+
+  @override
+  String get geoWesternAfrica => 'Western Africa';
+
+  @override
+  String get geoCaribbean => 'Caribbean';
+
+  @override
+  String get geoCentralAmerica => 'Central America';
+
+  @override
+  String get geoSouthAmerica => 'South America';
+
+  @override
+  String get geoNorthernAmerica => 'Northern America';
+
+  @override
+  String get geoCentralAsia => 'Central Asia';
+
+  @override
+  String get geoEasternAsia => 'Eastern Asia';
+
+  @override
+  String get geoSouthernAsia => 'Southern Asia';
+
+  @override
+  String get geoSouthEasternAsia => 'South-Eastern Asia';
+
+  @override
+  String get geoWesternAsia => 'Western Asia';
+
+  @override
+  String get geoEasternEurope => 'Eastern Europe';
+
+  @override
+  String get geoNorthernEurope => 'Northern Europe';
+
+  @override
+  String get geoSouthernEurope => 'Southern Europe';
+
+  @override
+  String get geoWesternEurope => 'Western Europe';
+
+  @override
+  String get geoAustraliaNewZealand => 'Australia and New Zealand';
+
+  @override
+  String get geoMelanesia => 'Melanesia';
+
+  @override
+  String get geoMicronesia => 'Micronesia';
+
+  @override
+  String get geoPolynesia => 'Polynesia';
 }

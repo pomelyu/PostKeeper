@@ -65,4 +65,88 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get postcardEditNext => '下一步';
+
+  @override
+  String get geoUnknown => '未知';
+
+  @override
+  String get geoAfrica => '非洲';
+
+  @override
+  String get geoAmericas => '美洲';
+
+  @override
+  String get geoAsia => '亞洲';
+
+  @override
+  String get geoEurope => '歐洲';
+
+  @override
+  String get geoOceania => '大洋洲';
+
+  @override
+  String get geoEasternAfrica => '東部非洲';
+
+  @override
+  String get geoMiddleAfrica => '中部非洲';
+
+  @override
+  String get geoNorthernAfrica => '北部非洲';
+
+  @override
+  String get geoSouthernAfrica => '南部非洲';
+
+  @override
+  String get geoWesternAfrica => '西部非洲';
+
+  @override
+  String get geoCaribbean => '加勒比地區';
+
+  @override
+  String get geoCentralAmerica => '中美洲';
+
+  @override
+  String get geoSouthAmerica => '南美洲';
+
+  @override
+  String get geoNorthernAmerica => '北美地區';
+
+  @override
+  String get geoCentralAsia => '中亞';
+
+  @override
+  String get geoEasternAsia => '東亞';
+
+  @override
+  String get geoSouthernAsia => '南亞';
+
+  @override
+  String get geoSouthEasternAsia => '東南亞';
+
+  @override
+  String get geoWesternAsia => '西亞';
+
+  @override
+  String get geoEasternEurope => '東歐';
+
+  @override
+  String get geoNorthernEurope => '北歐';
+
+  @override
+  String get geoSouthernEurope => '南歐';
+
+  @override
+  String get geoWesternEurope => '西歐';
+
+  @override
+  String get geoAustraliaNewZealand => '澳洲和紐西蘭';
+
+  @override
+  String get geoMelanesia => '美拉尼西亞';
+
+  @override
+  String get geoMicronesia => '密克羅尼西亞';
+
+  @override
+  String get geoPolynesia => '玻里尼西亞';
 }

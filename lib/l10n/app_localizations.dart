@@ -211,6 +211,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Next'**
   String get postcardEditNext;
+
+  /// No description provided for @geoUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get geoUnknown;
+
+  /// No description provided for @geoAfrica.
+  ///
+  /// In en, this message translates to:
+  /// **'Africa'**
+  String get geoAfrica;
+
+  /// No description provided for @geoAmericas.
+  ///
+  /// In en, this message translates to:
+  /// **'Americas'**
+  String get geoAmericas;
+
+  /// No description provided for @geoAsia.
+  ///
+  /// In en, this message translates to:
+  /// **'Asia'**
+  String get geoAsia;
+
+  /// No description provided for @geoEurope.
+  ///
+  /// In en, this message translates to:
+  /// **'Europe'**
+  String get geoEurope;
+
+  /// No description provided for @geoOceania.
+  ///
+  /// In en, this message translates to:
+  /// **'Oceania'**
+  String get geoOceania;
+
+  /// No description provided for @geoEasternAfrica.
+  ///
+  /// In en, this message translates to:
+  /// **'Eastern Africa'**
+  String get geoEasternAfrica;
+
+  /// No description provided for @geoMiddleAfrica.
+  ///
+  /// In en, this message translates to:
+  /// **'Middle Africa'**
+  String get geoMiddleAfrica;
+
+  /// No description provided for @geoNorthernAfrica.
+  ///
+  /// In en, this message translates to:
+  /// **'Northern Africa'**
+  String get geoNorthernAfrica;
+
+  /// No description provided for @geoSouthernAfrica.
+  ///
+  /// In en, this message translates to:
+  /// **'Southern Africa'**
+  String get geoSouthernAfrica;
+
+  /// No description provided for @geoWesternAfrica.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Africa'**
+  String get geoWesternAfrica;
+
+  /// No description provided for @geoCaribbean.
+  ///
+  /// In en, this message translates to:
+  /// **'Caribbean'**
+  String get geoCaribbean;
+
+  /// No description provided for @geoCentralAmerica.
+  ///
+  /// In en, this message translates to:
+  /// **'Central America'**
+  String get geoCentralAmerica;
+
+  /// No description provided for @geoSouthAmerica.
+  ///
+  /// In en, this message translates to:
+  /// **'South America'**
+  String get geoSouthAmerica;
+
+  /// No description provided for @geoNorthernAmerica.
+  ///
+  /// In en, this message translates to:
+  /// **'Northern America'**
+  String get geoNorthernAmerica;
+
+  /// No description provided for @geoCentralAsia.
+  ///
+  /// In en, this message translates to:
+  /// **'Central Asia'**
+  String get geoCentralAsia;
+
+  /// No description provided for @geoEasternAsia.
+  ///
+  /// In en, this message translates to:
+  /// **'Eastern Asia'**
+  String get geoEasternAsia;
+
+  /// No description provided for @geoSouthernAsia.
+  ///
+  /// In en, this message translates to:
+  /// **'Southern Asia'**
+  String get geoSouthernAsia;
+
+  /// No description provided for @geoSouthEasternAsia.
+  ///
+  /// In en, this message translates to:
+  /// **'South-Eastern Asia'**
+  String get geoSouthEasternAsia;
+
+  /// No description provided for @geoWesternAsia.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Asia'**
+  String get geoWesternAsia;
+
+  /// No description provided for @geoEasternEurope.
+  ///
+  /// In en, this message translates to:
+  /// **'Eastern Europe'**
+  String get geoEasternEurope;
+
+  /// No description provided for @geoNorthernEurope.
+  ///
+  /// In en, this message translates to:
+  /// **'Northern Europe'**
+  String get geoNorthernEurope;
+
+  /// No description provided for @geoSouthernEurope.
+  ///
+  /// In en, this message translates to:
+  /// **'Southern Europe'**
+  String get geoSouthernEurope;
+
+  /// No description provided for @geoWesternEurope.
+  ///
+  /// In en, this message translates to:
+  /// **'Western Europe'**
+  String get geoWesternEurope;
+
+  /// No description provided for @geoAustraliaNewZealand.
+  ///
+  /// In en, this message translates to:
+  /// **'Australia and New Zealand'**
+  String get geoAustraliaNewZealand;
+
+  /// No description provided for @geoMelanesia.
+  ///
+  /// In en, this message translates to:
+  /// **'Melanesia'**
+  String get geoMelanesia;
+
+  /// No description provided for @geoMicronesia.
+  ///
+  /// In en, this message translates to:
+  /// **'Micronesia'**
+  String get geoMicronesia;
+
+  /// No description provided for @geoPolynesia.
+  ///
+  /// In en, this message translates to:
+  /// **'Polynesia'**
+  String get geoPolynesia;
 }
 
 class _AppLocalizationsDelegate
