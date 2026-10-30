@@ -118,7 +118,7 @@ class MockPostcardRepository implements PostcardRepository {
 
   @override
   Future<Collection> getAllPostcards() async {
-    return Collection(name: "All", postcards: allCards);
+    return Collection(id: allCollectionId, type: CollectionType.system, name: "All", postcards: allCards);
   }
 
   @override
@@ -138,7 +138,7 @@ class MockPostcardRepository implements PostcardRepository {
     final filtered = allCards
       .where((card) => card.sender.id == _me.id)
       .toList();
-    return Collection(name: 'My Sent', postcards: filtered);
+    return Collection(id: sentCollectionId, type: CollectionType.system, name: 'My Sent', postcards: filtered);
   }
 
   @override
@@ -146,7 +146,7 @@ class MockPostcardRepository implements PostcardRepository {
     final filtered = allCards
       .where((card) => card.recipient.id == _me.id)
       .toList();
-    return Collection(name: 'My Received', postcards: filtered);
+    return Collection(id: receiveCollectionId, type: CollectionType.system, name: 'My Received', postcards: filtered);
   }
 
   @override
@@ -154,6 +154,6 @@ class MockPostcardRepository implements PostcardRepository {
     final filtered = allCards
       .where((card) => card.isFavorite)
       .toList();
-    return Collection(name: 'Favorite', postcards: filtered);
+    return Collection(id: favoriteCollectionId, type: CollectionType.system, name: 'Favorite', postcards: filtered);
   }
 }

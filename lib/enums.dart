@@ -8,3 +8,10 @@ enum PostcardType {
   sent,
   other,
 }
+
+enum CollectionType {
+  system,
+  custom,
+  year,
+  region,
+}

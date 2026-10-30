@@ -1,5 +1,10 @@
 const String myId = 'me-id';
 
+const String allCollectionId = 'all-id';
+const String favoriteCollectionId = 'favorite-id';
+const String receiveCollectionId = 'received-d';
+const String sentCollectionId = 'sent-id';
+
 final String dummyPersonId = 'dummy-person';
 final String dummyLocationId = 'dummy-location';
 
