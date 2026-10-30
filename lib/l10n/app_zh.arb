@@ -46,5 +46,14 @@
   "geoAustraliaNewZealand": "澳洲和紐西蘭",
   "geoMelanesia": "美拉尼西亞",
   "geoMicronesia": "密克羅尼西亞",
-  "geoPolynesia": "玻里尼西亞"
+  "geoPolynesia": "玻里尼西亞",
+  "keeperTitle": "我的收藏",
+  "keeperSearch": "搜尋收藏",
+  "keeperRegion": "地區",
+  "keeperYear": "年份",
+  "keeperCollections": "收藏夾",
+  "keeperFavorite": "我的最愛",
+  "keeperReceived": "我收到的",
+  "keeperSent": "我寄出的",
+  "keeperCount": "{count} 張"
 }

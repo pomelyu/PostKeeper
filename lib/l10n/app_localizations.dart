@@ -379,6 +379,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Polynesia'**
   String get geoPolynesia;
+
+  /// No description provided for @keeperTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Collection'**
+  String get keeperTitle;
+
+  /// No description provided for @keeperSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search collections'**
+  String get keeperSearch;
+
+  /// No description provided for @keeperRegion.
+  ///
+  /// In en, this message translates to:
+  /// **'Region'**
+  String get keeperRegion;
+
+  /// No description provided for @keeperYear.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get keeperYear;
+
+  /// No description provided for @keeperCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Collections'**
+  String get keeperCollections;
+
+  /// No description provided for @keeperFavorite.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get keeperFavorite;
+
+  /// No description provided for @keeperReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get keeperReceived;
+
+  /// No description provided for @keeperSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get keeperSent;
+
+  /// No description provided for @keeperCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 postcard} other{{count} postcards}}'**
+  String keeperCount(int count);
 }
 
 class _AppLocalizationsDelegate

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/ui/core/utils.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -14,7 +16,7 @@ class CollectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(collection.name),
+        title: Text(decodeCollectionName(collection, AppLocalizations.of(context))),
         leading: BackButton(onPressed: () => context.pop()),
       ),
       body: SafeArea(
@@ -53,10 +55,7 @@ class PostcardItem extends StatelessWidget {
       children: [
         Expanded(
           child: ClipRect(
-            child: PostcardFrame(
-              postcard: postcard,
-              fit: BoxFit.cover,
-            ),
+            child: PostcardFrame(postcard: postcard, fit: BoxFit.cover),
           ),
         ),
         Text(

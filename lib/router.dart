@@ -45,7 +45,7 @@ GoRoute keeperViewRoute = GoRoute(
   path: keeperViewURI,
   builder: (context, state) {
     return ChangeNotifierProvider(
-      create: (_) => KeeperViewModel(),
+      create: (_) => KeeperViewModel(repository: appPostcardRepository)..initialize(),
       child: Builder(
         builder: (context) {
           return KeeperView(
@@ -137,6 +137,9 @@ GoRoute collectionViewRoute = GoRoute(
   path: collectionViewURI,
   builder: (context, state) {
     final collection = state.extra as Collection;
-    return CollectionView(collection: collection);
+    return CollectionView(
+      key: const ValueKey('collection-view'),
+      collection: collection,
+    );
   },
 );

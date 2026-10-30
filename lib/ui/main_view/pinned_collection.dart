@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/domain/models/collection.dart';
+import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/core/utils.dart';
 import 'package:postkeeper/ui/style.dart';
 
 class PinnedCollection extends StatelessWidget {
@@ -44,7 +46,7 @@ class CollectionFrame extends StatelessWidget {
           onTap: () => context.push(collectionViewURI, extra: collection),
           child: Icon(Icons.folder),
         ),
-        Text(collection.name, style: styleBody),
+        Text(decodeCollectionName(collection, AppLocalizations.of(context)), style: styleBody),
       ],
     );
   }

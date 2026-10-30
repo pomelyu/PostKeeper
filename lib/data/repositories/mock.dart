@@ -1,4 +1,5 @@
 import 'package:postkeeper/constant.dart';
+import 'package:postkeeper/data/country_code.dart';
 import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
@@ -6,6 +7,7 @@ import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
 
 import './postcard_repository.dart';
+import './utils.dart';
 
 const _home = Location(id: '_mock_home', name: '家', countryCode: 'TW');
 const _kaohsiung = Location(id: '_mock_home', name: '高雄', countryCode: 'TW');
@@ -114,7 +116,29 @@ final List<Postcard> allCards = [_sent1, _sent2, _sent3, _received1, _received2]
     return aDate.compareTo(bDate);
   });
 
+final List<Collection> mockCustomCollections = [
+  Collection(id: 'custom-travel', type: CollectionType.custom, name: '旅行回憶', postcards: [_sent1, _received2]),
+  Collection(id: 'custom-japan', type: CollectionType.custom, name: '日本風景', postcards: [_sent3, _received1]),
+];
+
 class MockPostcardRepository implements PostcardRepository {
+
+  @override
+  Future<List<Collection>> getCollectionsByRegion() async {
+    final groups = groupCardsBy(allCards, (card) => CountryCode.getRegion(card.sendFrom.countryCode));
+    final keys = groups.keys.toList()..sort();
+    return [for (final key in keys) Collection(id: key, type: CollectionType.region, name: key, postcards: groups[key]!)];
+  }
+
+  @override
+  Future<List<Collection>> getCollectionsByYear() async {
+    final groups = groupCardsBy(allCards, (card) => card.sentAt?.year.toString() ?? '000');
+    final keys = groups.keys.toList()..sort((a, b) => b.compareTo(a));
+    return [for (final key in keys) Collection(id: key, type: CollectionType.year, name: key, postcards: groups[key]!)];
+  }
+
+  @override
+  Future<List<Collection>> getCustomCollections() async => List.of(mockCustomCollections);
 
   @override
   Future<Collection> getAllPostcards() async {

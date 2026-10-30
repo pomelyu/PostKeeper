@@ -149,4 +149,33 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get geoPolynesia => '玻里尼西亞';
+
+  @override
+  String get keeperTitle => '我的收藏';
+
+  @override
+  String get keeperSearch => '搜尋收藏';
+
+  @override
+  String get keeperRegion => '地區';
+
+  @override
+  String get keeperYear => '年份';
+
+  @override
+  String get keeperCollections => '收藏夾';
+
+  @override
+  String get keeperFavorite => '我的最愛';
+
+  @override
+  String get keeperReceived => '我收到的';
+
+  @override
+  String get keeperSent => '我寄出的';
+
+  @override
+  String keeperCount(int count) {
+    return '$count 張';
+  }
 }

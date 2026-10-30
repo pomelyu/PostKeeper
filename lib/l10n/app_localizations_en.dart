@@ -149,4 +149,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get geoPolynesia => 'Polynesia';
+
+  @override
+  String get keeperTitle => 'My Collection';
+
+  @override
+  String get keeperSearch => 'Search collections';
+
+  @override
+  String get keeperRegion => 'Region';
+
+  @override
+  String get keeperYear => 'Year';
+
+  @override
+  String get keeperCollections => 'Collections';
+
+  @override
+  String get keeperFavorite => 'Favorites';
+
+  @override
+  String get keeperReceived => 'Received';
+
+  @override
+  String get keeperSent => 'Sent';
+
+  @override
+  String keeperCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count postcards',
+      one: '1 postcard',
+    );
+    return '$_temp0';
+  }
 }

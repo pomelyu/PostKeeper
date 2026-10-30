@@ -46,5 +46,21 @@
   "geoAustraliaNewZealand": "Australia and New Zealand",
   "geoMelanesia": "Melanesia",
   "geoMicronesia": "Micronesia",
-  "geoPolynesia": "Polynesia"
+  "geoPolynesia": "Polynesia",
+  "keeperTitle": "My Collection",
+  "keeperSearch": "Search collections",
+  "keeperRegion": "Region",
+  "keeperYear": "Year",
+  "keeperCollections": "Collections",
+  "keeperFavorite": "Favorites",
+  "keeperReceived": "Received",
+  "keeperSent": "Sent",
+  "keeperCount": "{count, plural, =1{1 postcard} other{{count} postcards}}",
+  "@keeperCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
