@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/ui/core/primary_view_layout.dart';
+import 'package:postkeeper/ui/core/secondary_view_layout.dart';
 import 'package:postkeeper/ui/core/utils.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/style.dart';
@@ -14,25 +16,20 @@ class CollectionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(decodeCollectionName(collection, AppLocalizations.of(context))),
-        leading: BackButton(onPressed: () => context.pop()),
-      ),
-      body: SafeArea(
-        child: GridView.builder(
-          padding: const EdgeInsets.all(16),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 1.2,
-          ),
-          itemCount: collection.postcards.length,
-          itemBuilder: (context, index) {
-            return PostcardItem(postcard: collection.postcards[index]);
-          },
+    return SecondaryViewLayout(
+      title: decodeCollectionName(collection, AppLocalizations.of(context)),
+      child: GridView.builder(
+        padding: const EdgeInsets.all(16),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 16,
+          mainAxisSpacing: 16,
+          childAspectRatio: 1.2,
         ),
+        itemCount: collection.postcards.length,
+        itemBuilder: (context, index) {
+          return PostcardItem(postcard: collection.postcards[index]);
+        },
       ),
     );
   }
