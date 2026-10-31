@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:postkeeper/locale_controller.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/locale_controller.dart';
+import 'package:postkeeper/ui/core/title.dart';
+import 'package:provider/provider.dart';
 
 class UserViewModel extends ChangeNotifier {
   UserViewModel();
@@ -17,9 +18,9 @@ class UserView extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(l10n.navUser),
+          TitleTextBox(title: l10n.navUser),
           Text(l10n.textCommingSoon),
           DropdownButton<Locale>(
             key: const ValueKey('settings-language-dropdown'),

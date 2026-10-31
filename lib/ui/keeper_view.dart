@@ -5,6 +5,7 @@ import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/core/collection_list_item.dart';
+import 'package:postkeeper/ui/core/title.dart';
 import 'package:postkeeper/ui/core/utils.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -67,10 +68,7 @@ class KeeperView extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-              child: Text(l10n.keeperTitle, style: styleDisplayTitle),
-            ),
+            TitleTextBox(title: l10n.keeperTitle),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: InputDecorator(

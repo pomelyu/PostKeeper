@@ -5,6 +5,7 @@ import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/core/title.dart';
 import 'package:postkeeper/ui/main_view/pinned_collection.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/style.dart';
@@ -56,7 +57,6 @@ class MainView extends StatelessWidget {
   final MainViewModel viewModel;
 
   // 區域高度以 logical pixels 計；標題可隨內容增高，釘選區域使用剩餘高度。
-  static const double _titleMinHeight = 80;
   static const double _tabHeight = 400;
   static const double _quickAddHeight = 80;
 
@@ -66,23 +66,9 @@ class MainView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ConstrainedBox(
+        TitleTextBox(
           key: ValueKey('main-title-section'),
-          constraints: const BoxConstraints(minHeight: _titleMinHeight),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: 8,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(l10n.mainTitle, style: styleDisplayTitle),
-                Text(l10n.mainSubtitle, style: styleBody),
-              ],
-            ),
-          ),
+          title: l10n.mainTitle,
         ),
         SizedBox(
           key: ValueKey('main-tab-section'),
