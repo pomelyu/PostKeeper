@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
-import 'package:postkeeper/ui/core/title.dart';
+import 'package:postkeeper/ui/core/primary_view_layout.dart';
 
 class MapViewModel extends ChangeNotifier {
   MapViewModel();
@@ -14,14 +14,9 @@ class MapView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TitleTextBox(title: l10n.navMap),
-          Text(l10n.textCommingSoon),
-        ],
-      ),
+    return PrimaryViewLayout(
+      title: l10n.navMap,
+      children: [Text(l10n.textCommingSoon)],
     );
   }
 }

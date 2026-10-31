@@ -5,7 +5,7 @@ import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
-import 'package:postkeeper/ui/core/title.dart';
+import 'package:postkeeper/ui/core/primary_view_layout.dart';
 import 'package:postkeeper/ui/main_view/pinned_collection.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/style.dart';
@@ -63,13 +63,9 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return PrimaryViewLayout(
+      title: l10n.mainTitle,
       children: [
-        TitleTextBox(
-          key: ValueKey('main-title-section'),
-          title: l10n.mainTitle,
-        ),
         SizedBox(
           key: ValueKey('main-tab-section'),
           height: _tabHeight,
