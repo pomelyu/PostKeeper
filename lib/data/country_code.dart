@@ -1,5 +1,3 @@
-import 'package:postkeeper/l10n/app_localizations.dart';
-
 /// A geographic region and subregion identified by UN M49 codes.
 /// Codes are strings so that leading zeroes are preserved.
 class GeographicRegion {
@@ -30,47 +28,6 @@ abstract final class CountryCode {
   /// Returns the M49 subregion code, or '000' when it is not found.
   static String getSubregion(String countryCode) =>
       getRegionInfo(countryCode).subregionCode;
-
-  /// Resolves an M49 region code using the current app localization.
-  static String getRegionName(String code, AppLocalizations l10n) =>
-      switch (code) {
-        '002' => l10n.geoAfrica,
-        '019' => l10n.geoAmericas,
-        '142' => l10n.geoAsia,
-        '150' => l10n.geoEurope,
-        '009' => l10n.geoOceania,
-        '000' => l10n.geoUnknown,
-        _ => l10n.geoUnknown,
-      };
-
-  /// Resolves an M49 subregion code using the current app localization.
-  static String getSubregionName(String code, AppLocalizations l10n) =>
-      switch (code) {
-        '014' => l10n.geoEasternAfrica,
-        '017' => l10n.geoMiddleAfrica,
-        '015' => l10n.geoNorthernAfrica,
-        '018' => l10n.geoSouthernAfrica,
-        '011' => l10n.geoWesternAfrica,
-        '029' => l10n.geoCaribbean,
-        '013' => l10n.geoCentralAmerica,
-        '005' => l10n.geoSouthAmerica,
-        '021' => l10n.geoNorthernAmerica,
-        '143' => l10n.geoCentralAsia,
-        '030' => l10n.geoEasternAsia,
-        '034' => l10n.geoSouthernAsia,
-        '035' => l10n.geoSouthEasternAsia,
-        '145' => l10n.geoWesternAsia,
-        '151' => l10n.geoEasternEurope,
-        '154' => l10n.geoNorthernEurope,
-        '039' => l10n.geoSouthernEurope,
-        '155' => l10n.geoWesternEurope,
-        '053' => l10n.geoAustraliaNewZealand,
-        '054' => l10n.geoMelanesia,
-        '057' => l10n.geoMicronesia,
-        '061' => l10n.geoPolynesia,
-        '000' => l10n.geoUnknown,
-        _ => l10n.geoUnknown,
-      };
 
   // UN M49 overview, accessed 2026-10-29. See docs/country_code.md.
   // dart format off

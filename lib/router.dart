@@ -62,7 +62,7 @@ GoRoute mapViewRoute = GoRoute(
   path: mapViewURI,
   builder: (context, state) {
     return ChangeNotifierProvider(
-      create: (_) => MapViewModel(),
+      create: (_) => MapViewModel(repository: appPostcardRepository)..initialize(),
       child: Builder(
         builder: (context) {
           return MapView(

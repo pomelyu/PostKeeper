@@ -4,6 +4,7 @@
 
 ```dart
 import 'package:postkeeper/data/country_code.dart';
+import 'package:postkeeper/ui/core/geography_names.dart';
 
 final code = CountryCode.normalizeCountryCode(' jp '); // 'JP'
 final info = CountryCode.getRegionInfo(code);
@@ -15,9 +16,9 @@ CountryCode.getSubregion('CA');              // '021'（北美地區）
 CountryCode.getRegion('AQ');                  // '000'
 
 final l10n = AppLocalizations.of(context);
-CountryCode.getRegionName('142', l10n);       // '亞洲' 或 'Asia'
-CountryCode.getSubregionName('030', l10n);    // '東亞' 或 'Eastern Asia'
-CountryCode.getRegionName('000', l10n);       // '未知' 或 'Unknown'
+getRegionName('142', l10n);       // '亞洲' 或 'Asia'
+getSubregionName('030', l10n);    // '東亞' 或 'Eastern Asia'
+getRegionName('000', l10n);       // '未知' 或 'Unknown'
 ```
 
 名稱查詢使用目前的 `AppLocalizations`，隨 app 語言切換；未知或不屬於該層級的代碼顯示「未知」或 `Unknown`。
