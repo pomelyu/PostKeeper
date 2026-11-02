@@ -934,4 +934,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get countryZW => 'Zimbabwe';
+
+  @override
+  String get userCollectionOverview => 'Collection overview';
+
+  @override
+  String get userBackupRestore => 'Backup and restore';
+
+  @override
+  String get userContacts => 'Contacts';
+
+  @override
+  String get userHelp => 'Help';
+
+  @override
+  String get userAbout => 'About the app';
 }

@@ -1933,6 +1933,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Zimbabwe'**
   String get countryZW;
+
+  /// No description provided for @userCollectionOverview.
+  ///
+  /// In en, this message translates to:
+  /// **'Collection overview'**
+  String get userCollectionOverview;
+
+  /// No description provided for @userBackupRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup and restore'**
+  String get userBackupRestore;
+
+  /// No description provided for @userContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Contacts'**
+  String get userContacts;
+
+  /// No description provided for @userHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get userHelp;
+
+  /// No description provided for @userAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About the app'**
+  String get userAbout;
 }
 
 class _AppLocalizationsDelegate

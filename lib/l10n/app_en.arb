@@ -312,5 +312,10 @@
   "countryYT": "Mayotte",
   "countryZA": "South Africa",
   "countryZM": "Zambia",
-  "countryZW": "Zimbabwe"
+  "countryZW": "Zimbabwe",
+  "userCollectionOverview": "Collection overview",
+  "userBackupRestore": "Backup and restore",
+  "userContacts": "Contacts",
+  "userHelp": "Help",
+  "userAbout": "About the app"
 }

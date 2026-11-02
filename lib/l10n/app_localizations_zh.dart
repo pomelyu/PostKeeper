@@ -928,4 +928,19 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get countryZW => '辛巴威';
+
+  @override
+  String get userCollectionOverview => '收藏總覽';
+
+  @override
+  String get userBackupRestore => '備份與還原';
+
+  @override
+  String get userContacts => '通訊錄';
+
+  @override
+  String get userHelp => '使用說明';
+
+  @override
+  String get userAbout => '關於 App';
 }

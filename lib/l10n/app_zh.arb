@@ -305,5 +305,10 @@
   "countryYT": "馬約特島",
   "countryZA": "南非",
   "countryZM": "尚比亞",
-  "countryZW": "辛巴威"
+  "countryZW": "辛巴威",
+  "userCollectionOverview": "收藏總覽",
+  "userBackupRestore": "備份與還原",
+  "userContacts": "通訊錄",
+  "userHelp": "使用說明",
+  "userAbout": "關於 App"
 }
