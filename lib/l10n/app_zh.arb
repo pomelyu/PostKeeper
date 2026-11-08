@@ -310,5 +310,13 @@
   "userBackupRestore": "備份與還原",
   "userContacts": "通訊錄",
   "userHelp": "使用說明",
-  "userAbout": "關於 App"
+  "userAbout": "關於 App",
+  "userPersonalInfo": "個人資訊",
+  "contactTitle": "聯絡人資訊",
+  "contactEdit": "編輯聯絡人",
+  "contactName": "名稱",
+  "contactAddresses": "地址清單",
+  "contactNoAddresses": "尚無地址",
+  "contactEmpty": "尚無聯絡人",
+  "contactLoadError": "無法載入聯絡人資訊"
 }

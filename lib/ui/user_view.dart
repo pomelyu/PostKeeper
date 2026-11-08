@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/locale_controller.dart';
+import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/core/primary_view_layout.dart';
 import 'package:provider/provider.dart';
 
@@ -34,17 +36,25 @@ class UserView extends StatelessWidget {
               Card(
                 child: Column(
                   children: [
+                    ListTile(
+                      key: const ValueKey('user-personal-info'),
+                      leading: const Icon(Icons.person_outline),
+                      title: Text(l10n.userPersonalInfo),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(contactViewURI),
+                    ),
                     _ComingSoonItem(
                       itemKey: const ValueKey('user-backup'),
                       icon: Icons.cloud_outlined,
                       title: l10n.userBackupRestore,
                       subtitle: l10n.textCommingSoon,
                     ),
-                    _ComingSoonItem(
-                      itemKey: const ValueKey('user-contacts'),
-                      icon: Icons.contacts_outlined,
-                      title: l10n.userContacts,
-                      subtitle: l10n.textCommingSoon,
+                    ListTile(
+                      key: const ValueKey('user-contacts'),
+                      leading: const Icon(Icons.contacts_outlined),
+                      title: Text(l10n.userContacts),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(contactListViewURI),
                     ),
                   ],
                 ),

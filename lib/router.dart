@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/data/repositories/mock.dart';
 import 'package:postkeeper/domain/models/collection.dart';
+import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/ui/collection_view.dart';
+import 'package:postkeeper/ui/contact_list_view.dart';
+import 'package:postkeeper/ui/contact_view.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:postkeeper/ui/map_view.dart';
@@ -19,8 +22,11 @@ const String userViewURI = '/user';
 const String postcardViewURI = '/postcard';
 const String postcardEditViewURI = '/postcard/edit';
 const String collectionViewURI = '/collection';
+const String contactListViewURI = '/contacts';
+const String contactViewURI = '/contact';
 
 final appPostcardRepository = MockPostcardRepository();
+final appPersonRepository = MockPersonRepository();
 
 GoRoute mainViewRoute = GoRoute(
   path: mainViewURI,
@@ -142,4 +148,33 @@ GoRoute collectionViewRoute = GoRoute(
       collection: collection,
     );
   },
+);
+
+final contactListViewRoute = GoRoute(
+  path: contactListViewURI,
+  builder: (context, state) => Provider(
+    create: (_) => ContactListViewModel(repository: appPersonRepository),
+    child: Builder(
+      builder: (context) => ContactListView(
+        key: const ValueKey('contact-list-view'),
+        viewModel: context.read<ContactListViewModel>(),
+      ),
+    ),
+  ),
+);
+
+final contactViewRoute = GoRoute(
+  path: contactViewURI,
+  builder: (context, state) => Provider(
+    create: (_) => ContactViewModel(
+      repository: appPersonRepository,
+      person: state.extra as Person?,
+    ),
+    child: Builder(
+      builder: (context) => ContactView(
+        key: const ValueKey('contact-view'),
+        viewModel: context.read<ContactViewModel>(),
+      ),
+    ),
+  ),
 );

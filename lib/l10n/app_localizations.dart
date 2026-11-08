@@ -1963,6 +1963,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About the app'**
   String get userAbout;
+
+  /// No description provided for @userPersonalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal information'**
+  String get userPersonalInfo;
+
+  /// No description provided for @contactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get contactTitle;
+
+  /// No description provided for @contactEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit contact'**
+  String get contactEdit;
+
+  /// No description provided for @contactName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get contactName;
+
+  /// No description provided for @contactAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Addresses'**
+  String get contactAddresses;
+
+  /// No description provided for @contactNoAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'No addresses yet'**
+  String get contactNoAddresses;
+
+  /// No description provided for @contactEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No contacts yet'**
+  String get contactEmpty;
+
+  /// No description provided for @contactLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load contact information'**
+  String get contactLoadError;
 }
 
 class _AppLocalizationsDelegate

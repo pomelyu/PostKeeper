@@ -6,6 +6,7 @@ import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
 
+import './person_repository.dart';
 import './postcard_repository.dart';
 import './utils.dart';
 
@@ -120,6 +121,14 @@ final List<Collection> mockCustomCollections = [
   Collection(id: 'custom-travel', type: CollectionType.custom, name: '旅行回憶', postcards: [_sent1, _received2]),
   Collection(id: 'custom-japan', type: CollectionType.custom, name: '日本風景', postcards: [_sent3, _received1]),
 ];
+
+class MockPersonRepository implements PersonRepository {
+  @override
+  Future<List<Person>> getAllUsers() async => [_me, _friend1, _friend2, _friend3];
+
+  @override
+  Future<Person> getMyInfo() async => _me;
+}
 
 class MockPostcardRepository implements PostcardRepository {
 

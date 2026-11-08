@@ -317,5 +317,13 @@
   "userBackupRestore": "Backup and restore",
   "userContacts": "Contacts",
   "userHelp": "Help",
-  "userAbout": "About the app"
+  "userAbout": "About the app",
+  "userPersonalInfo": "Personal information",
+  "contactTitle": "Contact",
+  "contactEdit": "Edit contact",
+  "contactName": "Name",
+  "contactAddresses": "Addresses",
+  "contactNoAddresses": "No addresses yet",
+  "contactEmpty": "No contacts yet",
+  "contactLoadError": "Unable to load contact information"
 }

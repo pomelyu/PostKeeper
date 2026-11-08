@@ -949,4 +949,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userAbout => 'About the app';
+
+  @override
+  String get userPersonalInfo => 'Personal information';
+
+  @override
+  String get contactTitle => 'Contact';
+
+  @override
+  String get contactEdit => 'Edit contact';
+
+  @override
+  String get contactName => 'Name';
+
+  @override
+  String get contactAddresses => 'Addresses';
+
+  @override
+  String get contactNoAddresses => 'No addresses yet';
+
+  @override
+  String get contactEmpty => 'No contacts yet';
+
+  @override
+  String get contactLoadError => 'Unable to load contact information';
 }

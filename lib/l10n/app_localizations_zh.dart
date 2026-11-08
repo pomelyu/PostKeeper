@@ -943,4 +943,28 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get userAbout => '關於 App';
+
+  @override
+  String get userPersonalInfo => '個人資訊';
+
+  @override
+  String get contactTitle => '聯絡人資訊';
+
+  @override
+  String get contactEdit => '編輯聯絡人';
+
+  @override
+  String get contactName => '名稱';
+
+  @override
+  String get contactAddresses => '地址清單';
+
+  @override
+  String get contactNoAddresses => '尚無地址';
+
+  @override
+  String get contactEmpty => '尚無聯絡人';
+
+  @override
+  String get contactLoadError => '無法載入聯絡人資訊';
 }
