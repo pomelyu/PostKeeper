@@ -24,7 +24,8 @@ PostKeeper 是一個明信片收藏的手機應用。明信片由使用者拍照
 - PostcardView: 顯示明信片的正反面和寄件、收件資訊
 - PostcardEditView: 提供明信片的編輯
 - CollectionView: 以 Grid 的形式顯示收藏夾內的所有明信片
-- ContactView: 管理聯絡人列表，可以設定人和對應的地址
+- ContacListView: 以列表的方式顯示聯絡人
+- ContactView: 顯示聯絡人資訊，可編輯名稱和對應的地址列表
 
 詳細的頁面功能參見`docs/views.md`
 
