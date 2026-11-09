@@ -3,8 +3,9 @@ import 'package:intl/intl.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
-import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/style.dart';
+
+import './postcard_envelope.dart';
 
 class PostcardTab extends StatelessWidget {
   const PostcardTab({
@@ -29,10 +30,7 @@ class PostcardTab extends StatelessWidget {
                 key: ValueKey('main-received-tab'),
                 text: l10n.mainRecentlyReceived,
               ),
-              Tab(
-                key: ValueKey('main-sent-tab'),
-                text: l10n.mainRecentlySent
-              ),
+              Tab(key: ValueKey('main-sent-tab'), text: l10n.mainRecentlySent),
             ],
           ),
           Expanded(
@@ -70,42 +68,40 @@ class PostcardSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (postcard == null) {
-      return PostcardFrame(postcard: postcard);
+      return PostcardEnvelope(postcard: postcard);
     }
 
     final Postcard card = postcard!;
     final String message;
     if (type == PostcardType.received) {
       message =
-        'From ${card.sender.name}'
-        ' @ ${card.sendFrom.name}, '
-        '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
+          'From ${card.sender.name}'
+          ' @ ${card.sendFrom.name}, '
+          '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
     } else if (type == PostcardType.sent) {
       message =
-        'To ${card.recipient.name}'
-        ' @ ${card.sendTo.name}, '
-        '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
+          'To ${card.recipient.name}'
+          ' @ ${card.sendTo.name}, '
+          '${card.sentAt == null ? '—' : DateFormat('yyyy.MM.dd').format(card.sentAt!)}';
     } else {
       throw ArgumentError.value(type, 'type', 'Invalid postcard type');
     }
     final String title;
     if (card.title == null) {
-      title = 
-        'From ${card.sendFrom.name}'
-        'To ${card.sendTo.name}';
+      title =
+          'From ${card.sendFrom.name}'
+          'To ${card.sendTo.name}';
     } else {
       title = card.title!;
     }
 
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Center(
-              child: PostcardFrame(postcard: postcard),
-            ),
+            child: Center(child: PostcardEnvelope(postcard: postcard)),
           ),
           const SizedBox(height: 4),
           Text(title, textAlign: TextAlign.left, style: styleSectionTitle),

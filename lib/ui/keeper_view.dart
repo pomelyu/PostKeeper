@@ -7,6 +7,7 @@ import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/core/collection_list_item.dart';
 import 'package:postkeeper/ui/core/primary_view_layout.dart';
 import 'package:postkeeper/ui/core/utils.dart';
+import 'package:postkeeper/ui/style.dart';
 
 class KeeperViewModel extends ChangeNotifier {
   KeeperViewModel({required this.repository});
@@ -67,15 +68,11 @@ class KeeperView extends StatelessWidget {
         return PrimaryViewLayout(
           title: l10n.keeperTitle,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: InputDecorator(
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  prefixIcon: const Icon(Icons.search),
-                ),
-                child: Text(l10n.keeperSearch),
+            InputDecorator(
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.search),
               ),
+              child: Text(l10n.keeperSearch, style: styleBody),
             ),
             Row(
               children: [
@@ -87,6 +84,7 @@ class KeeperView extends StatelessWidget {
                   Expanded(
                     child: TextButton(
                       key: ValueKey('keeper-tab-$index'),
+                      style: collectionTabStyle(viewModel.selectedTab == index),
                       onPressed: () => viewModel.selectTab(index),
                       child: Text(
                         label,
@@ -105,7 +103,6 @@ class KeeperView extends StatelessWidget {
                   ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(
                       key: ValueKey('keeper-list-${viewModel.selectedTab}'),
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       itemCount: items.length,
                       itemBuilder: (context, index) {
                         final collection = items[index];

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/rendering.dart';
+import 'package:postkeeper/ui/style.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/locale_controller.dart';
@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 
 
 void main() {
-  // debugPaintSizeEnabled = true;
   runApp(const PostKeeperApp());
 }
 
@@ -38,6 +37,7 @@ class _PostKeeperAppState extends State<PostKeeperApp> {
         listenable: _localeController,
         builder: (context, child) => MaterialApp.router(
           title: 'PostKeeper',
+          theme: buildAppTheme(),
           locale: _localeController.locale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,

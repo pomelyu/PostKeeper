@@ -41,8 +41,8 @@ class PostcardEditView extends StatelessWidget {
       listenable: viewModel,
       builder: (context, _) {
         final String title = viewModel.isDetailsStep
-          ? l10n.postcardEditDetailsTitle
-          : l10n.postcardEditImagesTitle;
+            ? l10n.postcardEditDetailsTitle
+            : l10n.postcardEditImagesTitle;
 
         return SecondaryViewLayout(
           title: title,
@@ -66,11 +66,28 @@ class PostcardEditView extends StatelessWidget {
                   _buildStep(2, l10n.postcardEditSave),
                 ],
               ),
-              Expanded(child: Center(child: Text(l10n.textCommingSoon))),
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        'assets/illustrations/illustration-envelope.png',
+                        width: 180,
+                        height: 180,
+                        fit: BoxFit.contain,
+                        excludeFromSemantics: true,
+                      ),
+                      Text(l10n.textCommingSoon),
+                    ],
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 52,
                 child: TextButton(
                   key: const ValueKey('postcard-edit-action'),
+                  style: primaryActionStyle,
                   onPressed: () {
                     if (viewModel.isDetailsStep) {
                       context.pop();
@@ -82,7 +99,6 @@ class PostcardEditView extends StatelessWidget {
                     viewModel.isDetailsStep
                         ? l10n.postcardEditSave
                         : l10n.postcardEditNext,
-                    style: styleSectionTitle,
                   ),
                 ),
               ),

@@ -7,11 +7,7 @@ import 'package:postkeeper/ui/core/utils.dart';
 import 'package:postkeeper/ui/style.dart';
 
 class PinnedCollection extends StatelessWidget {
-  const PinnedCollection({
-    super.key,
-    this.collections1,
-    this.collections2,
-  });
+  const PinnedCollection({super.key, this.collections1, this.collections2});
   final Collection? collections1;
   final Collection? collections2;
 
@@ -26,7 +22,7 @@ class PinnedCollection extends StatelessWidget {
     }
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: children,
     );
   }
@@ -44,9 +40,18 @@ class CollectionFrame extends StatelessWidget {
       children: [
         InkWell(
           onTap: () => context.push(collectionViewURI, extra: collection),
-          child: Icon(Icons.folder),
+          child: Image.asset(
+            'assets/illustrations/illustration-envelope.png',
+            width: 72,
+            height: 72,
+            fit: BoxFit.contain,
+            excludeFromSemantics: true,
+          ),
         ),
-        Text(decodeCollectionName(collection, AppLocalizations.of(context)), style: styleBody),
+        Text(
+          decodeCollectionName(collection, AppLocalizations.of(context)),
+          style: styleBody,
+        ),
       ],
     );
   }

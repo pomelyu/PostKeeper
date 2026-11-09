@@ -31,9 +31,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get mainTitle => '我的明信片';
 
   @override
-  String get mainSubtitle => '把收到的風景，好好收藏';
-
-  @override
   String get mainAddPostcard => '掃描明信片';
 
   @override
@@ -930,9 +927,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get countryZW => '辛巴威';
 
   @override
-  String get userCollectionOverview => '收藏總覽';
-
-  @override
   String get userBackupRestore => '備份與還原';
 
   @override
@@ -967,4 +961,20 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get contactLoadError => '無法載入聯絡人資訊';
+
+  @override
+  String get userPostcardCountLabel => '明信片';
+
+  @override
+  String get userLocationCountLabel => '寄件地';
+
+  @override
+  String userLocationAmount(int count) {
+    return '$count 個';
+  }
+
+  @override
+  String userPostcardAmount(int count) {
+    return '$count 張';
+  }
 }

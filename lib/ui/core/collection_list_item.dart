@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'illustration.dart';
+
 import 'package:postkeeper/ui/style.dart';
 
 /// Displays a collection summary and delegates navigation to its caller.
@@ -22,12 +25,13 @@ class CollectionListItem extends StatelessWidget {
       child: ListTile(
         title: Text(title, style: styleSectionTitle),
         subtitle: Text(subtitle),
-        trailing: artwork == null
-            ? const Icon(Icons.chevron_right)
-            : Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [artwork!, const Icon(Icons.chevron_right)],
-              ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            artwork ?? const Illustration('folder'),
+            const Icon(Icons.chevron_right),
+          ],
+        ),
         onTap: onTap,
       ),
     );

@@ -9,10 +9,10 @@ import 'package:postkeeper/ui/contact_list_view.dart';
 import 'package:postkeeper/ui/contact_view.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
-import 'package:postkeeper/ui/map_view.dart';
+import 'package:postkeeper/ui/map_view/map_view.dart';
 import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
 import 'package:postkeeper/ui/postcard_view.dart';
-import 'package:postkeeper/ui/user_view.dart';
+import 'package:postkeeper/ui/user_view/user_view.dart';
 import 'package:provider/provider.dart';
 
 const String mainViewURI = '/main';
@@ -85,7 +85,7 @@ GoRoute userViewRoute = GoRoute(
   path: userViewURI,
   builder: (context, state) {
     return ChangeNotifierProvider(
-      create: (_) => UserViewModel(),
+      create: (_) => UserViewModel(personRepository: appPersonRepository, postcardRepository: appPostcardRepository),
       child: Builder(
         builder: (context) {
           return UserView(

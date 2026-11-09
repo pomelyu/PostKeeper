@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:postkeeper/constant.dart';
+import 'package:postkeeper/data/repositories/person_repository.dart';
+import 'package:postkeeper/data/repositories/postcard_repository.dart';
+
+import 'user_panel.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/locale_controller.dart';
@@ -7,7 +13,30 @@ import 'package:postkeeper/ui/core/primary_view_layout.dart';
 import 'package:provider/provider.dart';
 
 class UserViewModel extends ChangeNotifier {
-  UserViewModel();
+  UserViewModel({
+    required PersonRepository personRepository,
+    required PostcardRepository postcardRepository,
+  }) : panel = _load(personRepository, postcardRepository);
+
+  final Future<UserPanelData> panel;
+
+  static Future<UserPanelData> _load(
+    PersonRepository people,
+    PostcardRepository postcards,
+  ) async {
+    final person = await people.getMyInfo();
+    final all = await postcards.getAllPostcards();
+    final received = await postcards.getAllMyReceived();
+    final locations = received.postcards
+        .map((card) => card.sendFrom.id)
+        .where((id) => id.isNotEmpty && id != dummyLocationId)
+        .toSet();
+    return UserPanelData(
+      person: person,
+      postcardCount: all.postcards.length,
+      locationCount: locations.length,
+    );
+  }
 }
 
 class UserView extends StatelessWidget {
@@ -23,26 +52,20 @@ class UserView extends StatelessWidget {
       children: [
         Expanded(
           child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
-              Card(
-                child: ListTile(
-                  key: const ValueKey('user-collection-overview'),
-                  leading: const Icon(Icons.collections_outlined),
-                  title: Text(l10n.userCollectionOverview),
-                  subtitle: Text(l10n.textCommingSoon),
-                ),
+              FutureBuilder<UserPanelData>(
+                future: viewModel.panel,
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) return Text(l10n.contactLoadError);
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return UserPanel(data: snapshot.data!);
+                },
               ),
               Card(
                 child: Column(
                   children: [
-                    ListTile(
-                      key: const ValueKey('user-personal-info'),
-                      leading: const Icon(Icons.person_outline),
-                      title: Text(l10n.userPersonalInfo),
-                      trailing: const Icon(Icons.chevron_right),
-                      onTap: () => context.push(contactViewURI),
-                    ),
                     _ComingSoonItem(
                       itemKey: const ValueKey('user-backup'),
                       icon: Icons.cloud_outlined,

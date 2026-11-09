@@ -6,7 +6,7 @@ import 'package:postkeeper/l10n/app_localizations_en.dart';
 import 'package:postkeeper/l10n/app_localizations_zh.dart';
 import 'package:postkeeper/ui/core/geography_names.dart';
 import 'package:postkeeper/ui/core/postcard_grid.dart';
-import 'package:postkeeper/ui/map_view.dart';
+import 'package:postkeeper/ui/map_view/map_view.dart';
 
 void main() {
   test('國家名稱依語言顯示並保留未知代碼', () {

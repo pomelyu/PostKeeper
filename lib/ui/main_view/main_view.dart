@@ -6,9 +6,10 @@ import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/core/primary_view_layout.dart';
-import 'package:postkeeper/ui/main_view/pinned_collection.dart';
-import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/style.dart';
+
+import './pinned_collection.dart';
+import './postcard_tab.dart';
 
 class MainViewModel extends ChangeNotifier {
   MainViewModel({required this._repository});
@@ -56,9 +57,9 @@ class MainView extends StatelessWidget {
 
   final MainViewModel viewModel;
 
-  // 區域高度以 logical pixels 計；標題可隨內容增高，釘選區域使用剩餘高度。
-  static const double _tabHeight = 400;
-  static const double _quickAddHeight = 80;
+  // 明信片區使用剩餘高度，操作區固定保留可點擊空間。
+  static const double _quickAddHeight = 56;
+  static const double _pinCollectionHeight = 128;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +67,8 @@ class MainView extends StatelessWidget {
     return PrimaryViewLayout(
       title: l10n.mainTitle,
       children: [
-        SizedBox(
+        Expanded(
           key: ValueKey('main-tab-section'),
-          height: _tabHeight,
           child: ListenableBuilder(
             listenable: viewModel,
             builder: (context, _) {
@@ -79,27 +79,31 @@ class MainView extends StatelessWidget {
             },
           ),
         ),
-        Divider(),
-        Expanded(
+        const Divider(height: sectionSpacing),
+        SizedBox(
+          height: _pinCollectionHeight,
           child: ListenableBuilder(
             listenable: viewModel,
             builder: (context, _) {
               return PinnedCollection(
                 key: ValueKey('main-pinned-section'),
-                  collections1: viewModel.collection1,
-                  collections2: viewModel.collection2,
-                );
+                collections1: viewModel.collection1,
+                collections2: viewModel.collection2,
+              );
             },
           ),
         ),
+        sectionSpace,
         SizedBox(
           key: ValueKey('main-quick-add-section'),
           height: _quickAddHeight,
           child: TextButton(
+            style: primaryActionStyle,
             onPressed: () => context.push(postcardEditViewURI),
-            child: Text(l10n.mainAddPostcard, style: styleSectionTitle),
+            child: Text(l10n.mainAddPostcard),
           ),
         ),
+        sectionSpace,
       ],
     );
   }

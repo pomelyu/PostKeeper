@@ -7,7 +7,6 @@
   "textCommingSoon": "Coming soon",
   "settingsLanguage": "Language",
   "mainTitle": "My Postcards",
-  "mainSubtitle": "Treasure every view you receive",
   "mainAddPostcard": "Scan Postcard",
   "mainRecentlyReceived": "Recently Received",
   "mainRecentlySent": "Recently Sent",
@@ -313,7 +312,6 @@
   "countryZA": "South Africa",
   "countryZM": "Zambia",
   "countryZW": "Zimbabwe",
-  "userCollectionOverview": "Collection overview",
   "userBackupRestore": "Backup and restore",
   "userContacts": "Contacts",
   "userHelp": "Help",
@@ -325,5 +323,23 @@
   "contactAddresses": "Addresses",
   "contactNoAddresses": "No addresses yet",
   "contactEmpty": "No contacts yet",
-  "contactLoadError": "Unable to load contact information"
+  "contactLoadError": "Unable to load contact information",
+  "userPostcardCountLabel": "Postcards",
+  "userLocationCountLabel": "Sending locations",
+  "userLocationAmount": "{count}",
+  "@userLocationAmount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "userPostcardAmount": "{count}",
+  "@userPostcardAmount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

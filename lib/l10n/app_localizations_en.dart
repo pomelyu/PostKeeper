@@ -31,9 +31,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mainTitle => 'My Postcards';
 
   @override
-  String get mainSubtitle => 'Treasure every view you receive';
-
-  @override
   String get mainAddPostcard => 'Scan Postcard';
 
   @override
@@ -936,9 +933,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get countryZW => 'Zimbabwe';
 
   @override
-  String get userCollectionOverview => 'Collection overview';
-
-  @override
   String get userBackupRestore => 'Backup and restore';
 
   @override
@@ -973,4 +967,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get contactLoadError => 'Unable to load contact information';
+
+  @override
+  String get userPostcardCountLabel => 'Postcards';
+
+  @override
+  String get userLocationCountLabel => 'Sending locations';
+
+  @override
+  String userLocationAmount(int count) {
+    return '$count';
+  }
+
+  @override
+  String userPostcardAmount(int count) {
+    return '$count';
+  }
 }

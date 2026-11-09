@@ -7,7 +7,6 @@
   "textCommingSoon": "尚未推出",
   "settingsLanguage": "語言",
   "mainTitle": "我的明信片",
-  "mainSubtitle": "把收到的風景，好好收藏",
   "mainAddPostcard": "掃描明信片",
   "mainRecentlyReceived": "最近收到",
   "mainRecentlySent": "最近寄出",
@@ -306,7 +305,6 @@
   "countryZA": "南非",
   "countryZM": "尚比亞",
   "countryZW": "辛巴威",
-  "userCollectionOverview": "收藏總覽",
   "userBackupRestore": "備份與還原",
   "userContacts": "通訊錄",
   "userHelp": "使用說明",
@@ -318,5 +316,23 @@
   "contactAddresses": "地址清單",
   "contactNoAddresses": "尚無地址",
   "contactEmpty": "尚無聯絡人",
-  "contactLoadError": "無法載入聯絡人資訊"
+  "contactLoadError": "無法載入聯絡人資訊",
+  "userPostcardCountLabel": "明信片",
+  "userLocationCountLabel": "寄件地",
+  "userLocationAmount": "{count} 個",
+  "@userLocationAmount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "userPostcardAmount": "{count} 張",
+  "@userPostcardAmount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

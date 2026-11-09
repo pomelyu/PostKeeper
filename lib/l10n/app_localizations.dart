@@ -140,12 +140,6 @@ abstract class AppLocalizations {
   /// **'My Postcards'**
   String get mainTitle;
 
-  /// No description provided for @mainSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Treasure every view you receive'**
-  String get mainSubtitle;
-
   /// No description provided for @mainAddPostcard.
   ///
   /// In en, this message translates to:
@@ -1934,12 +1928,6 @@ abstract class AppLocalizations {
   /// **'Zimbabwe'**
   String get countryZW;
 
-  /// No description provided for @userCollectionOverview.
-  ///
-  /// In en, this message translates to:
-  /// **'Collection overview'**
-  String get userCollectionOverview;
-
   /// No description provided for @userBackupRestore.
   ///
   /// In en, this message translates to:
@@ -2011,6 +1999,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unable to load contact information'**
   String get contactLoadError;
+
+  /// No description provided for @userPostcardCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Postcards'**
+  String get userPostcardCountLabel;
+
+  /// No description provided for @userLocationCountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending locations'**
+  String get userLocationCountLabel;
+
+  /// No description provided for @userLocationAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}'**
+  String userLocationAmount(int count);
+
+  /// No description provided for @userPostcardAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}'**
+  String userPostcardAmount(int count);
 }
 
 class _AppLocalizationsDelegate
