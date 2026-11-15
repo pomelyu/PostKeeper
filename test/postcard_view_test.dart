@@ -42,6 +42,14 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const ValueKey('postcard-front-image')), findsOneWidget);
 
+    await tester.tap(find.byKey(const ValueKey('postcard-image-preview')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('postcard-preview')), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('postcard-preview-close')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('postcard-preview')), findsNothing);
+    expect(detailFinder, findsOneWidget);
+
     await tester.tap(find.byKey(const ValueKey('postcard-edit-button')));
     await tester.pumpAndSettle();
 

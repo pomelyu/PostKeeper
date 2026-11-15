@@ -3,6 +3,8 @@ import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
 import 'package:postkeeper/ui/style.dart';
 
+import 'postcard_preview.dart';
+
 class PostcardImage extends StatelessWidget {
   const PostcardImage({
     super.key,
@@ -13,29 +15,39 @@ class PostcardImage extends StatelessWidget {
   final bool showBack;
   @override
   Widget build(BuildContext context) => Center(
-    child: Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        border: Border.all(color: borderColor),
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x206B583C),
-            blurRadius: 8,
-            offset: Offset(0, 3),
-          ),
-        ],
+    child: GestureDetector(
+      key: const ValueKey('postcard-image-preview'),
+      onTap: () => PostcardPreview.open(
+        context,
+        frontImagePath: postcard.frontImagePath,
+        backImagePath: postcard.backImagePath,
+        showBack: showBack,
+        rotate: postcard.orientation == PostcardOrientation.landscape,
       ),
-      child: Image.asset(
-        showBack ? postcard.backImagePath : postcard.frontImagePath,
-        key: ValueKey(
-          showBack ? 'postcard-back-image' : 'postcard-front-image',
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          border: Border.all(color: borderColor),
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x206B583C),
+              blurRadius: 8,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
-        height: postcard.orientation == PostcardOrientation.landscape
-            ? 240
-            : 300,
-        fit: BoxFit.contain,
+        child: Image.asset(
+          showBack ? postcard.backImagePath : postcard.frontImagePath,
+          key: ValueKey(
+            showBack ? 'postcard-back-image' : 'postcard-front-image',
+          ),
+          height: postcard.orientation == PostcardOrientation.landscape
+              ? 240
+              : 300,
+          fit: BoxFit.contain,
+        ),
       ),
     ),
   );
