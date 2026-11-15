@@ -39,13 +39,15 @@ class PostcardView extends StatelessWidget {
         listenable: viewModel,
         builder: (context, _) => Column(
           children: [
-            PostcardImage(postcard: postcard, showBack: viewModel.showBack),
-            const SizedBox(height: sectionSpacing),
             PostcardActions(
               postcard: postcard,
+              onEdit: () => context.push(postcardEditViewURI, extra: postcard),
+            ),
+            PostcardImage(postcard: postcard, showBack: viewModel.showBack),
+            const SizedBox(height: sectionSpacing),
+            PostcardSideSelector(
               showBack: viewModel.showBack,
               onSideSelected: viewModel.selectSide,
-              onEdit: () => context.push(postcardEditViewURI, extra: postcard),
             ),
             Expanded(child: PostcardInfoScroll(postcard: postcard)),
           ],

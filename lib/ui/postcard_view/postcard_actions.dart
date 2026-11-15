@@ -7,37 +7,16 @@ class PostcardActions extends StatelessWidget {
   const PostcardActions({
     super.key,
     required this.postcard,
-    required this.showBack,
-    required this.onSideSelected,
     required this.onEdit,
   });
   final Postcard postcard;
-  final bool showBack;
-  final ValueChanged<bool> onSideSelected;
   final VoidCallback onEdit;
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Expanded(
-          child: Row(
-            children: [
-              for (final back in [false, true])
-                Expanded(
-                  child: TextButton(
-                    key: ValueKey(
-                      back ? 'postcard-back-tab' : 'postcard-front-tab',
-                    ),
-                    style: collectionTabStyle(showBack == back),
-                    onPressed: () => onSideSelected(back),
-                    child: Text(back ? l10n.postcardBack : l10n.postcardFront),
-                  ),
-                ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 8),
         IconButton(
           key: const ValueKey('postcard-favorite-button'),
           tooltip: l10n.keeperFavorite,
@@ -51,6 +30,34 @@ class PostcardActions extends StatelessWidget {
           onPressed: () => onEdit(),
           icon: const Icon(Icons.edit_outlined),
         ),
+      ],
+    );
+  }
+}
+
+class PostcardSideSelector extends StatelessWidget {
+  const PostcardSideSelector({
+    super.key,
+    required this.showBack,
+    required this.onSideSelected,
+  });
+  final bool showBack;
+  final ValueChanged<bool> onSideSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Row(
+      children: [
+        for (final back in [false, true])
+          Expanded(
+            child: TextButton(
+              key: ValueKey(back ? 'postcard-back-tab' : 'postcard-front-tab'),
+              style: collectionTabStyle(showBack == back),
+              onPressed: () => onSideSelected(back),
+              child: Text(back ? l10n.postcardBack : l10n.postcardFront),
+            ),
+          ),
       ],
     );
   }
