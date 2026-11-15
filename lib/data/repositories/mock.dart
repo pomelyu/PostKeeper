@@ -86,6 +86,9 @@ final Postcard _received1 = Postcard(
   sendTo: _home,
   sentAt: DateTime(2026, 10, 01),
   receivedAt: DateTime(2026, 10, 05),
+  notes: "秋天的京都，是一年之中最令人著迷的季節。漫步在清水寺與嵐山之間，"
+  "楓葉染紅了古老的寺院與街道，陽光穿過枝葉，灑落一地金黃。沿著石板小徑緩緩前行，偶爾停下腳步，欣賞紅葉與古寺交織的風景。"
+  "傍晚坐進街角的茶屋，品嚐一杯溫熱的抹茶，感受京都獨有的寧靜與浪漫。希望能將這份秋日的美好，永遠收藏在回憶裡。"
 );
 
 final Postcard _received2 = Postcard(

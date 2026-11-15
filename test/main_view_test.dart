@@ -4,7 +4,7 @@ import 'package:postkeeper/main.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
-import 'package:postkeeper/ui/postcard_view.dart';
+import 'package:postkeeper/ui/postcard_view/postcard_view.dart';
 
 void main() {
   testWidgets('點選新增明信片後返回首頁', (tester) async {

@@ -16,19 +16,19 @@ class SecondaryViewLayout extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: SecondaryViewTitle(title: title),
-        leading: BackButton(onPressed: () => context.pop()),
-        actions: titleActions,
-      ),
-      body: SafeArea(
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: SecondaryViewTitle(title: title),
+      leading: BackButton(onPressed: () => context.pop()),
+      actions: titleActions,
+    ),
+    body: SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(pagePadding),
         child: child,
-      )
-    );
-  }
-
+      ),
+    )
+  );
 }
 
 class SecondaryViewTitle extends StatelessWidget {

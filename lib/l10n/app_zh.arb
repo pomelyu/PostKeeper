@@ -334,5 +334,7 @@
         "type": "int"
       }
     }
-  }
+  },
+  "postcardFront": "正面",
+  "postcardBack": "背面"
 }

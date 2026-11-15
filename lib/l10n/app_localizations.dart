@@ -2023,6 +2023,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count}'**
   String userPostcardAmount(int count);
+
+  /// No description provided for @postcardFront.
+  ///
+  /// In en, this message translates to:
+  /// **'Front'**
+  String get postcardFront;
+
+  /// No description provided for @postcardBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get postcardBack;
 }
 
 class _AppLocalizationsDelegate

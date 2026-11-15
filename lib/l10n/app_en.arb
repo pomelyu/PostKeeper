@@ -341,5 +341,7 @@
         "type": "int"
       }
     }
-  }
+  },
+  "postcardFront": "Front",
+  "postcardBack": "Back"
 }

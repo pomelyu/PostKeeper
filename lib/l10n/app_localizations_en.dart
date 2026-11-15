@@ -983,4 +983,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String userPostcardAmount(int count) {
     return '$count';
   }
+
+  @override
+  String get postcardFront => 'Front';
+
+  @override
+  String get postcardBack => 'Back';
 }

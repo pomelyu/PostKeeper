@@ -4,7 +4,7 @@ import 'package:postkeeper/main.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
-import 'package:postkeeper/ui/postcard_view.dart';
+import 'package:postkeeper/ui/postcard_view/postcard_view.dart';
 
 void main() {
   testWidgets('點選編輯明信片後返回原明信片詳情', (tester) async {
@@ -33,6 +33,14 @@ void main() {
         .widget<PostcardView>(detailFinder)
         .viewModel
         .postcard;
+
+    await tester.tap(find.byKey(const ValueKey('postcard-back-tab')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('postcard-back-image')), findsOneWidget);
+    expect(tester.widget<PostcardView>(detailFinder).viewModel.showBack, isTrue);
+    await tester.tap(find.byKey(const ValueKey('postcard-front-tab')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('postcard-front-image')), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('postcard-edit-button')));
     await tester.pumpAndSettle();

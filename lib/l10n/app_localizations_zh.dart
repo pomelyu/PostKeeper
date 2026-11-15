@@ -977,4 +977,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String userPostcardAmount(int count) {
     return '$count 張';
   }
+
+  @override
+  String get postcardFront => '正面';
+
+  @override
+  String get postcardBack => '背面';
 }

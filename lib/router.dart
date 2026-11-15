@@ -11,7 +11,7 @@ import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:postkeeper/ui/map_view/map_view.dart';
 import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
-import 'package:postkeeper/ui/postcard_view.dart';
+import 'package:postkeeper/ui/postcard_view/postcard_view.dart';
 import 'package:postkeeper/ui/user_view/user_view.dart';
 import 'package:provider/provider.dart';
 
