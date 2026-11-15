@@ -40,7 +40,6 @@ class ContactListView extends StatelessWidget {
           if (contacts.isEmpty) return Center(child: Text(l10n.contactEmpty));
           return ListView.separated(
             key: const ValueKey('contact-list'),
-            padding: const EdgeInsets.all(20),
             itemCount: contacts.length,
             separatorBuilder: (_, _) => const SizedBox(height: 12),
             itemBuilder: (context, index) {

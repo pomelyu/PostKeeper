@@ -45,7 +45,6 @@ class ContactView extends StatelessWidget {
           final person = snapshot.data!;
           return ListView(
             key: const ValueKey('contact-details'),
-            padding: const EdgeInsets.all(20),
             children: [
               Card(
                 color: surfaceMutedColor,

@@ -8,17 +8,14 @@ class PostcardGrid extends StatelessWidget {
   const PostcardGrid({
     super.key,
     required this.postcards,
-    this.padding = const EdgeInsets.all(pagePadding),
     this.showDate = false,
   });
 
   final List<Postcard> postcards;
-  final EdgeInsetsGeometry padding;
   final bool showDate;
 
   @override
   Widget build(BuildContext context) => GridView.builder(
-    padding: padding,
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       crossAxisSpacing: 16,

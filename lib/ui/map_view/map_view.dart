@@ -86,7 +86,6 @@ class MapView extends StatelessWidget {
               flex: 4,
               child: PostcardGrid(
                 key: const ValueKey('map-postcard-grid'),
-                padding: EdgeInsets.zero,
                 showDate: true,
                 postcards: postcards,
               ),
