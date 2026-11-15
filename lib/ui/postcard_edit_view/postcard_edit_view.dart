@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'postcard_edit_images.dart';
+import 'postcard_edit_steps.dart';
+
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/data/repositories/postcard_repository.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
@@ -14,6 +18,15 @@ class PostcardEditViewModel extends ChangeNotifier {
 
   PostcardRepository get repository => _repository;
   Postcard? get postcard => _postcard;
+
+  bool _showBack = false;
+  bool get showBack => _showBack;
+
+  void selectSide(bool showBack) {
+    if (_showBack == showBack) return;
+    _showBack = showBack;
+    notifyListeners();
+  }
 
   int _currentStep = 0;
 
@@ -49,40 +62,18 @@ class PostcardEditView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                children: [
-                  _buildStep(0, l10n.postcardEditImagesStep),
-                  const Icon(
-                    Icons.arrow_forward,
-                    size: 18,
-                    color: textPrimaryColor,
-                  ),
-                  _buildStep(1, l10n.postcardEditDetailsStep),
-                  const Icon(
-                    Icons.arrow_forward,
-                    size: 18,
-                    color: textPrimaryColor,
-                  ),
-                  _buildStep(2, l10n.postcardEditSave),
-                ],
-              ),
+              PostcardEditSteps(currentStep: viewModel.currentStep),
+              const SizedBox(height: sectionSpacing),
               Expanded(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        'assets/illustrations/illustration-envelope.png',
-                        width: 180,
-                        height: 180,
-                        fit: BoxFit.contain,
-                        excludeFromSemantics: true,
+                child: viewModel.isDetailsStep
+                    ? Center(child: Text(l10n.textCommingSoon))
+                    : PostcardEditImages(
+                        postcard: viewModel.postcard,
+                        showBack: viewModel.showBack,
+                        onSideSelected: viewModel.selectSide,
                       ),
-                      Text(l10n.textCommingSoon),
-                    ],
-                  ),
-                ),
               ),
+              const SizedBox(height: sectionSpacing),
               SizedBox(
                 height: 52,
                 child: TextButton(
@@ -106,46 +97,6 @@ class PostcardEditView extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildStep(int index, String label) {
-    final selected = viewModel.currentStep == index;
-
-    return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 32,
-            height: 32,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: selected ? surfacePrimaryColor : surfaceMutedColor,
-              shape: BoxShape.circle,
-            ),
-            child: Text(
-              '${index + 1}',
-              style: TextStyle(
-                color: selected ? Colors.white : textPrimaryColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const SizedBox(width: 6),
-          Flexible(
-            child: Text(
-              label,
-              style: TextStyle(
-                color: textPrimaryColor,
-                fontSize: 14,
-                fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

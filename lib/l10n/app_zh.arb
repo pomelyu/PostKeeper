@@ -17,6 +17,8 @@
   "postcardEditImagesStep": "圖片",
   "postcardEditDetailsStep": "資料",
   "postcardEditSave": "儲存",
+  "postcardEditCamera": "拍照",
+  "postcardEditGallery": "相簿",
   "postcardEditNext": "下一步",
   "geoUnknown": "未知",
   "geoAfrica": "非洲",

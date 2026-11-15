@@ -61,6 +61,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get postcardEditSave => '儲存';
 
   @override
+  String get postcardEditCamera => '拍照';
+
+  @override
+  String get postcardEditGallery => '相簿';
+
+  @override
   String get postcardEditNext => '下一步';
 
   @override

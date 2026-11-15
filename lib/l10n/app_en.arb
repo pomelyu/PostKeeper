@@ -17,6 +17,8 @@
   "postcardEditImagesStep": "Images",
   "postcardEditDetailsStep": "Details",
   "postcardEditSave": "Save",
+  "postcardEditCamera": "Camera",
+  "postcardEditGallery": "Gallery",
   "postcardEditNext": "Next",
   "geoUnknown": "Unknown",
   "geoAfrica": "Africa",

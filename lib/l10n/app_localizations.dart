@@ -200,6 +200,18 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get postcardEditSave;
 
+  /// No description provided for @postcardEditCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get postcardEditCamera;
+
+  /// No description provided for @postcardEditGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get postcardEditGallery;
+
   /// No description provided for @postcardEditNext.
   ///
   /// In en, this message translates to:

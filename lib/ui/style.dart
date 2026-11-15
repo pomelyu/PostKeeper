@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const backgroundColor = Color(0xFFFDFBF1);
 const surfacePrimaryColor = Color(0xFF758A66);
+const surfaceSecondaryColor = Color(0xFFFBF2DF);
 const surfaceMutedColor = Color(0xFFF7F0DD);
 const textPrimaryColor = Color(0xFF293422);
 const textSecondaryColor = Color(0xFF5D6656);
@@ -34,11 +35,36 @@ final primaryActionStyle = TextButton.styleFrom(
   backgroundColor: surfacePrimaryColor,
   foregroundColor: Colors.white,
   minimumSize: const Size(0, controlHeight),
-  textStyle: styleSectionTitle,
+  textStyle: TextStyle(
+    color: Colors.white,
+    fontSize: styleSectionTitle.fontSize,
+    fontWeight: styleSectionTitle.fontWeight,
+    height: styleSectionTitle.height,
+  ),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(cardRadius),
   ),
 );
+
+final secondaryActionStyle = TextButton.styleFrom(
+  backgroundColor: surfaceSecondaryColor,
+  foregroundColor: Color(0xFF42582B),
+  minimumSize: const Size(0, controlHeight),
+  textStyle: TextStyle(
+    color: Color(0xFF42582B),
+    fontSize: styleSectionTitle.fontSize,
+    fontWeight: styleSectionTitle.fontWeight,
+    height: styleSectionTitle.height,
+  ),
+  side: const BorderSide(
+    color: Color(0xFF42582B),
+    width: 1,
+  ),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(cardRadius),
+  ),
+);
+
 ButtonStyle collectionTabStyle(bool selected) => TextButton.styleFrom(
   backgroundColor: selected ? surfacePrimaryColor : surfaceMutedColor,
   foregroundColor: selected ? Colors.white : textPrimaryColor,

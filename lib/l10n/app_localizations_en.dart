@@ -61,6 +61,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postcardEditSave => 'Save';
 
   @override
+  String get postcardEditCamera => 'Camera';
+
+  @override
+  String get postcardEditGallery => 'Gallery';
+
+  @override
   String get postcardEditNext => 'Next';
 
   @override
