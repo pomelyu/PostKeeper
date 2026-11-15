@@ -24,7 +24,10 @@ class SecondaryViewLayout extends StatelessWidget {
     ),
     body: SafeArea(
       child: Padding(
-        padding: const EdgeInsets.all(pagePadding),
+        padding: const EdgeInsets.symmetric(
+          horizontal: pagePaddingHorizontal,
+          vertical: pagePaddingVertical,
+        ),
         child: child,
       ),
     )

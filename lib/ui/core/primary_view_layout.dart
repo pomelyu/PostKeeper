@@ -14,7 +14,7 @@ class PrimaryViewLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.all(pagePadding),
+    padding: const EdgeInsets.symmetric(horizontal: pagePaddingHorizontal),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
