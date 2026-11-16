@@ -24,6 +24,10 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>拍攝明信片的正面與背面照片。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>從相簿匯入明信片的正面與背面照片。</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

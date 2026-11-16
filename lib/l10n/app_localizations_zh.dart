@@ -61,6 +61,15 @@ class AppLocalizationsZh extends AppLocalizations {
   String get postcardEditSave => '儲存';
 
   @override
+  String get postcardEditReplaceImage => '取代圖片';
+
+  @override
+  String get postcardEditReplaceImageMessage => '已有圖片，是否以選取的新圖片取代？';
+
+  @override
+  String get postcardEditImageError => '無法開啟或載入圖片，請檢查相機或相簿權限後再試。';
+
+  @override
   String get postcardEditCamera => '拍照';
 
   @override
@@ -1057,6 +1066,15 @@ class AppLocalizationsZhHantTw extends AppLocalizationsZh {
 
   @override
   String get postcardEditSave => '儲存';
+
+  @override
+  String get postcardEditReplaceImage => '取代圖片';
+
+  @override
+  String get postcardEditReplaceImageMessage => '這一面已有圖片，是否以選取的新圖片取代？';
+
+  @override
+  String get postcardEditImageError => '無法開啟或載入圖片，請檢查相機或相簿權限後再試。';
 
   @override
   String get postcardEditCamera => '拍照';

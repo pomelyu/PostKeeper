@@ -205,6 +205,24 @@ abstract class AppLocalizations {
   /// **'Save'**
   String get postcardEditSave;
 
+  /// No description provided for @postcardEditReplaceImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace image'**
+  String get postcardEditReplaceImage;
+
+  /// No description provided for @postcardEditReplaceImageMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This side already has an image. Replace it with the selected image?'**
+  String get postcardEditReplaceImageMessage;
+
+  /// No description provided for @postcardEditImageError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to open or load the image. Check camera or photo access and try again.'**
+  String get postcardEditImageError;
+
   /// No description provided for @postcardEditCamera.
   ///
   /// In en, this message translates to:

@@ -61,6 +61,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postcardEditSave => 'Save';
 
   @override
+  String get postcardEditReplaceImage => 'Replace image';
+
+  @override
+  String get postcardEditReplaceImageMessage =>
+      'This side already has an image. Replace it with the selected image?';
+
+  @override
+  String get postcardEditImageError =>
+      'Unable to open or load the image. Check camera or photo access and try again.';
+
+  @override
   String get postcardEditCamera => 'Camera';
 
   @override

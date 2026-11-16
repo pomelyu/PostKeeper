@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:postkeeper/data/repositories/person_repository.dart';
 import 'package:postkeeper/data/repositories/postcard_repository.dart';
 import 'package:postkeeper/domain/models/location.dart';
@@ -17,7 +20,14 @@ class PostcardEditViewModel extends ChangeNotifier {
     required this._repository,
     required PersonRepository personRepository,
     Postcard? postcard,
-  }) : _postcard = postcard,
+    Future<XFile?> Function(ImageSource)? pickImage,
+  }) : pickImage =
+           pickImage ??
+           ((source) => ImagePicker().pickImage(
+             source: source,
+             requestFullMetadata: false,
+           )),
+       _postcard = postcard,
        people = personRepository.getAllUsers(),
        titleController = TextEditingController(text: postcard?.title ?? ''),
        notesController = TextEditingController(text: postcard?.notes ?? ''),
@@ -33,6 +43,30 @@ class PostcardEditViewModel extends ChangeNotifier {
        receivedAt = postcard?.receivedAt,
        sendFrom = postcard?.sendFrom,
        sendTo = postcard?.sendTo;
+
+  final Future<XFile?> Function(ImageSource) pickImage;
+  Uint8List? frontImage;
+  Uint8List? backImage;
+  bool importingImage = false;
+
+  bool hasImage(bool back) =>
+      (back ? backImage : frontImage) != null ||
+      (back ? postcard?.backImagePath : postcard?.frontImagePath)?.isNotEmpty ==
+          true;
+
+  void setImportingImage(bool value) {
+    importingImage = value;
+    notifyListeners();
+  }
+
+  void replaceImage(Uint8List bytes, {required bool back}) {
+    if (back) {
+      backImage = bytes;
+    } else {
+      frontImage = bytes;
+    }
+    notifyListeners();
+  }
 
   final Future<List<Person>> people;
   final TextEditingController titleController;
@@ -129,6 +163,60 @@ class PostcardEditView extends StatelessWidget {
 
   final PostcardEditViewModel viewModel;
 
+  Future<void> _importImage(BuildContext context, ImageSource source) async {
+    if (viewModel.importingImage) return;
+    final back = viewModel.showBack;
+    viewModel.setImportingImage(true);
+    try {
+      final file = await viewModel.pickImage(source);
+      if (file == null || !context.mounted) return;
+      final bytes = await file.readAsBytes();
+      if (!context.mounted) return;
+      if (viewModel.hasImage(back)) {
+        final l10n = AppLocalizations.of(context);
+        final replace = await showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            key: const ValueKey('postcard-edit-replace-dialog'),
+            title: Text(l10n.postcardEditReplaceImage),
+            content: Text(l10n.postcardEditReplaceImageMessage),
+            actions: [
+              TextButton(
+                key: const ValueKey('postcard-edit-replace-cancel'),
+                onPressed: () => Navigator.pop(context, false),
+                child: Text(
+                  MaterialLocalizations.of(context).cancelButtonLabel,
+                ),
+              ),
+              TextButton(
+                key: const ValueKey('postcard-edit-replace-confirm'),
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(l10n.postcardEditReplaceImage),
+              ),
+            ],
+          ),
+        );
+        if (replace != true || !context.mounted) return;
+      }
+      viewModel.replaceImage(bytes, back: back);
+    } on PlatformException catch (_) {
+      if (context.mounted) _showImportError(context);
+    } on MissingPluginException catch (_) {
+      if (context.mounted) _showImportError(context);
+    } catch (_) {
+      if (context.mounted) _showImportError(context);
+    } finally {
+      if (context.mounted) viewModel.setImportingImage(false);
+    }
+  }
+
+  void _showImportError(BuildContext context) => ScaffoldMessenger.of(context)
+      .showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context).postcardEditImageError),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -160,6 +248,14 @@ class PostcardEditView extends StatelessWidget {
                         postcard: viewModel.postcard,
                         showBack: viewModel.showBack,
                         onSideSelected: viewModel.selectSide,
+                        image: viewModel.showBack
+                            ? viewModel.backImage
+                            : viewModel.frontImage,
+                        importing: viewModel.importingImage,
+                        onCamera: () =>
+                            _importImage(context, ImageSource.camera),
+                        onGallery: () =>
+                            _importImage(context, ImageSource.gallery),
                       ),
               ),
               const SizedBox(height: sectionSpacing),
