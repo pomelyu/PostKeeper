@@ -67,6 +67,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get postcardEditGallery => '相簿';
 
   @override
+  String get postcardEditTitleLabel => '標題';
+
+  @override
+  String get postcardEditSending => '寄件';
+
+  @override
+  String get postcardEditReceiving => '收件';
+
+  @override
+  String get postcardEditNotes => '備註';
+
+  @override
   String get postcardEditNext => '下一步';
 
   @override
@@ -1051,6 +1063,18 @@ class AppLocalizationsZhHantTw extends AppLocalizationsZh {
 
   @override
   String get postcardEditGallery => '相簿';
+
+  @override
+  String get postcardEditTitleLabel => '標題';
+
+  @override
+  String get postcardEditSending => '寄件';
+
+  @override
+  String get postcardEditReceiving => '收件';
+
+  @override
+  String get postcardEditNotes => '備註';
 
   @override
   String get postcardEditNext => '下一步';

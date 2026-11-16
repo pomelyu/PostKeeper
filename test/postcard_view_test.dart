@@ -60,6 +60,41 @@ void main() {
       same(postcard),
     );
 
+    await tester.tap(find.byKey(const ValueKey('postcard-edit-action')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('postcard-edit-details')), findsOneWidget);
+    final editModel = tester.widget<PostcardEditView>(editFinder).viewModel;
+    expect(tester.widget<TextButton>(find.byKey(const ValueKey('postcard-edit-action'))).onPressed, isNull);
+    await tester.enterText(find.byKey(const ValueKey('postcard-edit-title')), 'Draft title');
+    await tester.enterText(find.byKey(const ValueKey('postcard-edit-sender')), 'Draft person');
+    await tester.pumpAndSettle();
+    expect(editModel.titleController.text, 'Draft title');
+    expect(editModel.senderController.text, 'Draft person');
+    expect(editModel.sender, isNull);
+    expect(postcard.title, isNot('Draft title'));
+    final people = await editModel.people;
+    final person = people.firstWhere((person) => person.locations.isNotEmpty);
+    await tester.tap(find.byKey(const ValueKey('postcard-edit-sender-menu')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(ValueKey('person-option-sender-${person.id}')));
+    await tester.pumpAndSettle();
+    expect(editModel.sender, same(person));
+    expect(editModel.senderController.text, person.name);
+    await tester.tap(find.byKey(const ValueKey('postcard-edit-send-from-menu')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(ValueKey('location-option-send-from-${person.locations.first.id}')));
+    await tester.pumpAndSettle();
+    expect(editModel.sendFrom, same(person.locations.first));
+    await tester.tap(find.byKey(const ValueKey('postcard-edit-sent-date-calendar')));
+    await tester.pumpAndSettle();
+    expect(find.byType(DatePickerDialog), findsOneWidget);
+    final date = DateTime(2026, 1, 2);
+    tester.widget<CalendarDatePicker>(find.byType(CalendarDatePicker)).onDateChanged(date);
+    await tester.pumpAndSettle();
+    await tester.tap(find.descendant(of: find.byType(DatePickerDialog), matching: find.byType(TextButton)).last);
+    await tester.pumpAndSettle();
+    expect(editModel.sentAt, date);
+
     await tester.pageBack();
     await tester.pumpAndSettle();
 

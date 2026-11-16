@@ -125,6 +125,7 @@ GoRoute postcardEditViewRoute = GoRoute(
     return ChangeNotifierProvider(
       create: (_) => PostcardEditViewModel(
         repository: appPostcardRepository,
+        personRepository: appPersonRepository,
         postcard: postcard,
       ),
       child: Builder(

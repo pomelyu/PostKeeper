@@ -217,6 +217,30 @@ abstract class AppLocalizations {
   /// **'Gallery'**
   String get postcardEditGallery;
 
+  /// No description provided for @postcardEditTitleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get postcardEditTitleLabel;
+
+  /// No description provided for @postcardEditSending.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending'**
+  String get postcardEditSending;
+
+  /// No description provided for @postcardEditReceiving.
+  ///
+  /// In en, this message translates to:
+  /// **'Receiving'**
+  String get postcardEditReceiving;
+
+  /// No description provided for @postcardEditNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get postcardEditNotes;
+
   /// No description provided for @postcardEditNext.
   ///
   /// In en, this message translates to:
