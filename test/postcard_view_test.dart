@@ -94,6 +94,17 @@ void main() {
     await tester.tap(find.descendant(of: find.byType(DatePickerDialog), matching: find.byType(TextButton)).last);
     await tester.pumpAndSettle();
     expect(editModel.sentAt, date);
+    await tester.tap(find.byKey(const ValueKey('postcard-edit-step-1')));
+    await tester.pumpAndSettle();
+    expect(editModel.currentStep, 0);
+    expect(find.byKey(const ValueKey('postcard-edit-details')), findsNothing);
+    await tester.tap(find.byKey(const ValueKey('postcard-edit-step-2')));
+    await tester.pumpAndSettle();
+    expect(editModel.currentStep, 1);
+    expect(editModel.titleController.text, 'Draft title');
+    expect(editModel.sender, same(person));
+    expect(editModel.sentAt, date);
+
 
     await tester.pageBack();
     await tester.pumpAndSettle();

@@ -3,8 +3,13 @@ import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/style.dart';
 
 class PostcardEditSteps extends StatelessWidget {
-  const PostcardEditSteps({super.key, required this.currentStep});
+  const PostcardEditSteps({
+    super.key,
+    required this.currentStep,
+    required this.onStepSelected,
+  });
   final int currentStep;
+  final ValueChanged<int> onStepSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -24,38 +29,43 @@ class PostcardEditSteps extends StatelessWidget {
     final selected = currentStep == index;
 
     return Expanded(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 32,
-            height: 32,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: selected ? surfacePrimaryColor : surfaceMutedColor,
-              shape: BoxShape.circle,
-            ),
-            child: Text(
-              '${index + 1}',
-              style: TextStyle(
-                color: selected ? Colors.white : textPrimaryColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+      child: InkWell(
+        key: ValueKey('postcard-edit-step-${index + 1}'),
+        onTap: index < 2 ? () => onStepSelected(index) : null,
+        borderRadius: BorderRadius.circular(16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 32,
+              height: 32,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: selected ? surfacePrimaryColor : surfaceMutedColor,
+                shape: BoxShape.circle,
+              ),
+              child: Text(
+                '${index + 1}',
+                style: TextStyle(
+                  color: selected ? Colors.white : textPrimaryColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
-          ),
-          const SizedBox(width: 6),
-          Flexible(
-            child: Text(
-              label,
-              style: TextStyle(
-                color: textPrimaryColor,
-                fontSize: 14,
-                fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                label,
+                style: TextStyle(
+                  color: textPrimaryColor,
+                  fontSize: 14,
+                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

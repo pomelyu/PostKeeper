@@ -115,12 +115,13 @@ class PostcardEditViewModel extends ChangeNotifier {
   int get currentStep => _currentStep;
   bool get isDetailsStep => _currentStep == 1;
 
-  void nextStep() {
-    if (isDetailsStep) return;
-
-    _currentStep = 1;
+  void selectStep(int step) {
+    if (step < 0 || step > 1 || _currentStep == step) return;
+    _currentStep = step;
     notifyListeners();
   }
+
+  void nextStep() => selectStep(1);
 }
 
 class PostcardEditView extends StatelessWidget {
@@ -144,7 +145,13 @@ class PostcardEditView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              PostcardEditSteps(currentStep: viewModel.currentStep),
+              PostcardEditSteps(
+                currentStep: viewModel.currentStep,
+                onStepSelected: (step) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  viewModel.selectStep(step);
+                },
+              ),
               const SizedBox(height: sectionSpacing),
               Expanded(
                 child: viewModel.isDetailsStep
