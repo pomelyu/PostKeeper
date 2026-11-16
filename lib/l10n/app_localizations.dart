@@ -96,6 +96,11 @@ abstract class AppLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('zh'),
+    Locale.fromSubtags(
+      languageCode: 'zh',
+      countryCode: 'TW',
+      scriptCode: 'Hant',
+    ),
   ];
 
   /// No description provided for @navHome.
@@ -2067,6 +2072,12 @@ class _AppLocalizationsDelegate
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+  // Lookup logic when language+script+country codes are specified.
+  switch (locale.toString()) {
+    case 'zh_Hant_TW':
+      return AppLocalizationsZhHantTw();
+  }
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en':

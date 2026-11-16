@@ -19,7 +19,11 @@ void main() {
       await tester.pumpAndSettle();
       final user = tester.element(find.byKey(const ValueKey('user-view')));
       expect(Localizations.localeOf(user).languageCode, language);
-      expect(AppLocalizations.of(user).localeName, language);
+      expect(AppLocalizations.of(user).localeName, language == 'zh' ? 'zh_Hant_TW' : language);
+      if (language == 'zh') {
+        expect(Localizations.localeOf(user).scriptCode, 'Hant');
+        expect(Localizations.localeOf(user).countryCode, 'TW');
+      }
 
       await tester.tap(find.byKey(const ValueKey('nav-main')));
       await tester.pumpAndSettle();

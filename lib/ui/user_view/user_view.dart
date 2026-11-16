@@ -91,12 +91,10 @@ class UserView extends StatelessWidget {
                       title: Text(l10n.settingsLanguage),
                       trailing: DropdownButton<Locale>(
                         key: const ValueKey('settings-language-dropdown'),
-                        value: Locale(
-                          Localizations.localeOf(context).languageCode,
-                        ),
+                        value: Localizations.localeOf(context),
                         items: const [
                           DropdownMenuItem(
-                            value: Locale('zh'),
+                            value: Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant', countryCode: 'TW'),
                             child: Text('正體中文', key: ValueKey('language-zh')),
                           ),
                           DropdownMenuItem(

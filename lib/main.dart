@@ -46,6 +46,18 @@ class _PostKeeperAppState extends State<PostKeeperApp> {
           locale: _localeController.locale,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
+          localeResolutionCallback: (deviceLocale, supportedLocales) {
+            if (deviceLocale?.languageCode == 'zh') {
+              return const Locale.fromSubtags(
+                languageCode: 'zh',
+                scriptCode: 'Hant',
+                countryCode: 'TW',
+              );
+            }
+            return supportedLocales.where((locale) =>
+                locale.languageCode == deviceLocale?.languageCode).firstOrNull ??
+                const Locale('en');
+          },
           routerConfig: _router,
         ),
       ),
