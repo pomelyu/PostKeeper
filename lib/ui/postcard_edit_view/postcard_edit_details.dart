@@ -19,7 +19,6 @@ class PostcardEditDetails extends StatelessWidget {
         final people = snapshot.data ?? const <Person>[];
         return LayoutBuilder(
           builder: (context, constraints) {
-            final keyboard = MediaQuery.viewInsetsOf(context).bottom;
             final content = Column(
               key: const ValueKey('postcard-edit-details'),
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -84,17 +83,19 @@ class PostcardEditDetails extends StatelessWidget {
                 const SizedBox(height: 12),
                 Expanded(
                   flex: 2,
-                  child: PostcardEditNotesSection(
-                    controller: viewModel.notesController,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: 120),
+                    child: PostcardEditNotesSection(
+                      controller: viewModel.notesController,
+                    ),
                   ),
                 ),
               ],
             );
-            if (keyboard == 0) return content;
             return SingleChildScrollView(
-              child: SizedBox(
-                height: constraints.maxHeight + keyboard,
-                child: content,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(child: content),
               ),
             );
           },
