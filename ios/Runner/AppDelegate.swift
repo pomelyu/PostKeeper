@@ -1,5 +1,6 @@
 import Flutter
 import GooglePlaces
+import GoogleMaps
 import UIKit
 
 @main
@@ -8,6 +9,10 @@ import UIKit
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    if let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as? String,
+       !key.isEmpty, !key.contains("$(") {
+      GMSServices.provideAPIKey(key)
+    }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
@@ -16,6 +21,10 @@ import UIKit
     guard let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "PostKeeperPlaces") else { return }
     let channel = FlutterMethodChannel(name: "postkeeper/places", binaryMessenger: registrar.messenger())
     channel.setMethodCallHandler { call, result in
+      if call.method == "reverseGeocode" {
+        self.reverseGeocode(call, result: result)
+        return
+      }
       guard call.method == "autocomplete" else {
         result(FlutterMethodNotImplemented)
         return
@@ -43,4 +52,50 @@ import UIKit
       }
     }
   }
+
+  private func reverseGeocode(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    guard let arguments = call.arguments as? [String: Double],
+          let latitude = arguments["latitude"], let longitude = arguments["longitude"],
+          (-90...90).contains(latitude), (-180...180).contains(longitude) else {
+      result(FlutterError(code: "invalid_coordinates", message: "Valid coordinates are required.", details: nil))
+      return
+    }
+    guard let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as? String,
+          !key.isEmpty, !key.contains("$(") else {
+      result(FlutterError(code: "missing_key", message: "Set GOOGLE_MAPS_API_KEY in Secrets.xcconfig.", details: nil))
+      return
+    }
+    var url = URLComponents(string: "https://maps.googleapis.com/maps/api/geocode/json")!
+    url.queryItems = [
+      URLQueryItem(name: "latlng", value: "\(latitude),\(longitude)"),
+      URLQueryItem(name: "language", value: "zh-TW"),
+      URLQueryItem(name: "key", value: key),
+    ]
+    var request = URLRequest(url: url.url!, timeoutInterval: 15)
+    request.setValue(Bundle.main.bundleIdentifier, forHTTPHeaderField: "X-Ios-Bundle-Identifier")
+    URLSession.shared.dataTask(with: request) { data, response, error in
+      DispatchQueue.main.async {
+        guard error == nil,
+              (response as? HTTPURLResponse)?.statusCode == 200,
+              let data = data,
+              let json = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any] else {
+          result(FlutterError(code: "geocoding_error", message: "Geocoding request failed.", details: nil))
+          return
+        }
+        guard json["status"] as? String == "OK",
+              let places = json["results"] as? [[String: Any]],
+              let place = places.first else {
+          result(FlutterError(code: "geocoding_error", message: json["status"] as? String ?? "Invalid response", details: nil))
+          return
+        }
+        let components = place["address_components"] as? [[String: Any]] ?? []
+        let country = components.first { ($0["types"] as? [String])?.contains("country") == true }
+        result([
+          "address": place["formatted_address"] as? String ?? "",
+          "countryCode": country?["short_name"] as? String ?? "",
+        ])
+      }
+    }.resume()
+  }
+
 }

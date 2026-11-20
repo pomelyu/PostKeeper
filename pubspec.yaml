@@ -42,6 +42,8 @@ dependencies:
   provider: ^6.1.5+1
   flutter_svg: ^2.3.2
   image_picker: ^1.2.4
+  google_maps_flutter: ^2.19.0
+  google_maps_flutter_ios_sdk10: ^2.19.0
 
 dev_dependencies:
   integration_test:
