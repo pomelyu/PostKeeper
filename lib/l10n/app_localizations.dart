@@ -175,6 +175,36 @@ abstract class AppLocalizations {
   /// **'Postcard'**
   String get postcardTitle;
 
+  /// No description provided for @locationPickerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose location'**
+  String get locationPickerTitle;
+
+  /// No description provided for @locationPickerSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search places or addresses'**
+  String get locationPickerSearch;
+
+  /// No description provided for @locationPickerConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm location'**
+  String get locationPickerConfirm;
+
+  /// No description provided for @locationPickerError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load locations. Please search or select again.'**
+  String get locationPickerError;
+
+  /// No description provided for @locationPickerNoResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching locations'**
+  String get locationPickerNoResults;
+
   /// No description provided for @postcardEditImagesTitle.
   ///
   /// In en, this message translates to:

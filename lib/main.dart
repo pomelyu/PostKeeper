@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:postkeeper/ui/style.dart';
 import 'package:go_router/go_router.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/locale_controller.dart';
 import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/style.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/rendering.dart';
 
 
 Future<void> main() async {
@@ -135,6 +134,7 @@ GoRouter createAppRouter() {
       collectionViewRoute,
       contactListViewRoute,
       contactViewRoute,
+      locationPickerViewRoute,
     ],
   );
 }

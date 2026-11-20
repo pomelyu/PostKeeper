@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:postkeeper/data/repositories/location_repository.dart';
 import 'package:postkeeper/data/repositories/mock.dart';
+import 'package:postkeeper/data/services/google_places_service.dart';
 import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
@@ -8,6 +10,8 @@ import 'package:postkeeper/ui/collection_view.dart';
 import 'package:postkeeper/ui/contact_list_view.dart';
 import 'package:postkeeper/ui/contact_view.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
+import 'package:postkeeper/ui/location_picker_view/location_picker_view.dart';
+import 'package:postkeeper/ui/location_picker_view/location_picker_view_model.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:postkeeper/ui/map_view/map_view.dart';
 import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
@@ -20,6 +24,7 @@ const String keeperViewURI = '/keeper';
 const String mapViewURI = '/map';
 const String userViewURI = '/user';
 const String postcardViewURI = '/postcard';
+const String locationPickerViewURI = '/location-picker';
 const String postcardEditViewURI = '/postcard/edit';
 const String collectionViewURI = '/collection';
 const String contactListViewURI = '/contacts';
@@ -175,6 +180,23 @@ final contactViewRoute = GoRoute(
       builder: (context) => ContactView(
         key: const ValueKey('contact-view'),
         viewModel: context.read<ContactViewModel>(),
+      ),
+    ),
+  ),
+);
+
+final locationPickerViewRoute = GoRoute(
+  path: locationPickerViewURI,
+  builder: (context, state) => ChangeNotifierProvider(
+    create: (_) => LocationPickerViewModel(
+      repository: const GoogleLocationRepository(
+        service: GooglePlacesService(),
+      ),
+    ),
+    child: Builder(
+      builder: (context) => LocationPickerView(
+        key: const ValueKey('location-picker-view'),
+        viewModel: context.read<LocationPickerViewModel>(),
       ),
     ),
   ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/style.dart';
 
 import 'postcard_edit_detail_fields.dart';
@@ -9,6 +12,14 @@ import 'postcard_edit_view.dart';
 class PostcardEditDetails extends StatelessWidget {
   const PostcardEditDetails({super.key, required this.viewModel});
   final PostcardEditViewModel viewModel;
+
+  Future<void> _pickLocation(BuildContext context, {required bool sending}) async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    final location = await context.push<Location>(locationPickerViewURI);
+    if (context.mounted && location != null) {
+      viewModel.selectLocation(location, sending: sending);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +59,7 @@ class PostcardEditDetails extends StatelessWidget {
                   ),
                   locationField: PostcardEditLocationField(
                     fieldKey: 'send-from',
+                    onMap: () => _pickLocation(context, sending: true),
                     value: viewModel.sendFrom,
                     locations: viewModel.sender?.locations ?? const [],
                     onSelected: (location) =>
@@ -74,6 +86,7 @@ class PostcardEditDetails extends StatelessWidget {
                   ),
                   locationField: PostcardEditLocationField(
                     fieldKey: 'send-to',
+                    onMap: () => _pickLocation(context, sending: false),
                     value: viewModel.sendTo,
                     locations: viewModel.recipient?.locations ?? const [],
                     onSelected: (location) =>

@@ -46,6 +46,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get postcardTitle => '明信片';
 
   @override
+  String get locationPickerTitle => '選取地點';
+
+  @override
+  String get locationPickerSearch => '搜尋地名或地址';
+
+  @override
+  String get locationPickerConfirm => '確認地點';
+
+  @override
+  String get locationPickerError => '無法取得地點，請重新搜尋或選取。';
+
+  @override
+  String get locationPickerNoResults => '沒有符合的地點';
+
+  @override
   String get postcardEditImagesTitle => '明信片圖片';
 
   @override
@@ -1051,6 +1066,21 @@ class AppLocalizationsZhHantTw extends AppLocalizationsZh {
 
   @override
   String get postcardTitle => '明信片';
+
+  @override
+  String get locationPickerTitle => '選取地點';
+
+  @override
+  String get locationPickerSearch => '搜尋地名或地址';
+
+  @override
+  String get locationPickerConfirm => '確認地點';
+
+  @override
+  String get locationPickerError => '無法取得地點，請重新搜尋或選取。';
+
+  @override
+  String get locationPickerNoResults => '沒有符合的地點';
 
   @override
   String get postcardEditImagesTitle => '明信片圖片';

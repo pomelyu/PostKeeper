@@ -46,6 +46,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postcardTitle => 'Postcard';
 
   @override
+  String get locationPickerTitle => 'Choose location';
+
+  @override
+  String get locationPickerSearch => 'Search places or addresses';
+
+  @override
+  String get locationPickerConfirm => 'Confirm location';
+
+  @override
+  String get locationPickerError =>
+      'Unable to load locations. Please search or select again.';
+
+  @override
+  String get locationPickerNoResults => 'No matching locations';
+
+  @override
   String get postcardEditImagesTitle => 'Postcard Images';
 
   @override

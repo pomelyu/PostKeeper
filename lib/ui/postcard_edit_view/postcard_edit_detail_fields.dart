@@ -107,11 +107,13 @@ class PostcardEditLocationField extends StatelessWidget {
     required this.value,
     required this.locations,
     required this.onSelected,
+    required this.onMap,
   });
   final String fieldKey;
   final Location? value;
   final List<Location> locations;
   final ValueChanged<Location> onSelected;
+  final VoidCallback onMap;
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -147,7 +149,7 @@ class PostcardEditLocationField extends StatelessWidget {
           const SizedBox(height: 24, child: VerticalDivider(width: 1)),
           IconButton(
             key: ValueKey('postcard-edit-$fieldKey-map'),
-            onPressed: null,
+            onPressed: onMap,
             icon: const Icon(Icons.map_outlined, size: 22),
           ),
         ],

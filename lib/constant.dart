@@ -1,3 +1,5 @@
+const int locationAutocompletePeriod = 1000;
+
 const String myId = 'me-id';
 
 const String allCollectionId = 'all-id';
