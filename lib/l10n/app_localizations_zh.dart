@@ -1036,6 +1036,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String contactDeleteAddressConfirmation(String name) {
     return '確定要從此聯絡人的地址列表移除「$name」嗎？';
   }
+
+  @override
+  String get contactAdd => '新增聯絡人';
+
+  @override
+  String get contactCreate => '新增';
+
+  @override
+  String get contactDelete => '刪除聯絡人';
+
+  @override
+  String contactDeleteConfirmation(String name) {
+    return '確定要刪除「$name」嗎？';
+  }
+
+  @override
+  String get contactDeleteReferenced => '此聯絡人已被明信片使用，無法刪除。';
+
+  @override
+  String get contactDeleteError => '無法刪除聯絡人，請再試一次。';
 }
 
 /// The translations for Chinese, as used in Taiwan, using the Han script (`zh_Hant_TW`).
@@ -2069,4 +2089,24 @@ class AppLocalizationsZhHantTw extends AppLocalizationsZh {
   String contactDeleteAddressConfirmation(String name) {
     return '確定要從此聯絡人的地址列表移除「$name」嗎？';
   }
+
+  @override
+  String get contactAdd => '新增聯絡人';
+
+  @override
+  String get contactCreate => '新增';
+
+  @override
+  String get contactDelete => '刪除聯絡人';
+
+  @override
+  String contactDeleteConfirmation(String name) {
+    return '確定要刪除「$name」嗎？';
+  }
+
+  @override
+  String get contactDeleteReferenced => '此聯絡人已被明信片使用，無法刪除。';
+
+  @override
+  String get contactDeleteError => '無法刪除聯絡人，請再試一次。';
 }

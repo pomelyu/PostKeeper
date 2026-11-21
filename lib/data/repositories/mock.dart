@@ -198,6 +198,29 @@ final List<Collection> mockCustomCollections = [
 
 class MockPersonRepository implements PersonRepository {
   final Map<String, Person> _updates = {};
+  final List<Person> _created = [];
+  final Set<String> _deleted = {};
+  int _nextId = 0;
+
+  @override
+  Future<Person> createPerson(String name) async {
+    final trimmed = name.trim();
+    if (trimmed.isEmpty) throw ArgumentError.value(name, 'name');
+    final person = Person(id: 'mock-new-${_nextId++}', name: trimmed, locations: const []);
+    _created.add(person);
+    return person;
+  }
+
+  @override
+  Future<DeletePersonResult> deletePerson(String id) async {
+    if (id == myId) return DeletePersonResult.protected;
+    if (await getPersonById(id) == null) return DeletePersonResult.notFound;
+    if (allCards.any((card) => card.sender.id == id || card.recipient.id == id)) {
+      return DeletePersonResult.referenced;
+    }
+    _deleted.add(id);
+    return DeletePersonResult.deleted;
+  }
 
   @override
   Future<void> removeLocation(String id, String locationId) async {
@@ -237,8 +260,8 @@ class MockPersonRepository implements PersonRepository {
 
   @override
   Future<List<Person>> getAllUsers() async => [
-    for (final person in [_me, _friend1, _friend2, _friend3])
-      _updates[person.id] ?? person,
+    for (final person in [_me, _friend1, _friend2, _friend3, ..._created])
+      if (!_deleted.contains(person.id)) _updates[person.id] ?? person,
   ];
 
   @override

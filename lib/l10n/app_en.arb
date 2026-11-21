@@ -361,5 +361,24 @@
   "contactSaveError": "Unable to save contact information. Please try again.",
   "contactDeleteAddress": "Delete address",
   "contactDeleteAddressConfirmation": "Remove “{name}” from this contact’s addresses?",
-  "@contactDeleteAddressConfirmation": {"placeholders": {"name": {"type": "String"}}}
+  "@contactDeleteAddressConfirmation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "contactAdd": "Add contact",
+  "contactCreate": "Create",
+  "contactDelete": "Delete contact",
+  "contactDeleteConfirmation": "Delete “{name}”?",
+  "@contactDeleteConfirmation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "contactDeleteReferenced": "This contact is used by a postcard and cannot be deleted.",
+  "contactDeleteError": "Unable to delete contact. Please try again."
 }

@@ -8,7 +8,7 @@ import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/collection_view.dart';
-import 'package:postkeeper/ui/contact_list_view.dart';
+import 'package:postkeeper/ui/contact_list_view/contact_list_view.dart';
 import 'package:postkeeper/ui/contact_view/contact_view.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/location_picker_view/location_picker_view.dart';

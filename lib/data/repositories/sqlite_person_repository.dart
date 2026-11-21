@@ -13,6 +13,46 @@ class SqlitePersonRepository implements PersonRepository {
   final Database database;
 
   @override
+  Future<Person> createPerson(String name) => database.transaction((txn) async {
+    final trimmed = name.trim();
+    if (trimmed.isEmpty) throw ArgumentError.value(name, 'name');
+    final rows = await txn.rawQuery("SELECT lower(hex(randomblob(16))) AS id");
+    final id = rows.single['id'] as String;
+    final now = DateTime.now().millisecondsSinceEpoch;
+    await txn.insert('persons', {
+      'id': id,
+      'name': trimmed,
+      'created_at': now,
+      'updated_at': now,
+    });
+    return Person(id: id, name: trimmed, locations: const []);
+  });
+
+  @override
+  Future<DeletePersonResult> deletePerson(String id) =>
+      database.transaction((txn) async {
+        if (id == myId) return DeletePersonResult.protected;
+        final people = await txn.query(
+          'persons',
+          columns: ['id'],
+          where: 'id = ?',
+          whereArgs: [id],
+          limit: 1,
+        );
+        if (people.isEmpty) return DeletePersonResult.notFound;
+        final references = await txn.query(
+          'postcards',
+          columns: ['id'],
+          where: 'sender_id = ? OR recipient_id = ?',
+          whereArgs: [id, id],
+          limit: 1,
+        );
+        if (references.isNotEmpty) return DeletePersonResult.referenced;
+        await txn.delete('persons', where: 'id = ?', whereArgs: [id]);
+        return DeletePersonResult.deleted;
+      });
+
+  @override
   Future<void> updateName(String id, String name) async {
     if (name.trim().isEmpty) throw ArgumentError.value(name, 'name');
     final count = await database.update(

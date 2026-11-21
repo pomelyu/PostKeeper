@@ -354,5 +354,24 @@
   "contactSaveError": "無法儲存聯絡人資訊，請再試一次。",
   "contactDeleteAddress": "刪除地址",
   "contactDeleteAddressConfirmation": "確定要從此聯絡人的地址列表移除「{name}」嗎？",
-  "@contactDeleteAddressConfirmation": {"placeholders": {"name": {"type": "String"}}}
+  "@contactDeleteAddressConfirmation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "contactAdd": "新增聯絡人",
+  "contactCreate": "新增",
+  "contactDelete": "刪除聯絡人",
+  "contactDeleteConfirmation": "確定要刪除「{name}」嗎？",
+  "@contactDeleteConfirmation": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "contactDeleteReferenced": "此聯絡人已被明信片使用，無法刪除。",
+  "contactDeleteError": "無法刪除聯絡人，請再試一次。"
 }

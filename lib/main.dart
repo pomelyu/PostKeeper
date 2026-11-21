@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 import 'package:postkeeper/data/repositories/location_repository.dart';
+import 'package:postkeeper/data/repositories/mock.dart';
 import 'package:postkeeper/data/repositories/person_repository.dart';
 import 'package:postkeeper/data/repositories/postcard_repository.dart';
 import 'package:postkeeper/data/repositories/sqlite_person_repository.dart';
@@ -33,6 +34,8 @@ Future<void> main() async {
         imageRoot: dataDirectory,
       ),
       personRepository: SqlitePersonRepository(database: store.connection),
+      // postcardRepository: MockPostcardRepository(),
+      // personRepository: MockPersonRepository(),
       onDispose: () => unawaited(store.close()),
       locationRepository: const GoogleLocationRepository(
         service: GooglePlacesService(),

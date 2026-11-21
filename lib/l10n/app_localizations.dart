@@ -2142,6 +2142,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove “{name}” from this contact’s addresses?'**
   String contactDeleteAddressConfirmation(String name);
+
+  /// No description provided for @contactAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add contact'**
+  String get contactAdd;
+
+  /// No description provided for @contactCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get contactCreate;
+
+  /// No description provided for @contactDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete contact'**
+  String get contactDelete;
+
+  /// No description provided for @contactDeleteConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete “{name}”?'**
+  String contactDeleteConfirmation(String name);
+
+  /// No description provided for @contactDeleteReferenced.
+  ///
+  /// In en, this message translates to:
+  /// **'This contact is used by a postcard and cannot be deleted.'**
+  String get contactDeleteReferenced;
+
+  /// No description provided for @contactDeleteError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to delete contact. Please try again.'**
+  String get contactDeleteError;
 }
 
 class _AppLocalizationsDelegate

@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
 import 'package:postkeeper/data/constants.dart';
-import 'package:postkeeper/domain/models/location.dart';
+import 'package:postkeeper/data/repositories/person_repository.dart';
 import 'package:postkeeper/data/repositories/sqlite_person_repository.dart';
 import 'package:postkeeper/data/repositories/sqlite_postcard_repository.dart';
 import 'package:postkeeper/data/services/database/database_schema.dart';
 import 'package:postkeeper/data/services/database/postkeeper_database.dart';
+import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/ui/main_view/main_view.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -29,6 +30,36 @@ void main() {
     path: p.join(directory.path, 'postkeeper.sqlite'),
     factory: databaseFactoryFfi,
   );
+
+  test('新增聯絡人並限制刪除已被寄件人或收件人引用的聯絡人', () async {
+    store = await open();
+    final people = SqlitePersonRepository(database: store!.connection);
+    final sender = await people.createPerson(' Sender ');
+    final recipient = await people.createPerson('Recipient');
+    final unused = await people.createPerson('Unused');
+    expect(sender.name, 'Sender');
+    expect(sender.id, isNot(recipient.id));
+    await store!.connection.insert('postcards', {
+      'id': 'referencing-card',
+      'orientation': 'landscape',
+      'front_image_path': 'images/front.jpg',
+      'sender_id': sender.id,
+      'recipient_id': recipient.id,
+      'created_at': 0,
+      'updated_at': 0,
+    });
+    expect(await people.deletePerson(sender.id), DeletePersonResult.referenced);
+    expect(
+      await people.deletePerson(recipient.id),
+      DeletePersonResult.referenced,
+    );
+    expect(await people.getPersonById(sender.id), isNotNull);
+    expect(await people.deletePerson(unused.id), DeletePersonResult.deleted);
+    expect(await people.getPersonById(unused.id), isNull);
+    expect(await people.deletePerson(myId), DeletePersonResult.protected);
+    expect(await people.deletePerson('missing'), DeletePersonResult.notFound);
+    await expectLater(people.createPerson('  '), throwsArgumentError);
+  });
 
   test(
     '聯絡人修改會持久儲存，刪除地址時保留共用地點資料',

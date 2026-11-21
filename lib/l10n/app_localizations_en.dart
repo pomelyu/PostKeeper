@@ -1046,4 +1046,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String contactDeleteAddressConfirmation(String name) {
     return 'Remove “$name” from this contact’s addresses?';
   }
+
+  @override
+  String get contactAdd => 'Add contact';
+
+  @override
+  String get contactCreate => 'Create';
+
+  @override
+  String get contactDelete => 'Delete contact';
+
+  @override
+  String contactDeleteConfirmation(String name) {
+    return 'Delete “$name”?';
+  }
+
+  @override
+  String get contactDeleteReferenced =>
+      'This contact is used by a postcard and cannot be deleted.';
+
+  @override
+  String get contactDeleteError =>
+      'Unable to delete contact. Please try again.';
 }
