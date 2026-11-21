@@ -155,11 +155,11 @@
 - 明信片清單與收藏夾成員依 `sent_at ASC, id ASC` 排序，空日期優先，維持目前 Mock 的清單順序。
 - 自訂收藏夾依 `created_at ASC, id ASC` 排序；人物清單先列本人，其餘依 `id` 排序；地點清單依 `id` 排序。
 - `getPostcardById`、`getPersonById`、`getLocationById` 與 `getCustomCollectionById` 找不到資料時回傳 `null`，`getCustomCollectionById` 僅查詢自訂收藏夾。
-- 清單無資料時回傳空清單，系統收藏夾則回傳空成員的 `Collection`；`getMyInfo` 缺少本人資料時拋出 `StateError`，由未來的初始化流程建立本人資料。
+- 清單無資料時回傳空清單，系統收藏夾則回傳空成員的 `Collection`；`getMyInfo` 缺少本人資料時拋出 `StateError`，由資料庫開啟流程補建必要的本人資料。
 - `searchPostcards` 搜尋標題、備註、寄收件人物名稱、寄收件地點名稱與地址，去除查詢字串首尾空白，空查詢回傳全部，ASCII 字母不分大小寫，`%`、`_` 與反斜線視為一般文字。
 - 本機地點讀取介面為 `SavedLocationRepository`，與原有 Google Places 搜尋用的 `LocationRepository` 分開，避免把本機讀取與外部搜尋 session 混用。
 - `SqlitePostcardRepository` 的 `imageRoot` 傳入持久化資料根目錄的絕對路徑，回傳模型中的圖片路徑為組合後的檔案路徑；圖片為 `NULL` 時映射成空字串。
-- 此階段完成資料層讀取，`main()` 仍注入原有 Mock Repository；畫面的檔案圖片載入與正式資料初始化在接線時處理。
+- `main()` 在 `getDatabasesPath()/postkeeper.sqlite` 開啟正式 SQLite DB，注入 `SqlitePostcardRepository` 與 `SqlitePersonRepository`，不載入或複製 Mock DB。
 
 執行資料庫 schema 約束測試：
 
@@ -168,6 +168,14 @@ flutter test test/data/database/database_schema_test.dart
 ```
 
 此測試使用記憶體資料庫與個別案例所需的最小資料，驗證外鍵、刪除關聯及欄位約束。
+
+## 正式資料庫初始化
+
+- 資料庫不存在時建立六張表；每次 `PostKeeperDatabase.open()` 以 `INSERT OR IGNORE` 確保 `persons` 中存在 `myId`，已存在的姓名與時間戳不會被覆蓋。
+- 初始本人名稱為空字串、地址為空清單，其餘人物、地點、明信片與自訂收藏夾皆為空，不加入範例資料。
+- 首頁的 `getLatestSent()` 與 `getLatestReceived()` 在無資料時回傳 `null`，現有 `PostcardSummary` 與 `PostcardEnvelope` 會顯示空白收藏插圖，不提供明信片詳情入口。
+- 系統收藏夾仍回傳有效的 `Collection` 與空成員清單，收藏夾入口及新增明信片入口可繼續使用。
+- 既有資料庫會直接沿用；此初始化流程不刪除既有資料，也不將既有開發資料自動清空。
 
 ## 產生 Mock 資料庫
 

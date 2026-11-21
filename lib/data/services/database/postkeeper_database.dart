@@ -1,3 +1,4 @@
+import 'package:postkeeper/data/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'database_schema.dart';
@@ -18,7 +19,19 @@ class PostKeeperDatabase {
       path,
       options: createDatabaseOptions(),
     );
-    return PostKeeperDatabase._(connection);
+    try {
+      final now = DateTime.now().toUtc().millisecondsSinceEpoch;
+      await connection.insert('persons', {
+        'id': myId,
+        'name': '',
+        'created_at': now,
+        'updated_at': now,
+      }, conflictAlgorithm: ConflictAlgorithm.ignore);
+      return PostKeeperDatabase._(connection);
+    } catch (_) {
+      await connection.close();
+      rethrow;
+    }
   }
 
   Future<void> close() => connection.close();

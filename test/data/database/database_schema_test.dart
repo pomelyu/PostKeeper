@@ -14,12 +14,12 @@ void main() {
       factory: databaseFactoryFfi,
     );
     db = store.connection;
-    await db.insert('persons', {
-      'id': myId,
-      'name': 'Me',
-      'created_at': 0,
-      'updated_at': 0,
-    });
+    await db.update(
+      'persons',
+      {'name': 'Me', 'created_at': 0, 'updated_at': 0},
+      where: 'id = ?',
+      whereArgs: [myId],
+    );
     await db.insert('locations', {
       'id': 'home',
       'name': 'Home',
