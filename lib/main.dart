@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 import 'package:postkeeper/data/repositories/location_repository.dart';
@@ -18,7 +19,7 @@ import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 Future<void> main() async {
-  // debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = false;
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final dataDirectory = await getDatabasesPath();
