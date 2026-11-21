@@ -11,9 +11,6 @@ class PostcardEnvelope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (postcard == null) {
-      return const Illustration('home-back', width: 378, height: 335);
-    }
     return FittedBox(
       fit: BoxFit.contain,
       child: SizedBox(

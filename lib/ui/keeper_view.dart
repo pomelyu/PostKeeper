@@ -5,6 +5,7 @@ import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/core/collection_list_item.dart';
+import 'package:postkeeper/ui/core/empty_postcard_state.dart';
 import 'package:postkeeper/ui/core/primary_view_layout.dart';
 import 'package:postkeeper/ui/core/utils.dart';
 import 'package:postkeeper/ui/style.dart';
@@ -101,6 +102,8 @@ class KeeperView extends StatelessWidget {
             Expanded(
               child: viewModel.loading
                   ? const Center(child: CircularProgressIndicator())
+                  : items.isEmpty
+                  ? const EmptyPostcardState(key: ValueKey('keeper-empty'))
                   : ListView.builder(
                       key: ValueKey('keeper-list-${viewModel.selectedTab}'),
                       itemCount: items.length,

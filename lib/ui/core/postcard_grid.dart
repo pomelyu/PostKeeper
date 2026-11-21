@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
+import 'package:postkeeper/ui/core/empty_postcard_state.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -15,17 +16,24 @@ class PostcardGrid extends StatelessWidget {
   final bool showDate;
 
   @override
-  Widget build(BuildContext context) => GridView.builder(
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      childAspectRatio: 0.9,
-    ),
-    itemCount: postcards.length,
-    itemBuilder: (context, index) =>
-        PostcardItem(postcard: postcards[index], showDate: showDate),
-  );
+  Widget build(BuildContext context) {
+    if (postcards.isEmpty) {
+      return const EmptyPostcardState(
+        key: ValueKey('postcard-grid-empty'),
+      );
+    }
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        childAspectRatio: 0.9,
+      ),
+      itemCount: postcards.length,
+      itemBuilder: (context, index) =>
+          PostcardItem(postcard: postcards[index], showDate: showDate),
+    );
+  }
 }
 
 class PostcardItem extends StatelessWidget {

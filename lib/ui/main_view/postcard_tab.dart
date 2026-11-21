@@ -68,7 +68,7 @@ class PostcardSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (postcard == null) {
-      return PostcardEnvelope(postcard: postcard);
+      return const PostcardEnvelope(postcard: null);
     }
 
     final Postcard card = postcard!;

@@ -40,7 +40,17 @@ void main() {
           .postcard,
       isNull,
     );
-    expect(find.byType(PostcardFrame), findsNothing);
+    expect(
+      tester
+          .widget<PostcardFrame>(
+            find.descendant(
+              of: find.byKey(const ValueKey('main-received-content')),
+              matching: find.byType(PostcardFrame),
+            ),
+          )
+          .postcard,
+      isNull,
+    );
 
     await tester.tap(find.byKey(const ValueKey('main-received-content')));
     await tester.pumpAndSettle();
@@ -55,7 +65,17 @@ void main() {
           .postcard,
       isNull,
     );
-    expect(find.byType(PostcardFrame), findsNothing);
+    expect(
+      tester
+          .widget<PostcardFrame>(
+            find.descendant(
+              of: find.byKey(const ValueKey('main-sent-content')),
+              matching: find.byType(PostcardFrame),
+            ),
+          )
+          .postcard,
+      isNull,
+    );
 
     final pinned = find.byKey(const ValueKey('main-pinned-section'));
     await tester.tap(
