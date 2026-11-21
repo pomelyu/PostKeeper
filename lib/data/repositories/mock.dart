@@ -1,4 +1,4 @@
-import 'package:postkeeper/constant.dart';
+import 'package:postkeeper/data/constants.dart';
 import 'package:postkeeper/data/country_code.dart';
 import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/location.dart';

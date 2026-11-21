@@ -1,3 +1,20 @@
+import 'package:sqflite_common/sqlite_api.dart';
+
+const databaseSchemaVersion = 1;
+
+OpenDatabaseOptions createDatabaseOptions() => OpenDatabaseOptions(
+  version: databaseSchemaVersion,
+  singleInstance: false,
+  onConfigure: (db) => db.execute('PRAGMA foreign_keys = ON'),
+  onCreate: (db, version) async {
+    final batch = db.batch();
+    for (final statement in databaseSchema) {
+      batch.execute(statement);
+    }
+    await batch.commit(noResult: true);
+  },
+);
+
 /// SQLite schema version 1; kept in sync with docs/data_schema.md.
 const databaseSchema = <String>[
   '''CREATE TABLE persons (

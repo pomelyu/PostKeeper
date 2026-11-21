@@ -1,4 +1,4 @@
-import 'package:postkeeper/constant.dart';
+import 'package:postkeeper/data/constants.dart';
 
 import './location.dart';
 

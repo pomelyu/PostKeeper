@@ -6,7 +6,7 @@ import 'database_schema.dart';
 class PostKeeperDatabase {
   PostKeeperDatabase._(this.connection);
 
-  static const schemaVersion = 1;
+  static const schemaVersion = databaseSchemaVersion;
   final Database connection;
 
   /// Inject an FFI factory in tests; mobile uses the sqflite plugin factory.
@@ -16,18 +16,7 @@ class PostKeeperDatabase {
   }) async {
     final connection = await (factory ?? databaseFactory).openDatabase(
       path,
-      options: OpenDatabaseOptions(
-        version: schemaVersion,
-        singleInstance: false,
-        onConfigure: (db) => db.execute('PRAGMA foreign_keys = ON'),
-        onCreate: (db, version) async {
-          final batch = db.batch();
-          for (final statement in databaseSchema) {
-            batch.execute(statement);
-          }
-          await batch.commit(noResult: true);
-        },
-      ),
+      options: createDatabaseOptions(),
     );
     return PostKeeperDatabase._(connection);
   }

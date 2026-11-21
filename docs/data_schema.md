@@ -168,3 +168,14 @@ flutter test test/data/database/database_schema_test.dart
 ```
 
 此測試使用記憶體資料庫與個別案例所需的最小資料，驗證外鍵、刪除關聯及欄位約束。
+
+## 產生 Mock 資料庫
+
+在專案根目錄執行以下指令，將目前 `mock.dart` 的資料轉成 SQLite，並將圖片複製為獨立檔案：
+
+```bash
+dart run tool/create_mock_database.dart
+```
+
+預設輸出為 `tmp/mock_database/postkeeper.sqlite` 與 `tmp/mock_database/images/`，資料庫只儲存圖片相對路徑；
+```
