@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:postkeeper/constant.dart';
 import 'package:postkeeper/data/repositories/mock.dart';
-import 'package:postkeeper/main.dart';
+import 'support/test_app.dart';
 import 'package:postkeeper/ui/contact_list_view.dart';
 import 'package:postkeeper/ui/contact_view.dart';
 
@@ -32,7 +32,7 @@ void main() {
   testWidgets('contacts and personal info return to their source routes', (
     tester,
   ) async {
-    await tester.pumpWidget(const PostKeeperApp());
+    await tester.pumpWidget(createTestApp());
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('nav-user')));
     await tester.pumpAndSettle();

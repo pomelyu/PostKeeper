@@ -1,22 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
+import 'package:postkeeper/data/repositories/location_repository.dart';
+import 'package:postkeeper/data/repositories/mock.dart';
+import 'package:postkeeper/data/repositories/person_repository.dart';
+import 'package:postkeeper/data/repositories/postcard_repository.dart';
+import 'package:postkeeper/data/services/google_places_service.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/locale_controller.dart';
 import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/style.dart';
 import 'package:provider/provider.dart';
 
-
 Future<void> main() async {
   // debugPaintSizeEnabled = true;
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const PostKeeperApp());
+  runApp(
+    PostKeeperApp(
+      postcardRepository: MockPostcardRepository(),
+      personRepository: MockPersonRepository(),
+      locationRepository: const GoogleLocationRepository(
+        service: GooglePlacesService(),
+      ),
+    ),
+  );
 }
 
 class PostKeeperApp extends StatefulWidget {
-  const PostKeeperApp({super.key});
+  const PostKeeperApp({
+    super.key,
+    required this.postcardRepository,
+    required this.personRepository,
+    required this.locationRepository,
+  });
+
+  final PostcardRepository postcardRepository;
+  final PersonRepository personRepository;
+  final LocationRepository locationRepository;
 
   @override
   State<PostKeeperApp> createState() => _PostKeeperAppState();
@@ -24,7 +44,11 @@ class PostKeeperApp extends StatefulWidget {
 
 class _PostKeeperAppState extends State<PostKeeperApp> {
   final _localeController = LocaleController();
-  late final _router = createAppRouter();
+  late final _router = createAppRouter(
+    postcardRepository: widget.postcardRepository,
+    personRepository: widget.personRepository,
+    locationRepository: widget.locationRepository,
+  );
 
   @override
   void dispose() {
@@ -53,8 +77,12 @@ class _PostKeeperAppState extends State<PostKeeperApp> {
                 countryCode: 'TW',
               );
             }
-            return supportedLocales.where((locale) =>
-                locale.languageCode == deviceLocale?.languageCode).firstOrNull ??
+            return supportedLocales
+                    .where(
+                      (locale) =>
+                          locale.languageCode == deviceLocale?.languageCode,
+                    )
+                    .firstOrNull ??
                 const Locale('en');
           },
           routerConfig: _router,
@@ -62,79 +90,4 @@ class _PostKeeperAppState extends State<PostKeeperApp> {
       ),
     );
   }
-}
-
-class PostKeeperScaffold extends StatelessWidget {
-  const PostKeeperScaffold({super.key, required this.child});
-
-  final Widget child;
-
-  static const _paths = [
-    mainViewURI,
-    keeperViewURI,
-    mapViewURI,
-    userViewURI,
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final path = GoRouterState.of(context).uri.path;
-    final index = _paths.indexOf(path);
-
-    return Scaffold(
-      body: SafeArea(child: child),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: index < 0 ? 0 : index,
-        onDestinationSelected: (index) {
-          context.go(_paths[index]);
-        },
-        destinations: [
-          NavigationDestination(
-            key: ValueKey('nav-main'),
-            icon: Icon(Icons.home_outlined),
-            label: l10n.navHome,
-          ),
-          NavigationDestination(
-            key: ValueKey('nav-keeper'),
-            icon: Icon(Icons.collections_bookmark_outlined),
-            label: l10n.navKeeper,
-          ),
-          NavigationDestination(
-            key: ValueKey('nav-map'),
-            icon: Icon(Icons.map_outlined),
-            label: l10n.navMap,
-          ),
-          NavigationDestination(
-            key: ValueKey('nav-user'),
-            icon: Icon(Icons.person_outline),
-            label: l10n.navUser,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-GoRouter createAppRouter() {
-  return GoRouter(
-    initialLocation: mainViewURI,
-    routes: [
-      ShellRoute(
-        builder: (context, state, child) => PostKeeperScaffold(child: child),
-        routes: [
-          mainViewRoute,
-          keeperViewRoute,
-          mapViewRoute,
-          userViewRoute,
-        ],
-      ),
-      postcardViewRoute,
-      postcardEditViewRoute,
-      collectionViewRoute,
-      contactListViewRoute,
-      contactViewRoute,
-      locationPickerViewRoute,
-    ],
-  );
 }

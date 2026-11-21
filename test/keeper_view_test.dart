@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:postkeeper/constant.dart';
-import 'package:postkeeper/main.dart';
+import 'support/test_app.dart';
 import 'package:postkeeper/ui/collection_view.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 
@@ -9,7 +9,7 @@ void main() {
   testWidgets('收藏頁各分頁可開啟選取的收藏夾並返回', (
     tester,
   ) async {
-    await tester.pumpWidget(const PostKeeperApp());
+    await tester.pumpWidget(createTestApp());
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('nav-keeper')));
     await tester.pumpAndSettle();

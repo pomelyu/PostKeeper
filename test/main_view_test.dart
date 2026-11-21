@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:postkeeper/main.dart';
+import 'support/test_app.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:postkeeper/ui/postcard_edit_view/postcard_edit_view.dart';
@@ -8,7 +8,7 @@ import 'package:postkeeper/ui/postcard_view/postcard_view.dart';
 
 void main() {
   testWidgets('點選新增明信片後返回首頁', (tester) async {
-    await tester.pumpWidget(const PostKeeperApp());
+    await tester.pumpWidget(createTestApp());
     await tester.pumpAndSettle();
 
     final addButton = find.descendant(
@@ -36,7 +36,7 @@ void main() {
   for (final section in ['received', 'sent']) {
     final sectionName = section == 'received' ? '最近收到' : '最近寄出';
     testWidgets('點選首頁$sectionName明信片開啟對應詳情並可返回', (tester) async {
-      await tester.pumpWidget(const PostKeeperApp());
+      await tester.pumpWidget(createTestApp());
       await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(ValueKey('main-$section-tab')));

@@ -9,7 +9,7 @@ import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/l10n/app_localizations_en.dart';
 import 'package:postkeeper/l10n/app_localizations_zh.dart';
-import 'package:postkeeper/main.dart';
+import 'support/test_app.dart';
 import 'package:postkeeper/ui/core/geography_names.dart';
 import 'package:postkeeper/ui/core/postcard_grid.dart';
 import 'package:postkeeper/ui/map_view/map_view.dart';
@@ -82,7 +82,7 @@ void main() {
   });
 
   testWidgets('國家選取與地圖視野變更後圖釘和清單包含相同明信片', (tester) async {
-    await tester.pumpWidget(const PostKeeperApp());
+    await tester.pumpWidget(createTestApp());
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('nav-map')));
     await tester.pumpAndSettle();

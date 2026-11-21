@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
-import 'package:postkeeper/main.dart';
+import 'support/test_app.dart';
 
 void main() {
   testWidgets('語言切換保留目前路由並套用到其他頁面', (tester) async {
-    await tester.pumpWidget(const PostKeeperApp());
+    await tester.pumpWidget(createTestApp());
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('nav-user')));
     await tester.pumpAndSettle();
@@ -39,7 +39,7 @@ void main() {
   });
 
   testWidgets('底部導覽列可以切換頁面', (tester) async {
-    await tester.pumpWidget(const PostKeeperApp());
+    await tester.pumpWidget(createTestApp());
     await tester.pumpAndSettle();
 
     // 初始頁面
