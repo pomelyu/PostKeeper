@@ -8,12 +8,14 @@ class Location {
     this.address,
     this.latitude,
     this.longitude,
+    this.googlePlaceId,
   }) : assert((latitude == null) == (longitude == null));
 
   final String id;
   final String name;
   final String countryCode;
   final String? address;
+  final String? googlePlaceId;
 
   final double? latitude;
   final double? longitude;

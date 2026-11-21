@@ -42,6 +42,7 @@ class GoogleLocationRepository implements LocationRepository {
     }
     return Location(
       id: 'google:${suggestion.id}',
+      googlePlaceId: suggestion.id,
       name: suggestion.name,
       countryCode: country,
       address: address,
