@@ -6,6 +6,7 @@ import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/core/collection_list_item.dart';
 import 'package:postkeeper/ui/core/empty_postcard_state.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/primary_view_layout.dart';
 import 'package:postkeeper/ui/core/utils.dart';
 import 'package:postkeeper/ui/style.dart';
@@ -73,8 +74,9 @@ class KeeperView extends StatelessWidget {
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
               ),
-              child: Text(l10n.keeperSearch, style: styleBody),
+              child: Text(l10n.keeperSearch, style: bodyTextStyle),
             ),
+            sectionVerticalSpace,
             Row(
               children: [
                 for (final (index, label) in [

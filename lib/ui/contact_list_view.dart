@@ -5,6 +5,7 @@ import 'package:postkeeper/data/repositories/person_repository.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/secondary_view_layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -52,7 +53,7 @@ class ContactListView extends StatelessWidget {
             return ListView.separated(
               key: const ValueKey('contact-list'),
               itemCount: contacts.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 12),
+              separatorBuilder: (_, _) => sectionVerticalSpace,
               itemBuilder: (context, index) {
                 final person = contacts[index];
                 return Card(

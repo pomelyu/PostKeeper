@@ -21,7 +21,7 @@ class PostcardFrame extends StatelessWidget {
           child: Text(
             l10n.mainNoPostcards,
             textAlign: TextAlign.center,
-            style: styleBody,
+            style: bodyTextStyle,
           ),
         ),
       );

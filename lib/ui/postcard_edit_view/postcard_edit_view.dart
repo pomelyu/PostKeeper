@@ -8,6 +8,7 @@ import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/secondary_view_layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -240,7 +241,7 @@ class PostcardEditView extends StatelessWidget {
                   viewModel.selectStep(step);
                 },
               ),
-              const SizedBox(height: sectionSpacing),
+              sectionVerticalSpace,
               Expanded(
                 child: viewModel.isDetailsStep
                     ? PostcardEditDetails(viewModel: viewModel)
@@ -258,7 +259,7 @@ class PostcardEditView extends StatelessWidget {
                             _importImage(context, ImageSource.gallery),
                       ),
               ),
-              const SizedBox(height: sectionSpacing),
+              sectionVerticalSpace,
               SizedBox(
                 height: 52,
                 child: TextButton(

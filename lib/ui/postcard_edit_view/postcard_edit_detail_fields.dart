@@ -194,7 +194,7 @@ class _DetailField extends StatelessWidget {
             readOnly: readOnly,
             textInputAction: TextInputAction.done,
             onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-            style: styleBody,
+            style: bodyTextStyle,
             decoration: InputDecoration(
               isDense: true,
               contentPadding: const EdgeInsets.symmetric(
@@ -214,7 +214,7 @@ class _DetailField extends StatelessWidget {
                     widthFactor: 1,
                     heightFactor: 1,
                     child: leadingIcon == null
-                        ? Text(label, style: styleSectionTitle)
+                        ? Text(label, style: sectionTextStyle)
                         : Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

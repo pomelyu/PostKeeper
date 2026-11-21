@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/core/app_map.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/secondary_view_layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -24,7 +25,7 @@ class LocationPickerView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           LocationSearchField(controller: viewModel.searchController),
-          const SizedBox(height: 12),
+          sectionVerticalSpace,
           Expanded(
             child: ListenableBuilder(
               listenable: viewModel,
@@ -73,10 +74,10 @@ class LocationPickerView extends StatelessWidget {
                     ),
                   ),
                   if (viewModel.selected case final location?) ...[
-                    const SizedBox(height: 12),
+                    sectionVerticalSpace,
                     LocationSelectionSummary(location: location),
                   ],
-                  const SizedBox(height: 12),
+                  sectionVerticalSpace,
                   TextButton(
                     key: const ValueKey('location-picker-confirm'),
                     style: primaryActionStyle,
@@ -85,7 +86,7 @@ class LocationPickerView extends StatelessWidget {
                         : null,
                     child: Text(l10n.locationPickerConfirm),
                   ),
-                  const SizedBox(height: 12),
+                  sectionVerticalSpace,
                 ],
               ),
             ),
@@ -176,10 +177,10 @@ class LocationSelectionSummary extends StatelessWidget {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(location.name, style: styleSectionTitle),
+        Text(location.name, style: sectionTextStyle),
         Text(
           location.address ?? '',
-          style: styleLabel,
+          style: labelTextStyle,
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
         ),

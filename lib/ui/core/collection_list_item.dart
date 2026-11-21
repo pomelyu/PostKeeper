@@ -23,7 +23,7 @@ class CollectionListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(title, style: styleSectionTitle),
+        title: Text(title, style: sectionTextStyle),
         subtitle: Text(subtitle),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,

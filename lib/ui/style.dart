@@ -8,25 +8,38 @@ const textPrimaryColor = Color(0xFF293422);
 const textSecondaryColor = Color(0xFF5D6656);
 const borderColor = Color(0xFFCFDAC4);
 const selectionColor = Color(0xFFC4D7BC);
+
 const pagePaddingHorizontal = 18.0;
 const pagePaddingVertical = 0.0;
-const sectionSpacing = 16.0;
+const sectionSpacing = 12.0;
+const bodySpacing = 4.0;
+
 const cardRadius = 16.0;
 const controlHeight = 52.0;
-const styleDisplayTitle = TextStyle(
+
+const titleFontSize = 28.0;
+const sectionFontSize = 18.0;
+const bodyFontSize = 16.0;
+const lableFontSize = 14.0;
+
+const titleTextStyle = TextStyle(
   color: textPrimaryColor,
-  fontSize: 28,
+  fontSize: titleFontSize,
   fontWeight: FontWeight.w700,
   height: 1.3,
 );
-const styleSectionTitle = TextStyle(
+const sectionTextStyle = TextStyle(
   color: textPrimaryColor,
-  fontSize: 18,
+  fontSize: sectionFontSize,
   fontWeight: FontWeight.w700,
   height: 1.4,
 );
-const styleBody = TextStyle(color: textPrimaryColor, fontSize: 16, height: 1.5);
-const styleLabel = TextStyle(
+const bodyTextStyle = TextStyle(
+  color: textPrimaryColor,
+  fontSize: 16,
+  height: 1.5
+);
+const labelTextStyle = TextStyle(
   color: textSecondaryColor,
   fontSize: 14,
   height: 1.4,
@@ -38,9 +51,9 @@ final primaryActionStyle = TextButton.styleFrom(
   minimumSize: const Size(0, controlHeight),
   textStyle: TextStyle(
     color: Colors.white,
-    fontSize: styleSectionTitle.fontSize,
-    fontWeight: styleSectionTitle.fontWeight,
-    height: styleSectionTitle.height,
+    fontSize: sectionTextStyle.fontSize,
+    fontWeight: sectionTextStyle.fontWeight,
+    height: sectionTextStyle.height,
   ),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(cardRadius),
@@ -53,9 +66,9 @@ final secondaryActionStyle = TextButton.styleFrom(
   minimumSize: const Size(0, controlHeight),
   textStyle: TextStyle(
     color: Color(0xFF42582B),
-    fontSize: styleSectionTitle.fontSize,
-    fontWeight: styleSectionTitle.fontWeight,
-    height: styleSectionTitle.height,
+    fontSize: sectionTextStyle.fontSize,
+    fontWeight: sectionTextStyle.fontWeight,
+    height: sectionTextStyle.height,
   ),
   side: const BorderSide(
     color: Color(0xFF42582B),
@@ -91,11 +104,11 @@ ThemeData buildAppTheme() {
     colorScheme: scheme,
     scaffoldBackgroundColor: backgroundColor,
     textTheme: const TextTheme(
-      headlineLarge: styleDisplayTitle,
-      titleLarge: styleSectionTitle,
-      titleMedium: styleBody,
-      bodyLarge: styleBody,
-      bodyMedium: styleLabel,
+      headlineLarge: titleTextStyle,
+      titleLarge: sectionTextStyle,
+      titleMedium: bodyTextStyle,
+      bodyLarge: bodyTextStyle,
+      bodyMedium: labelTextStyle,
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: backgroundColor,
@@ -148,8 +161,8 @@ ThemeData buildAppTheme() {
       ),
       labelColor: Colors.white,
       unselectedLabelColor: textPrimaryColor,
-      labelStyle: styleSectionTitle,
-      unselectedLabelStyle: styleBody,
+      labelStyle: sectionTextStyle,
+      unselectedLabelStyle: bodyTextStyle,
     ),
   );
 }

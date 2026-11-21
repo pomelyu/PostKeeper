@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/ui/core/empty_postcard_state.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -60,17 +61,17 @@ class PostcardItem extends StatelessWidget {
             child: PostcardFrame(postcard: postcard, fit: BoxFit.cover),
           ),
         ),
-        const SizedBox(height: 4),
+        bodyVerticalSpace,
         Text(
           title,
-          style: styleBody,
+          style: bodyTextStyle,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
         if (showDate && postcard.sentAt != null)
           Text(
             DateFormat('yyyy.MM.dd').format(postcard.sentAt!),
-            style: styleLabel,
+            style: labelTextStyle,
           ),
       ],
     );

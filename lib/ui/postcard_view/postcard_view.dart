@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/secondary_view_layout.dart';
-import 'package:postkeeper/ui/style.dart';
 
 import 'postcard_actions.dart';
 import 'postcard_image.dart';
@@ -44,7 +44,7 @@ class PostcardView extends StatelessWidget {
               onEdit: () => context.push(postcardEditViewURI, extra: postcard),
             ),
             PostcardImage(postcard: postcard, showBack: viewModel.showBack),
-            const SizedBox(height: sectionSpacing),
+            sectionVerticalSpace,
             PostcardSideSelector(
               showBack: viewModel.showBack,
               onSideSelected: viewModel.selectSide,

@@ -8,9 +8,9 @@ import 'package:postkeeper/data/repositories/person_repository.dart';
 import 'package:postkeeper/data/repositories/postcard_repository.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/postcard_grid.dart';
 import 'package:postkeeper/ui/core/primary_view_layout.dart';
-import 'package:postkeeper/ui/style.dart';
 
 import 'map_filter.dart';
 import 'map_region.dart';
@@ -173,9 +173,9 @@ class MapView extends StatelessWidget {
               countries: viewModel.countries,
               onChanged: viewModel.selectCountry,
             ),
-            const SizedBox(height: sectionSpacing),
+            sectionVerticalSpace,
             Expanded(flex: 5, child: MapRegion(viewModel: viewModel)),
-            const Divider(),
+            sectionVerticalDivider,
             Expanded(
               flex: 4,
               child: PostcardGrid(

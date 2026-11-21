@@ -4,6 +4,7 @@ import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
 import 'postcard_edit_detail_fields.dart';
@@ -39,7 +40,7 @@ class PostcardEditDetails extends StatelessWidget {
                   label: l10n.postcardEditTitleLabel,
                   controller: viewModel.titleController,
                 ),
-                const SizedBox(height: 12),
+                sectionVerticalSpace,
                 PostcardEditPartySection(
                   title: l10n.postcardEditSending,
                   peopleField: PostcardEditPeopleField(
@@ -66,7 +67,7 @@ class PostcardEditDetails extends StatelessWidget {
                         viewModel.selectLocation(location, sending: true),
                   ),
                 ),
-                const SizedBox(height: 12),
+                sectionVerticalSpace,
                 PostcardEditPartySection(
                   title: l10n.postcardEditReceiving,
                   peopleField: PostcardEditPeopleField(
@@ -93,7 +94,7 @@ class PostcardEditDetails extends StatelessWidget {
                         viewModel.selectLocation(location, sending: false),
                   ),
                 ),
-                const SizedBox(height: 12),
+                sectionVerticalSpace,
                 Expanded(
                   flex: 2,
                   child: ConstrainedBox(
@@ -143,12 +144,12 @@ class PostcardEditPartySection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 6, 12, 0),
-          child: Text(title, style: styleSectionTitle),
+          child: Text(title, style: sectionTextStyle),
         ),
         peopleField,
-        const Divider(height: 1, indent: 12, endIndent: 12),
+        sectionVerticalDivider,
         dateField,
-        const Divider(height: 1, indent: 12, endIndent: 12),
+        sectionVerticalDivider,
         locationField,
       ],
     ),
@@ -171,9 +172,9 @@ class PostcardEditNotesSection extends StatelessWidget {
       children: [
         Text(
           AppLocalizations.of(context).postcardEditNotes,
-          style: styleSectionTitle,
+          style: sectionTextStyle,
         ),
-        const SizedBox(height: 8),
+        sectionVerticalSpace,
         Expanded(
           child: TextFormField(
             key: const ValueKey('postcard-edit-notes'),
@@ -182,7 +183,7 @@ class PostcardEditNotesSection extends StatelessWidget {
             expands: true,
             maxLines: null,
             textAlignVertical: TextAlignVertical.top,
-            style: styleLabel,
+            style: labelTextStyle,
             decoration: const InputDecoration(
               border: InputBorder.none,
               enabledBorder: InputBorder.none,

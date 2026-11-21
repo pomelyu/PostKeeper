@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:intl/intl.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/enums.dart';
@@ -103,10 +104,10 @@ class PostcardSummary extends StatelessWidget {
           Expanded(
             child: Center(child: PostcardEnvelope(postcard: postcard)),
           ),
-          const SizedBox(height: 4),
-          Text(title, textAlign: TextAlign.left, style: styleSectionTitle),
-          const SizedBox(height: 4),
-          Text(message, textAlign: TextAlign.left, style: styleBody),
+          bodyVerticalSpace,
+          Text(title, textAlign: TextAlign.left, style: sectionTextStyle),
+          bodyVerticalSpace,
+          Text(message, textAlign: TextAlign.left, style: bodyTextStyle),
         ],
       ),
     );

@@ -41,6 +41,6 @@ class SecondaryViewTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: styleSectionTitle, textAlign: TextAlign.left);
+    return Text(title, style: sectionTextStyle, textAlign: TextAlign.left);
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
-final sectionSpace = SizedBox(height: sectionSpacing);
+
 
 class PrimaryViewLayout extends StatelessWidget {
   const PrimaryViewLayout({
@@ -19,7 +20,7 @@ class PrimaryViewLayout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         PrimaryViewTitle(title: title),
-        sectionSpace,
+        sectionVerticalSpace,
         ...children,
       ],
     ),
@@ -32,5 +33,5 @@ class PrimaryViewTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Text(title, style: styleDisplayTitle, textAlign: TextAlign.left);
+      Text(title, style: titleTextStyle, textAlign: TextAlign.left);
 }

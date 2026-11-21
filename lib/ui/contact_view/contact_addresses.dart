@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/core/geography_names.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
 class ContactAddresses extends StatelessWidget {
@@ -27,7 +28,7 @@ class ContactAddresses extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: Text(l10n.contactAddresses, style: styleSectionTitle),
+              child: Text(l10n.contactAddresses, style: sectionTextStyle),
             ),
             IconButton(
               key: const ValueKey('contact-add-address'),
@@ -36,7 +37,7 @@ class ContactAddresses extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        sectionVerticalSpace,
         if (locations.isEmpty) Text(l10n.contactNoAddresses),
         for (final location in locations)
           Card(

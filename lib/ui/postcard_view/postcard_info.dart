@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:intl/intl.dart';
 import 'package:postkeeper/constant.dart';
 import 'package:postkeeper/domain/models/location.dart';
@@ -24,7 +25,7 @@ class PostcardInfo extends StatelessWidget {
         value == null ? '—' : DateFormat('yyyy.MM.dd').format(value);
     return Column(
       children: [
-        const Divider(),
+        sectionVerticalDivider,
         _InfoRow(
           icon: Icons.send_outlined,
           child: Wrap(
@@ -43,7 +44,7 @@ class PostcardInfo extends StatelessWidget {
             ],
           ),
         ),
-        const Divider(),
+        sectionVerticalDivider,
         _InfoRow(
           icon: Icons.mail_outline,
           child: Wrap(
@@ -62,9 +63,9 @@ class PostcardInfo extends StatelessWidget {
             ],
           ),
         ),
-        const Divider(),
+        sectionVerticalDivider,
         _InfoRow(icon: Icons.comment_rounded, child: Text(postcard.notes)),
-        const Divider(),
+        sectionVerticalDivider,
       ],
     );
   }
@@ -90,7 +91,7 @@ class _InfoRow extends StatelessWidget {
       Expanded(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
-          child: DefaultTextStyle(style: styleBody, child: child),
+          child: DefaultTextStyle(style: bodyTextStyle, child: child),
         ),
       ),
     ],

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:postkeeper/router.dart';
-import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/data/repositories/person_repository.dart';
+import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
+import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/secondary_view_layout.dart';
 
-import 'contact_name.dart';
 import 'contact_addresses.dart';
+import 'contact_name.dart';
 
 class ContactViewModel extends ChangeNotifier {
   ContactViewModel({required PersonRepository repository, Person? person})
@@ -172,7 +173,7 @@ class ContactView extends StatelessWidget {
                   if (context.mounted && !saved) _showSaveError(context);
                 },
               ),
-              const SizedBox(height: 12),
+              sectionVerticalSpace,
               Expanded(
                 child: ContactAddresses(
                   locations: person.locations,

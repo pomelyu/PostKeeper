@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/core/geography_names.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
 class MapFilter extends StatelessWidget {

@@ -27,7 +27,7 @@ class ContactName extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 8,
       children: [
-        Text(l10n.contactName, style: styleSectionTitle),
+        Text(l10n.contactName, style: sectionTextStyle),
         Card(
           color: surfaceMutedColor,
           child: Padding(

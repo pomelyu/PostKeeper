@@ -5,6 +5,7 @@ import 'package:postkeeper/domain/models/collection.dart';
 import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/core/primary_view_layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
@@ -79,7 +80,7 @@ class MainView extends StatelessWidget {
             },
           ),
         ),
-        const Divider(height: sectionSpacing),
+        sectionVerticalDivider,
         SizedBox(
           height: _pinCollectionHeight,
           child: ListenableBuilder(
@@ -93,7 +94,7 @@ class MainView extends StatelessWidget {
             },
           ),
         ),
-        sectionSpace,
+        sectionVerticalSpace,
         SizedBox(
           key: ValueKey('main-quick-add-section'),
           height: _quickAddHeight,
@@ -103,7 +104,7 @@ class MainView extends StatelessWidget {
             child: Text(l10n.mainAddPostcard),
           ),
         ),
-        sectionSpace,
+        sectionVerticalSpace,
       ],
     );
   }

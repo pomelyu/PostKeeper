@@ -50,7 +50,7 @@ class CollectionFrame extends StatelessWidget {
         ),
         Text(
           decodeCollectionName(collection, AppLocalizations.of(context)),
-          style: styleBody,
+          style: bodyTextStyle,
         ),
       ],
     );

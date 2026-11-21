@@ -4,6 +4,7 @@ import 'package:postkeeper/domain/models/person.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/router.dart';
 import 'package:postkeeper/ui/core/illustration.dart';
+import 'package:postkeeper/ui/core/layout.dart';
 import 'package:postkeeper/ui/style.dart';
 
 class UserPanelData {
@@ -39,7 +40,7 @@ class UserPanel extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            Expanded(child: Text(data.person.name, style: styleDisplayTitle)),
+            Expanded(child: Text(data.person.name, style: titleTextStyle)),
             IconButton(
               key: const ValueKey('user-personal-info'),
               tooltip: l10n.userPersonalInfo,
@@ -51,7 +52,7 @@ class UserPanel extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 16),
+        sectionVerticalSpace,
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -97,8 +98,8 @@ class _Statistic extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(value, style: styleDisplayTitle),
-      Text(label, style: styleLabel),
+      Text(value, style: titleTextStyle),
+      Text(label, style: labelTextStyle),
     ],
   );
 }
