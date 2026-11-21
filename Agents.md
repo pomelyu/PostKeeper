@@ -26,6 +26,7 @@ PostKeeper 是一個明信片收藏的手機應用。明信片由使用者拍照
 - CollectionView: 以 Grid 的形式顯示收藏夾內的所有明信片
 - ContacListView: 以列表的方式顯示聯絡人
 - ContactView: 顯示聯絡人資訊，可編輯名稱和對應的地址列表
+- LocationPickerView: 搜尋並選擇地圖上的位置
 
 詳細的頁面功能參見`docs/views.md`
 
@@ -34,6 +35,7 @@ PostKeeper 是一個明信片收藏的手機應用。明信片由使用者拍照
 - 在任何頁面，點選明信片進入該明信片的 PostcardView
 - 在任何頁面，點選收藏夾或資料夾後進入 CollectionView
 - 「新增」或是「修改」明信片進入 PostcardEditView
+- 「編輯」或是「新增」地址的進入 LocationPickerView
 - PostcardEditView 按下「取消」或是「儲存」回到進入前的頁面
 - 所有次要頁面按下「返回」回到進入前的頁面
 
@@ -49,11 +51,15 @@ lib/
         models/         # 專案內使用的資料格式
         repositories/   # 提供資料操作的 API
         servies/        # 連結資料庫或是外部服務
+        constants.dart  # data 專用的 dummy 常數
+        contry_code.dart    # 查詢與標準化國家代碼
     ui/
         core/           # 可共用的 widget
-        style.dart      # app 跨 view 的 style 設定       
-    enums.dart
+        style.dart      # app 跨 view 的 style 設定    
+    constant.dart       # app 的常數設定
+    enums.dart          # app 共用的類型設定
     main.dart           # app 進入點
+    locale_controller.dart  # 介面語言更新通知
     router.dart         # 設定 view 的 route 和 URI
 ```
 - 每個 View 都會拆成 stateless 的 View 和管理狀態的 ViewModel
@@ -66,5 +72,6 @@ lib/
 
 # Development
 - 只對程式邏輯和 UI routing 作測試。禁止元件動畫、位置、顏色外觀等的測試
+- 測試標題的項目使用正體中文書寫
 - 禁止利用匹配固定文字來測試。改為匹配特定大元件的 key
 - 實作禁止修改不相關的程式碼，無論是否有格式不符合或是拼字錯誤。若在非實作範圍外有更佳的寫法先跳過，並在實作後告知
