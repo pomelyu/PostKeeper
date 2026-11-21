@@ -16,9 +16,18 @@ class UserViewModel extends ChangeNotifier {
   UserViewModel({
     required PersonRepository personRepository,
     required PostcardRepository postcardRepository,
-  }) : panel = _load(personRepository, postcardRepository);
+  }) : _personRepository = personRepository,
+       _postcardRepository = postcardRepository,
+       panel = _load(personRepository, postcardRepository);
 
-  final Future<UserPanelData> panel;
+  final PersonRepository _personRepository;
+  final PostcardRepository _postcardRepository;
+  Future<UserPanelData> panel;
+
+  void refresh() {
+    panel = _load(_personRepository, _postcardRepository);
+    notifyListeners();
+  }
 
   static Future<UserPanelData> _load(
     PersonRepository people,
@@ -53,15 +62,21 @@ class UserView extends StatelessWidget {
         Expanded(
           child: ListView(
             children: [
-              FutureBuilder<UserPanelData>(
-                future: viewModel.panel,
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) return Text(l10n.contactLoadError);
-                  if (!snapshot.hasData) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  return UserPanel(data: snapshot.data!);
-                },
+              ListenableBuilder(
+                listenable: viewModel,
+                builder: (context, _) => FutureBuilder<UserPanelData>(
+                  future: viewModel.panel,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) return Text(l10n.contactLoadError);
+                    if (!snapshot.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    return UserPanel(
+                      data: snapshot.data!,
+                      onPersonalInfoClosed: viewModel.refresh,
+                    );
+                  },
+                ),
               ),
               Card(
                 child: Column(

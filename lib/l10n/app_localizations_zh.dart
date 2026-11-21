@@ -987,9 +987,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get contactTitle => '聯絡人資訊';
 
   @override
-  String get contactEdit => '編輯聯絡人';
-
-  @override
   String get contactName => '名稱';
 
   @override
@@ -1025,6 +1022,20 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get postcardBack => '背面';
+
+  @override
+  String get contactCancel => '取消';
+
+  @override
+  String get contactSaveError => '無法儲存聯絡人資訊，請再試一次。';
+
+  @override
+  String get contactDeleteAddress => '刪除地址';
+
+  @override
+  String contactDeleteAddressConfirmation(String name) {
+    return '確定要從此聯絡人的地址列表移除「$name」嗎？';
+  }
 }
 
 /// The translations for Chinese, as used in Taiwan, using the Han script (`zh_Hant_TW`).
@@ -2009,9 +2020,6 @@ class AppLocalizationsZhHantTw extends AppLocalizationsZh {
   String get contactTitle => '聯絡人資訊';
 
   @override
-  String get contactEdit => '編輯聯絡人';
-
-  @override
   String get contactName => '名稱';
 
   @override
@@ -2047,4 +2055,18 @@ class AppLocalizationsZhHantTw extends AppLocalizationsZh {
 
   @override
   String get postcardBack => '背面';
+
+  @override
+  String get contactCancel => '取消';
+
+  @override
+  String get contactSaveError => '無法儲存聯絡人資訊，請再試一次。';
+
+  @override
+  String get contactDeleteAddress => '刪除地址';
+
+  @override
+  String contactDeleteAddressConfirmation(String name) {
+    return '確定要從此聯絡人的地址列表移除「$name」嗎？';
+  }
 }

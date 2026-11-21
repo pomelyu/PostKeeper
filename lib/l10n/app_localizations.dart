@@ -2053,12 +2053,6 @@ abstract class AppLocalizations {
   /// **'Contact'**
   String get contactTitle;
 
-  /// No description provided for @contactEdit.
-  ///
-  /// In en, this message translates to:
-  /// **'Edit contact'**
-  String get contactEdit;
-
   /// No description provided for @contactName.
   ///
   /// In en, this message translates to:
@@ -2124,6 +2118,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Back'**
   String get postcardBack;
+
+  /// No description provided for @contactCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get contactCancel;
+
+  /// No description provided for @contactSaveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to save contact information. Please try again.'**
+  String get contactSaveError;
+
+  /// No description provided for @contactDeleteAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete address'**
+  String get contactDeleteAddress;
+
+  /// No description provided for @contactDeleteAddressConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove “{name}” from this contact’s addresses?'**
+  String contactDeleteAddressConfirmation(String name);
 }
 
 class _AppLocalizationsDelegate

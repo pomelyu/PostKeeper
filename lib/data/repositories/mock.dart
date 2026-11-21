@@ -197,11 +197,52 @@ final List<Collection> mockCustomCollections = [
 ];
 
 class MockPersonRepository implements PersonRepository {
-  @override
-  Future<List<Person>> getAllUsers() async => [_me, _friend1, _friend2, _friend3];
+  final Map<String, Person> _updates = {};
 
   @override
-  Future<Person> getMyInfo() async => _me;
+  Future<void> removeLocation(String id, String locationId) async {
+    final person = (await getPersonById(id))!;
+    _updates[id] = Person(
+      id: id,
+      name: person.name,
+      locations: person.locations
+          .where((item) => item.id != locationId)
+          .toList(),
+    );
+  }
+
+  @override
+  Future<void> updateName(String id, String name) async {
+    if (name.trim().isEmpty) throw ArgumentError.value(name, 'name');
+    final person = (await getPersonById(id))!;
+    _updates[id] = Person(
+      id: id,
+      name: name.trim(),
+      locations: person.locations,
+    );
+  }
+
+  @override
+  Future<void> addLocation(String id, Location location) async {
+    final person = (await getPersonById(id))!;
+    _updates[id] = Person(
+      id: id,
+      name: person.name,
+      locations: [
+        ...person.locations,
+        if (!person.locations.any((item) => item.id == location.id)) location,
+      ],
+    );
+  }
+
+  @override
+  Future<List<Person>> getAllUsers() async => [
+    for (final person in [_me, _friend1, _friend2, _friend3])
+      _updates[person.id] ?? person,
+  ];
+
+  @override
+  Future<Person> getMyInfo() async => _updates[_me.id] ?? _me;
 
   @override
   Future<Person?> getPersonById(String id) async {

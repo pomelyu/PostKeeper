@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as p;
 import 'package:postkeeper/data/constants.dart';
+import 'package:postkeeper/domain/models/location.dart';
 import 'package:postkeeper/data/repositories/sqlite_person_repository.dart';
 import 'package:postkeeper/data/repositories/sqlite_postcard_repository.dart';
 import 'package:postkeeper/data/services/database/database_schema.dart';
@@ -27,6 +28,86 @@ void main() {
   Future<PostKeeperDatabase> open() => PostKeeperDatabase.open(
     path: p.join(directory.path, 'postkeeper.sqlite'),
     factory: databaseFactoryFfi,
+  );
+
+  test(
+    '聯絡人修改會持久儲存，刪除地址時保留共用地點資料',
+    () async {
+      store = await open();
+      var people = SqlitePersonRepository(database: store!.connection);
+      const first = Location(
+        id: 'first',
+        name: 'First',
+        countryCode: 'TW',
+        address: 'Address',
+        latitude: 25,
+        longitude: 121,
+        googlePlaceId: 'google-first',
+      );
+      const second = Location(id: 'second', name: 'Second', countryCode: 'JP');
+      await people.updateName(myId, '  Updated  ');
+      await people.addLocation(myId, first);
+      await people.addLocation(myId, second);
+      await people.addLocation(myId, first);
+      expect((await people.getMyInfo()).locations.map((item) => item.id), [
+        'first',
+        'second',
+      ]);
+      await store!.connection.insert('persons', {
+        'id': 'friend',
+        'name': 'Friend',
+        'created_at': 0,
+        'updated_at': 0,
+      });
+      await people.addLocation('friend', first);
+      await store!.connection.insert('postcards', {
+        'id': 'card',
+        'orientation': 'landscape',
+        'front_image_path': 'images/front.jpg',
+        'send_from_id': first.id,
+        'created_at': 0,
+        'updated_at': 0,
+      });
+      await people.removeLocation(myId, first.id);
+      expect(
+        (await people.getPersonById('friend'))!.locations.single.id,
+        first.id,
+      );
+      expect(
+        await store!.connection.query(
+          'locations',
+          where: 'id = ?',
+          whereArgs: [first.id],
+        ),
+        hasLength(1),
+      );
+      await store!.close();
+      store = await open();
+      people = SqlitePersonRepository(database: store!.connection);
+      final person = await people.getMyInfo();
+      expect(person.name, 'Updated');
+      expect(person.locations.single.id, second.id);
+      final shared = (await people.getPersonById('friend'))!.locations.single;
+      expect(shared.googlePlaceId, first.googlePlaceId);
+      expect(shared.address, first.address);
+      expect(shared.latitude, first.latitude);
+      await expectLater(people.updateName(myId, '  '), throwsArgumentError);
+      await expectLater(
+        people.addLocation(
+          'missing',
+          const Location(id: 'rollback', name: 'Rollback', countryCode: 'TW'),
+        ),
+        throwsA(anything),
+      );
+      expect(
+        await store!.connection.query(
+          'locations',
+          where: 'id = ?',
+          whereArgs: ['rollback'],
+        ),
+        isEmpty,
+      );
+    },
   );
 
   test('正式資料庫只建立本人，首頁 ViewModel 正常接受空明信片與收藏夾', () async {

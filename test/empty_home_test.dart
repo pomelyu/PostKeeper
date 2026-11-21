@@ -4,6 +4,7 @@ import 'package:postkeeper/data/repositories/sqlite_person_repository.dart';
 import 'package:postkeeper/data/repositories/sqlite_postcard_repository.dart';
 import 'package:postkeeper/data/services/database/postkeeper_database.dart';
 import 'package:postkeeper/main.dart';
+import 'package:postkeeper/ui/contact_view/contact_view.dart';
 import 'package:postkeeper/ui/core/postcard_frame.dart';
 import 'package:postkeeper/ui/main_view/postcard_tab.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -11,6 +12,59 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'support/test_app.dart';
 
 void main() {
+  testWidgets('空白 SQLite 個人資訊可開啟、儲存名稱並進入地址選擇頁', (tester) async {
+    sqfliteFfiInit();
+    final store = await tester.runAsync(
+      () => PostKeeperDatabase.open(
+        path: inMemoryDatabasePath,
+        factory: databaseFactoryFfiNoIsolate,
+      ),
+    );
+    addTearDown(store!.close);
+    final people = SqlitePersonRepository(database: store.connection);
+    await tester.pumpWidget(
+      PostKeeperApp(
+        postcardRepository: SqlitePostcardRepository(
+          database: store.connection,
+          imageRoot: '/unused',
+        ),
+        personRepository: people,
+        locationRepository: TestLocationRepository(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('nav-user')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('user-personal-info')));
+    await tester.pumpAndSettle();
+    expect(find.byType(ContactView), findsOneWidget);
+    final model = tester
+        .widget<ContactView>(find.byType(ContactView))
+        .viewModel;
+    expect((await model.contact).name, isEmpty);
+    expect((await model.contact).locations, isEmpty);
+    expect(tester.takeException(), isNull);
+    await tester.tap(find.byKey(const ValueKey('contact-edit-button')));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.byKey(const ValueKey('contact-name-input')),
+      'Profile',
+    );
+    await tester.pump();
+    await tester.tap(find.byKey(const ValueKey('contact-name-save')));
+    await tester.pumpAndSettle();
+    expect((await people.getMyInfo()).name, 'Profile');
+    await tester.tap(find.byKey(const ValueKey('contact-add-address')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('location-picker-view')), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect((await people.getMyInfo()).locations, isEmpty);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pumpAndSettle();
+  });
+
   testWidgets('正式空白 SQLite 首頁可切換分頁、開啟空收藏夾與新增頁面', (tester) async {
     sqfliteFfiInit();
     final store = await tester.runAsync(

@@ -332,7 +332,6 @@
   "userAbout": "About the app",
   "userPersonalInfo": "Personal information",
   "contactTitle": "Contact",
-  "contactEdit": "Edit contact",
   "contactName": "Name",
   "contactAddresses": "Addresses",
   "contactNoAddresses": "No addresses yet",
@@ -357,5 +356,10 @@
     }
   },
   "postcardFront": "Front",
-  "postcardBack": "Back"
+  "postcardBack": "Back",
+  "contactCancel": "Cancel",
+  "contactSaveError": "Unable to save contact information. Please try again.",
+  "contactDeleteAddress": "Delete address",
+  "contactDeleteAddressConfirmation": "Remove “{name}” from this contact’s addresses?",
+  "@contactDeleteAddressConfirmation": {"placeholders": {"name": {"type": "String"}}}
 }

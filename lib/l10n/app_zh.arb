@@ -325,7 +325,6 @@
   "userAbout": "關於 App",
   "userPersonalInfo": "個人資訊",
   "contactTitle": "聯絡人資訊",
-  "contactEdit": "編輯聯絡人",
   "contactName": "名稱",
   "contactAddresses": "地址清單",
   "contactNoAddresses": "尚無地址",
@@ -350,5 +349,10 @@
     }
   },
   "postcardFront": "正面",
-  "postcardBack": "背面"
+  "postcardBack": "背面",
+  "contactCancel": "取消",
+  "contactSaveError": "無法儲存聯絡人資訊，請再試一次。",
+  "contactDeleteAddress": "刪除地址",
+  "contactDeleteAddressConfirmation": "確定要從此聯絡人的地址列表移除「{name}」嗎？",
+  "@contactDeleteAddressConfirmation": {"placeholders": {"name": {"type": "String"}}}
 }

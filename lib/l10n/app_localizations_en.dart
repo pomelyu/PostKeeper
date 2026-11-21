@@ -996,9 +996,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get contactTitle => 'Contact';
 
   @override
-  String get contactEdit => 'Edit contact';
-
-  @override
   String get contactName => 'Name';
 
   @override
@@ -1034,4 +1031,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get postcardBack => 'Back';
+
+  @override
+  String get contactCancel => 'Cancel';
+
+  @override
+  String get contactSaveError =>
+      'Unable to save contact information. Please try again.';
+
+  @override
+  String get contactDeleteAddress => 'Delete address';
+
+  @override
+  String contactDeleteAddressConfirmation(String name) {
+    return 'Remove “$name” from this contact’s addresses?';
+  }
 }

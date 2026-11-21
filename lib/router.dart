@@ -9,7 +9,7 @@ import 'package:postkeeper/domain/models/postcard.dart';
 import 'package:postkeeper/l10n/app_localizations.dart';
 import 'package:postkeeper/ui/collection_view.dart';
 import 'package:postkeeper/ui/contact_list_view.dart';
-import 'package:postkeeper/ui/contact_view.dart';
+import 'package:postkeeper/ui/contact_view/contact_view.dart';
 import 'package:postkeeper/ui/keeper_view.dart';
 import 'package:postkeeper/ui/location_picker_view/location_picker_view.dart';
 import 'package:postkeeper/ui/location_picker_view/location_picker_view_model.dart';
@@ -167,7 +167,7 @@ GoRouter createAppRouter({
 
   final contactListViewRoute = GoRoute(
     path: contactListViewURI,
-    builder: (context, state) => Provider(
+    builder: (context, state) => ChangeNotifierProvider(
       create: (_) => ContactListViewModel(repository: personRepository),
       child: Builder(
         builder: (context) => ContactListView(
@@ -180,7 +180,7 @@ GoRouter createAppRouter({
 
   final contactViewRoute = GoRoute(
     path: contactViewURI,
-    builder: (context, state) => Provider(
+    builder: (context, state) => ChangeNotifierProvider(
       create: (_) => ContactViewModel(
         repository: personRepository,
         person: state.extra as Person?,

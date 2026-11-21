@@ -18,8 +18,9 @@ class UserPanelData {
 }
 
 class UserPanel extends StatelessWidget {
-  const UserPanel({super.key, required this.data});
+  const UserPanel({super.key, required this.data, this.onPersonalInfoClosed});
   final UserPanelData data;
+  final VoidCallback? onPersonalInfoClosed;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,10 @@ class UserPanel extends StatelessWidget {
             IconButton(
               key: const ValueKey('user-personal-info'),
               tooltip: l10n.userPersonalInfo,
-              onPressed: () => context.push(contactViewURI),
+              onPressed: () async {
+                await context.push(contactViewURI);
+                if (context.mounted) onPersonalInfoClosed?.call();
+              },
               icon: const Icon(Icons.chevron_right),
             ),
           ],
