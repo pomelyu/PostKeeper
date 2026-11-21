@@ -13,4 +13,8 @@ abstract interface class PostcardRepository {
   Future<Collection> getAllMySent();
   Future<Collection> getAllMyReceived();
   Future<Collection> getAllFavorite();
+
+  Future<Postcard?> getPostcardById(String id);
+  Future<Collection?> getCustomCollectionById(String id);
+  Future<List<Postcard>> searchPostcards(String query);
 }

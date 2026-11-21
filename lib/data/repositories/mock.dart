@@ -202,9 +202,42 @@ class MockPersonRepository implements PersonRepository {
 
   @override
   Future<Person> getMyInfo() async => _me;
+
+  @override
+  Future<Person?> getPersonById(String id) async {
+    for (final person in await getAllUsers()) {
+      if (person.id == id) return person;
+    }
+    return null;
+  }
 }
 
 class MockPostcardRepository implements PostcardRepository {
+
+  @override
+  Future<Postcard?> getPostcardById(String id) async {
+    for (final card in allCards) {
+      if (card.id == id) return card;
+    }
+    return null;
+  }
+
+  @override
+  Future<Collection?> getCustomCollectionById(String id) async {
+    for (final collection in mockCustomCollections) {
+      if (collection.id == id) return collection;
+    }
+    return null;
+  }
+
+  @override
+  Future<List<Postcard>> searchPostcards(String query) async {
+    final term = query.trim().toLowerCase();
+    return allCards.where((card) => [
+      card.title, card.notes, card.sender.name, card.recipient.name,
+      card.sendFrom.name, card.sendFrom.address, card.sendTo.name, card.sendTo.address,
+    ].any((value) => value?.toLowerCase().contains(term) ?? false)).toList();
+  }
 
   @override
   Future<List<Collection>> getCollectionsByRegion() async {

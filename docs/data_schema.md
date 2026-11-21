@@ -141,3 +141,30 @@
 - DB 的空人物、空地點與空圖片使用 `NULL`；現有模型的 `dummyPerson`、`dummyLocation` 與空路徑由 Repository 映射，不建立假的人物或地點紀錄。
 - `sent_at`、`received_at` 讀取為 Dart 日曆日期，`created_at`、`updated_at` 讀取為 UTC `DateTime`，由 UI 決定顯示時區。
 - 本版不儲存未完成的編輯草稿；語言設定與首頁釘選設定不納入上述六張核心資料表。
+
+## 讀取 API 與 Schema 測試
+
+`PostKeeperDatabase.open(path: ..., factory: ...)` 建立或開啟資料庫，啟用外鍵並建立第一版 schema；正式環境預設使用 `sqflite`，測試注入 `databaseFactoryFfi`，連線由建立者負責 `close()`。
+
+| Repository | 讀取 API |
+| --- | --- |
+| `SqlitePostcardRepository` | `getAllPostcards`、`getAllMySent`、`getAllMyReceived`、`getAllFavorite`、`getLatestSent`、`getLatestReceived`、`getCollectionsByYear`、`getCollectionsByRegion`、`getCustomCollections`、`getPostcardById`、`getCustomCollectionById`、`searchPostcards`。 |
+| `SqlitePersonRepository` | `getAllUsers`、`getMyInfo`、`getPersonById`。 |
+| `SqliteLocationRepository` | `getAllLocations`、`getLocationById`、`getLocationsByGooglePlaceId`。 |
+
+- 明信片清單與收藏夾成員依 `sent_at ASC, id ASC` 排序，空日期優先，維持目前 Mock 的清單順序。
+- 自訂收藏夾依 `created_at ASC, id ASC` 排序；人物清單先列本人，其餘依 `id` 排序；地點清單依 `id` 排序。
+- `getPostcardById`、`getPersonById`、`getLocationById` 與 `getCustomCollectionById` 找不到資料時回傳 `null`，`getCustomCollectionById` 僅查詢自訂收藏夾。
+- 清單無資料時回傳空清單，系統收藏夾則回傳空成員的 `Collection`；`getMyInfo` 缺少本人資料時拋出 `StateError`，由未來的初始化流程建立本人資料。
+- `searchPostcards` 搜尋標題、備註、寄收件人物名稱、寄收件地點名稱與地址，去除查詢字串首尾空白，空查詢回傳全部，ASCII 字母不分大小寫，`%`、`_` 與反斜線視為一般文字。
+- 本機地點讀取介面為 `SavedLocationRepository`，與原有 Google Places 搜尋用的 `LocationRepository` 分開，避免把本機讀取與外部搜尋 session 混用。
+- `SqlitePostcardRepository` 的 `imageRoot` 傳入持久化資料根目錄的絕對路徑，回傳模型中的圖片路徑為組合後的檔案路徑；圖片為 `NULL` 時映射成空字串。
+- 此階段完成資料層讀取，`main()` 仍注入原有 Mock Repository；畫面的檔案圖片載入與正式資料初始化在接線時處理。
+
+執行資料庫 schema 約束測試：
+
+```bash
+flutter test test/data/database/database_schema_test.dart
+```
+
+此測試使用記憶體資料庫與個別案例所需的最小資料，驗證外鍵、刪除關聯及欄位約束。
