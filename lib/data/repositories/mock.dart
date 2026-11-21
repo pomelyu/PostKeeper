@@ -10,11 +10,14 @@ import './person_repository.dart';
 import './postcard_repository.dart';
 import './utils.dart';
 
-const _home = Location(id: '_mock_home', name: '家', countryCode: 'TW');
-const _kaohsiung = Location(id: '_mock_home', name: '高雄', countryCode: 'TW');
-const _kyoto = Location(id: '_mock_kyoto', name: '京都', countryCode: 'JP');
-const _porto = Location(id: '_mock_porto', name: '波多', countryCode: 'PT');
-const _vancouver = Location(id: '_mock_vancouver', name: '溫哥華', countryCode: 'CA');
+const _home = Location(id: '_mock_home', name: '家', countryCode: 'TW', latitude: 22.6273, longitude: 120.3014);
+const _kaohsiung = Location(id: '_mock_kaohsiung', name: '高雄', countryCode: 'TW', latitude: 22.6273, longitude: 120.3014);
+const _taipei = Location(id: '_mock_taipei', name: '台北', countryCode: 'TW', latitude: 25.0330, longitude: 121.5654);
+const _tokyo = Location(id: '_mock_tokyo', name: '東京', countryCode: 'JP', latitude: 35.6762, longitude: 139.6503);
+const _lisbon = Location(id: '_mock_lisbon', name: '里斯本', countryCode: 'PT', latitude: 38.7223, longitude: -9.1393);
+const _kyoto = Location(id: '_mock_kyoto', name: '京都', countryCode: 'JP', latitude: 35.0116, longitude: 135.7681);
+const _porto = Location(id: '_mock_porto', name: '波多', countryCode: 'PT', latitude: 41.1579, longitude: -8.6291);
+const _vancouver = Location(id: '_mock_vancouver', name: '溫哥華', countryCode: 'CA', latitude: 49.2827, longitude: -123.1207);
 
 const _me = Person(id: myId, name: '我', locations: [_home]);
 const _friend1 = Person(id: '_mock_friend-000', name: '朋友1', locations: [_kyoto, _kaohsiung]);
@@ -55,7 +58,7 @@ final Postcard _sent2 = Postcard(
 );
 
 final Postcard _sent3 = Postcard(
-  id: '_mock_postcard_sent-002',
+  id: '_mock_postcard_sent-003',
   isFavorite: true,
   orientation: PostcardOrientation.landscape,
   createdAt: DateTime(2025, 07, 25),
@@ -108,7 +111,75 @@ final Postcard _received2 = Postcard(
   receivedAt: DateTime(2024, 12, 05),
 );
 
-final List<Postcard> allCards = [_sent1, _sent2, _sent3, _received1, _received2]
+final Postcard _received3 = Postcard(
+  id: '_mock_postcard_received-003',
+  isFavorite: false,
+  orientation: PostcardOrientation.landscape,
+  createdAt: DateTime(2026, 11, 04),
+  updatedAt: DateTime(2026, 11, 04),
+  frontImagePath: dummyCardLandscapeFront,
+  backImagePath: dummyCardLandscapeBack,
+  title: '里斯本電車',
+  sender: _friend1,
+  sendFrom: _lisbon,
+  recipient: _me,
+  sendTo: _home,
+  sentAt: DateTime(2026, 11, 03),
+  receivedAt: DateTime(2026, 11, 04),
+);
+
+final Postcard _received4 = Postcard(
+  id: '_mock_postcard_received-004',
+  isFavorite: false,
+  orientation: PostcardOrientation.landscape,
+  createdAt: DateTime(2026, 11, 05),
+  updatedAt: DateTime(2026, 11, 05),
+  frontImagePath: dummyCardLandscapeFront,
+  backImagePath: dummyCardLandscapeBack,
+  title: '東京散步',
+  sender: _friend1,
+  sendFrom: _tokyo,
+  recipient: _me,
+  sendTo: _home,
+  sentAt: DateTime(2026, 11, 04),
+  receivedAt: DateTime(2026, 11, 05),
+);
+
+final Postcard _received5 = Postcard(
+  id: '_mock_postcard_received-005',
+  isFavorite: false,
+  orientation: PostcardOrientation.landscape,
+  createdAt: DateTime(2026, 11, 06),
+  updatedAt: DateTime(2026, 11, 06),
+  frontImagePath: dummyCardLandscapeFront,
+  backImagePath: dummyCardLandscapeBack,
+  title: '台北街景',
+  sender: _friend2,
+  sendFrom: _taipei,
+  recipient: _me,
+  sendTo: _home,
+  sentAt: DateTime(2026, 11, 05),
+  receivedAt: DateTime(2026, 11, 06),
+);
+
+final Postcard _received6 = Postcard(
+  id: '_mock_postcard_received-006',
+  isFavorite: false,
+  orientation: PostcardOrientation.landscape,
+  createdAt: DateTime(2026, 11, 07),
+  updatedAt: DateTime(2026, 11, 07),
+  frontImagePath: dummyCardLandscapeFront,
+  backImagePath: dummyCardLandscapeBack,
+  title: '高雄港灣',
+  sender: _friend2,
+  sendFrom: _kaohsiung,
+  recipient: _me,
+  sendTo: _home,
+  sentAt: DateTime(2026, 11, 06),
+  receivedAt: DateTime(2026, 11, 07),
+);
+
+final List<Postcard> allCards = [_sent1, _sent2, _sent3, _received1, _received2, _received3, _received4, _received5, _received6]
   ..sort((a, b) {
     final aDate = a.sentAt;
     final bDate = b.sentAt;

@@ -7,11 +7,13 @@ class MapFilter extends StatelessWidget {
   const MapFilter({
     super.key,
     required this.countryCode,
+    required this.freeBrowse,
     required this.countries,
     required this.onChanged,
   });
 
   final String? countryCode;
+  final bool freeBrowse;
   final List<String> countries;
   final ValueChanged<String?> onChanged;
 
@@ -37,11 +39,12 @@ class MapFilter extends StatelessWidget {
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
                 key: const ValueKey('map-country-dropdown'),
-                value: countryCode,
+                value: freeBrowse ? null : countryCode ?? '*',
+                hint: const SizedBox.shrink(),
                 isExpanded: true,
                 items: [
                   DropdownMenuItem<String>(
-                    value: null,
+                    value: '*',
                     child: Text(l10n.mapAllCountries),
                   ),
                   for (final code in countries)
@@ -53,7 +56,7 @@ class MapFilter extends StatelessWidget {
                       ),
                     ),
                 ],
-                onChanged: onChanged,
+                onChanged: (code) => onChanged(code == '*' ? null : code),
               ),
             ),
           ),
